@@ -1,0 +1,38 @@
+set clipboard=unnamed
+set number
+set ignorecase smartcase
+
+let mapleader = " "
+
+inoremap jk <esc>
+
+nnoremap <leader>ga :vsc Edit.GoToAll<cr>
+nnoremap <leader>gt :vsc Edit.GoToType<cr>
+nnoremap <leader>gm :vsc Edit.GoToMember<cr>
+nnoremap <leader>gd :vsc Edit.GoToDefinition<cr>
+
+nnoremap <leader>fu :vsc Edit.FindAllReferences<cr>
+nnoremap <leader>ff :vsc Edit.GoToRecentFile<cr>
+
+nnoremap <leader>mn :vsc Edit.NextMethod<cr>
+nnoremap <leader>mp :vsc Edit.PreviousMethod<cr>
+
+nnoremap <leader>en :vsc Edit.GotoNextLocation<cr>
+nnoremap <leader>ep :vsc Edit.GotoPrevLocation<cr>
+
+nnoremap <leader>rn :vsc ReSharper.ReSharper_NavigateTo<cr>
+nnoremap <leader>rr :vsc ReSharper.ReSharper_Rename<cr>
+nnoremap <leader>rt :vsc ReSharper.ReSharper_GotoType<cr>
+nnoremap <leader>rm :vsc ReSharper.ReSharper_GotoFileMember<cr>
+
+nnoremap <leader>te :vsc Tools.ExternalCommand1<cr>
+
+nnoremap <leader>wf :vsc Window.Float<cr>
+nnoremap <leader>wk :vsc Window.CloseDocumentWindow<cr>
+nnoremap <leader>wg :vsc Window.MoveToMainDocumentGroup<cr>
+nnoremap <leader>wn :vsc Window.MoveToNextTabGroup<cr>
+nnoremap <leader>wp :vsc Window.MoveToPreviousTabGroup<cr>
+nnoremap <leader>wv :vsc Window.NewVerticalTabGroup<cr>
+nnoremap <leader>ww :vsc Window.Windows<cr>
+
+nnoremap <leader>n :set number<cr>
