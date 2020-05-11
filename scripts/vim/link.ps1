@@ -1,0 +1,1 @@
+sudo New-item -ItemType SymbolicLink -Path ~/vimfiles -Target ~/dotfiles/vim/.vim
