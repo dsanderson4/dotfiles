@@ -34,6 +34,12 @@ dist/
 
 /transient/
 
+/.cache/
+
+recentf
+
+/url/
+
 # Flycheck
 flycheck_*.el
 

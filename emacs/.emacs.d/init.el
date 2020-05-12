@@ -230,13 +230,13 @@
   (progn
     (add-hook 'js2-mode-hook 'tern-mode)))
 
-(use-package company-tern
-  :ensure t
-  :defer t
-  :init
-  (progn
-    (require 'company)
-    (add-to-list 'company-backends 'company-tern)))
+;; (use-package company-tern
+;;   :ensure t
+;;   :defer t
+;;   :init
+;;   (progn
+;;     (require 'company)
+;;     (add-to-list 'company-backends 'company-tern)))
 
 (use-package ag
   :ensure t)
@@ -301,7 +301,7 @@
  '(markdown-command "pandoc -f markdown -t html")
  '(package-selected-packages
    (quote
-    (diminish yasnippet-snippets yasnippet auctex evil-magit general ag company-tern tern js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package)))
+    (diminish yasnippet-snippets yasnippet auctex evil-magit general ag js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package)))
  '(visible-bell t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
