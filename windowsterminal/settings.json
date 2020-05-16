@@ -52,19 +52,24 @@
                 "guid": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
                 "hidden": false,
                 "name": "WLinux",
-                "source": "Windows.Terminal.Wsl"
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "//wsl$/wLinux/home/dave/"
             },
             {
                 "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
                 "hidden": false,
                 "name": "Ubuntu-20.04",
-                "source": "Windows.Terminal.Wsl"
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "//wsl$/Ubuntu-20.04/home/dave/",
+                "icon": "%USERPROFILE%/dotfiles/windowsterminal/ubuntu.png"
             },
             {
                 "guid": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
                 "hidden": false,
                 "name": "Arch",
-                "source": "Windows.Terminal.Wsl"
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "//wsl$/Arch/home/dave/",
+                "icon": "%USERPROFILE%/dotfiles/windowsterminal/arch.png"
             },
             {
                 "guid": "{F97CC96E-C31F-43D1-B387-A29995A62940}",
