@@ -1,0 +1,1 @@
+copy settings.json $env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\temp.json
