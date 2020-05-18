@@ -24,7 +24,7 @@ Set-Alias emacs runemacs
 
 Set-Alias hd Format-Hex
 
-Set-Alias find c:\msys64\usr\bin\find
+Set-Alias find "C:\Program Files\Git\usr\bin\find.exe"
 
 # Set-Alias vim "C:\Program Files (x86)\Vim\vim81\vim.exe"
 # Set-Alias gvim "C:\Program Files (x86)\Vim\vim81\gvim.exe"
