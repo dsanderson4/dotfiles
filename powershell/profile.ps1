@@ -8,6 +8,10 @@ Set-PSReadlineKeyHandler -Chord Ctrl+Alt+U -ScriptBlock {
     Set-Location '..'
 }
 
+function prompt {"PS $($executionContext.SessionState.Path.CurrentLocation)$('$' * ($nestedPromptLevel + 1)) ";}
+
+Set-Alias c Copy-Item
+
 Set-Alias d Get-ChildItem
 
 function Edit-File {emacsclient -n $args}
@@ -19,6 +23,8 @@ Set-Alias v Edit-File-Gvim
 Set-Alias emacs runemacs
 
 Set-Alias hd Format-Hex
+
+Set-Alias find c:\msys64\usr\bin\find
 
 # Set-Alias vim "C:\Program Files (x86)\Vim\vim81\vim.exe"
 # Set-Alias gvim "C:\Program Files (x86)\Vim\vim81\gvim.exe"
