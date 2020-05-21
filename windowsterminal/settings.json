@@ -78,15 +78,9 @@
                 "hidden": false
             },
             {
-                "guid": "{6164633B-24C8-4C7F-871B-24414F70F96C}",
-                "name": "MSYS2",
-                "commandline": "c:/msys64/usr/bin/zsh.exe --login -i",
-                "hidden": false
-            },
-            {
                 "guid": "{5D1C4FBE-ACD3-4FC2-934C-2E82C6702F17}",
-                "name": "Git Bash",
-                "commandline": "C:/Program Files/Git/bin/bash.exe --cd-to-home",
+                "name": "Cygwin Zsh",
+                "commandline": "c:/cygwin64/bin/zsh --login -i",
                 "hidden": false
             },
             {
