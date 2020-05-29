@@ -1,0 +1,19 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Zenburn",
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "editor.lineNumbers": "relative",
+    "diffEditor.ignoreTrimWhitespace": true,
+    "editor.fontFamily": "'Lucida Console', Consolas, 'Courier New', monospace",
+    "editor.fontSize": 11,
+    "editor.minimap.enabled": false
+    "breadcrumbs.enabled": true,
+    "vim.leader": "<space>",
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "vim.useSystemClipboard": true
+}

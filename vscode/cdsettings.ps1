@@ -1,0 +1,1 @@
+cd $env:APPDATA\Code\User
