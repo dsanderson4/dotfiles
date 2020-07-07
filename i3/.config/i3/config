@@ -67,6 +67,7 @@ floating_modifier Mod4
 
 # start a terminal
 bindsym Mod4+Return exec kitty
+bindsym Mod1+Shift+t exec kitty
 
 # kill focused window
 bindsym Mod4+Shift+q kill
@@ -78,10 +79,10 @@ bindsym Control+Mod1+r exec rofi -show run
 bindsym Control+Mod1+w exec rofi -show window
 
 # change focus
-bindsym Mod4+$left focus left
-bindsym Mod4+$down focus down
-bindsym Mod4+$up focus up
-bindsym Mod4+$right focus right
+bindsym Mod1+Shift+$left focus left
+bindsym Mod1+Shift+$down focus down
+bindsym Mod1+Shift+$up focus up
+bindsym Mod1+Shift+$right focus right
 
 # alternatively, you can use the cursor keys:
 bindsym Mod4+Left focus left
@@ -108,7 +109,9 @@ bindsym Control+Mod1+h split h
 bindsym Control+Mod1+v split v
 
 # enter fullscreen mode for the focused container
-bindsym Mod4+f fullscreen toggle
+bindsym Mod1+Shift+f fullscreen toggle
+
+bindsym Mod1+Shift+b bar mode toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym Mod4+s layout stacking
@@ -174,14 +177,14 @@ bindsym Mod4+Control+Left move workspace to output left
 bindsym Mod4+Control+Right move workspace to output right
 
 # reload the configuration file
-bindsym Mod4+Shift+c reload
+bindsym Mod1+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym Mod4+Shift+r restart
+bindsym Mod1+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 # bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym Mod4+Shift+e exec ~/bin/i3exit.sh
+bindsym Mod1+Shift+e exec ~/bin/i3exit.sh
 
 bindsyn Mod4+m bar hidden_state toggle
 
