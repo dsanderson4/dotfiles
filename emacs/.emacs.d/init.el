@@ -281,6 +281,29 @@
   (setq TeX-parse-self t)
   (setq-default TeX-master nil))
 
+(use-package clojure-mode
+  :ensure t
+  :mode (("\\.clj\\'" . clojure-mode)
+         ("\\.edn\\'" . clojure-mode)))
+
+(use-package cider
+  :ensure t
+  :defer t
+  :init (add-hook 'cider-mode-hook #'clj-refactor-mode)
+  :diminish subword-mode
+  :config
+  (setq nrepl-log-messages t                  
+        cider-repl-display-in-current-window t
+        cider-repl-use-clojure-font-lock t    
+        cider-prompt-save-file-on-load 'always-save
+        cider-font-lock-dynamically '(macro core function var)
+        nrepl-hide-special-buffers t            
+        cider-overlays-use-font-lock t)         
+  (cider-repl-toggle-pretty-printing))
+
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
+
 (load "~/.emacs.d/funcs.el")
 (load "~/.emacs.d/config.el")
 (load "~/.emacs.d/keybindings.el")
@@ -294,14 +317,13 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(company-dabbrev-downcase nil)
- '(display-line-numbers (quote relative))
- '(doom-modeline-buffer-file-name-style (quote buffer-name))
+ '(display-line-numbers 'relative)
+ '(doom-modeline-buffer-file-name-style 'buffer-name)
  '(indent-tabs-mode nil)
  '(ispell-program-name "aspell")
  '(markdown-command "pandoc -f markdown -t html")
  '(package-selected-packages
-   (quote
-    (diminish yasnippet-snippets yasnippet auctex evil-magit general ag js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package)))
+   '(cider clojure-mode diminish yasnippet-snippets yasnippet auctex evil-magit general ag js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package))
  '(visible-bell t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
