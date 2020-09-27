@@ -19,6 +19,8 @@ nnoremap <leader>mp :vsc Edit.PreviousMethod<cr>
 
 nnoremap <leader>en :vsc Edit.GotoNextLocation<cr>
 nnoremap <leader>ep :vsc Edit.GotoPrevLocation<cr>
+vnoremap <leader>ec :vsc Edit.CommentSelection<cr>
+vnoremap <leader>eu :vsc Edit.UncommentSelection<cr>
 
 nnoremap <leader>rn :vsc ReSharper.ReSharper_NavigateTo<cr>
 nnoremap <leader>rr :vsc ReSharper.ReSharper_Rename<cr>
@@ -27,6 +29,8 @@ nnoremap <leader>rm :vsc ReSharper.ReSharper_GotoFileMember<cr>
 
 nnoremap <leader>te :vsc Tools.ExternalCommand1<cr>
 
+nnoremap <leader>we :vsc View.ErrorList<cr>
+nnoremap <leader>wt :vsc TestExplorer.ShowTestExplorer<cr>
 nnoremap <leader>wf :vsc Window.Float<cr>
 nnoremap <leader>wk :vsc Window.CloseDocumentWindow<cr>
 nnoremap <leader>wg :vsc Window.MoveToMainDocumentGroup<cr>
