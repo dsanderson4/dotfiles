@@ -6,6 +6,9 @@ let mapleader = " "
 
 inoremap jk <esc>
 
+nnoremap <c-i> :vsc View.NavigateForward<cr>
+nnoremap <c-o> :vsc View.NavigateBackward<cr>
+
 nnoremap <leader>ga :vsc Edit.GoToAll<cr>
 nnoremap <leader>gt :vsc Edit.GoToType<cr>
 nnoremap <leader>gm :vsc Edit.GoToMember<cr>
@@ -31,9 +34,12 @@ nnoremap <leader>te :vsc Tools.ExternalCommand1<cr>
 
 nnoremap <leader>we :vsc View.ErrorList<cr>
 nnoremap <leader>wt :vsc TestExplorer.ShowTestExplorer<cr>
+nnoremap <leader>wi :vsc View.FindResultsWindow1<cr>
+nnoremap <leader>wu :vsc View.FindReferencesWindow1<cr>
+
 nnoremap <leader>wf :vsc Window.Float<cr>
-nnoremap <leader>wk :vsc Window.CloseDocumentWindow<cr>
 nnoremap <leader>wg :vsc Window.MoveToMainDocumentGroup<cr>
+nnoremap <leader>wk :vsc Window.CloseDocumentWindow<cr>
 nnoremap <leader>wn :vsc Window.MoveToNextTabGroup<cr>
 nnoremap <leader>wp :vsc Window.MoveToPreviousTabGroup<cr>
 nnoremap <leader>wv :vsc Window.NewVerticalTabGroup<cr>
