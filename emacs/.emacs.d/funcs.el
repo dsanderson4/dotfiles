@@ -246,8 +246,13 @@
     (shell-command (concat "pandoc -s " input-name " -o " output-name))
     (w32-shell-execute "Open" (expand-file-name output-name))))
 
+(defun force-insert-mode ()
+  (when (fboundp 'evil-insert)
+    (evil-insert 1)))
+
 (defun snip-markdown-header ()
   (interactive)
+  (force-insert-mode)
   (snippet-insert snip-text-markdown-header))
 
 (defun snip-jira-link ()
@@ -269,36 +274,43 @@
 (defun snip-class-revision ()
   (interactive)
   (beginning-of-line)
+  (force-insert-mode)
   (snip-date snip-text-class-revision))
 
 (defun snip-method-revision ()
   (interactive)
   (beginning-of-line)
+  (force-insert-mode)
   (snip-date snip-text-method-revision))
 
 (defun snip-file-header ()
   (interactive)
   (beginning-of-line)
+  (force-insert-mode)
   (snip-date snip-text-file-header))
 
 (defun snip-class-header ()
   (interactive)
   (beginning-of-line)
+  (force-insert-mode)
   (snip-date snip-text-class-header))
 
 (defun snip-enum-header ()
   (interactive)
   (beginning-of-line)
+  (force-insert-mode)
   (snip-date snip-text-enum-header))
 
 (defun snip-method-header ()
   (interactive)
   (beginning-of-line)
+  (force-insert-mode)
   (snip-date snip-text-method-header))
 
 (defun snip-property-header ()
   (interactive)
   (beginning-of-line)
+  (force-insert-mode)
   (snip-date snip-text-property-header))
 
 (defun snip-property-body ()
@@ -307,28 +319,37 @@
 
 (defun snip-method-param1 ()
   (interactive)
+  (beginning-of-line)
+  (force-insert-mode)
   (snippet-insert snip-text-method-param1))
 
 (defun snip-type-param ()
   (interactive)
+  (force-insert-mode)
   (snippet-insert snip-text-type-param))
 
 (defun snip-method-return ()
   (interactive)
+  (beginning-of-line)
+  (force-insert-mode)
   (snippet-insert snip-text-method-return))
 
 (defun snip-external-unit ()
   (interactive)
+  (beginning-of-line)
+  (force-insert-mode)
   (snippet-insert snip-text-external-unit))
 
 (defun snip-summary ()
   (interactive)
   (beginning-of-line)
+  (force-insert-mode)
   (snippet-insert snip-text-summary))
 
 (defun snip-value ()
   (interactive)
   (beginning-of-line)
+  (force-insert-mode)
   (snippet-insert snip-text-value))
 
 (defun snip-file ()
@@ -341,10 +362,12 @@
 
 (defun snip-construct ()
   (interactive)
+  (force-insert-mode)
   (snippet-insert snip-text-construct))
 
 (defun snip-exception ()
   (interactive)
+  (force-insert-mode)
   (snippet-insert snip-text-exception))
 
 (defun snip-gw ()

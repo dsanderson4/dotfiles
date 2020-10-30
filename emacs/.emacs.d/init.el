@@ -317,13 +317,14 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(company-dabbrev-downcase nil)
- '(display-line-numbers 'relative)
- '(doom-modeline-buffer-file-name-style 'buffer-name)
+ '(display-line-numbers (quote relative))
+ '(doom-modeline-buffer-file-name-style (quote buffer-name))
  '(indent-tabs-mode nil)
  '(ispell-program-name "aspell")
  '(markdown-command "pandoc -f markdown -t html")
  '(package-selected-packages
-   '(cider clojure-mode diminish yasnippet-snippets yasnippet auctex evil-magit general ag js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package))
+   (quote
+    (cider clojure-mode diminish yasnippet-snippets yasnippet auctex evil-magit general ag js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package)))
  '(visible-bell t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
