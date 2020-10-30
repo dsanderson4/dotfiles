@@ -35,6 +35,7 @@ call minpac#init({'verbose': 3})
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 call minpac#add('tpope/vim-vinegar')
+call minpac#add('tpope/vim-commentary')
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('jlanzarotta/bufexplorer')
 call minpac#add('yegappan/mru')
@@ -46,13 +47,12 @@ command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 command! PackStatus call minpac#status()
 
-" let g:OmniSharp_server_path = 'd:\apps\OmniSharpEmacs\OmniSharp.exe'
 let g:OmniSharp_server_stdio = 1
 let g:OmniSharp_start_server = 0
 let g:omnisharp_proc_debug = 0
 let g:OmniSharp_server_loading_timeout = 60
 let g:OmniSharp_timeout = 300
-" let g:OmniSharp_server_stdio_quickload = 1
+let g:OmniSharp_server_stdio_quickload = 0
 
 augroup omnisharp_commands
     autocmd!
@@ -90,5 +90,6 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 :inoremap jk <esc>
 :nnoremap <leader>fr :MRU<cr>
+:nnoremap <leader>bk :b#<bar>bd#<CR>
 
 autocmd BufRead,BufNewFile *.md setlocal spell

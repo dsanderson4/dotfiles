@@ -31,6 +31,7 @@ nnoremap <leader>rt :vsc ReSharper.ReSharper_GotoType<cr>
 nnoremap <leader>rm :vsc ReSharper.ReSharper_GotoFileMember<cr>
 
 nnoremap <leader>te :vsc Tools.ExternalCommand1<cr>
+nnoremap <leader>tv :vsc Tools.ExternalCommand2<cr>
 
 nnoremap <leader>we :vsc View.ErrorList<cr>
 nnoremap <leader>wt :vsc TestExplorer.ShowTestExplorer<cr>
