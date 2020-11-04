@@ -25,8 +25,16 @@
 
 (use-package evil
   :ensure t
+  :init
+  (setq evil-want-keybinding nil)
   :config
   (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
 
 (use-package evil-escape
   :ensure t
@@ -317,14 +325,13 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(company-dabbrev-downcase nil)
- '(display-line-numbers (quote relative))
- '(doom-modeline-buffer-file-name-style (quote buffer-name))
+ '(display-line-numbers 'relative)
+ '(doom-modeline-buffer-file-name-style 'buffer-name)
  '(indent-tabs-mode nil)
  '(ispell-program-name "aspell")
  '(markdown-command "pandoc -f markdown -t html")
  '(package-selected-packages
-   (quote
-    (cider clojure-mode diminish yasnippet-snippets yasnippet auctex evil-magit general ag js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package)))
+   '(evil-collection cider clojure-mode diminish yasnippet-snippets yasnippet auctex evil-magit general ag js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package))
  '(visible-bell t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
