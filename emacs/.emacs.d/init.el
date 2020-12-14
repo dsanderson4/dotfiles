@@ -1,3 +1,5 @@
+(setq gc-cons-threshold 100000000)
+
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -13,6 +15,7 @@
 (setq package-archives '(("org"   . "http://orgmode.org/elpa/")
                          ("gnu"   . "http://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
+
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -44,6 +47,15 @@
   :config
   (evil-escape-mode 1))
 
+(use-package evil-commentary
+  :ensure t
+  :after evil
+  :config
+  (evil-commentary-mode))
+
+(use-package avy
+  :ensure t)
+
 (use-package hc-zenburn-theme
   :ensure t
   :config
@@ -73,6 +85,7 @@
   :bind (("C-x g" . magit-status)))
 
 (use-package evil-magit
+  :after magit
   :ensure t)
 
 (use-package snippet :ensure t)
@@ -91,6 +104,19 @@
 (use-package ivy
   :ensure t
   :diminish (ivy-mode . "")
+  :bind (
+         :map ivy-minibuffer-map
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
+         
   :init (ivy-mode 1) ; globally at startup
   :config
   (setq ivy-use-virtual-buffers t)
@@ -110,8 +136,8 @@
    ("C-c /"   . counsel-ag)       ; Use ag for regexp
    ("C-x l"   . counsel-locate)
    ("C-x C-f" . counsel-find-file)
-   ("<f1> f"  . counsel-describe-function)
-   ("<f1> v"  . counsel-describe-variable)
+   ("C-h f"  . counsel-describe-function)
+   ("C-h v"  . counsel-describe-variable)
    ("<f1> l"  . counsel-find-library)
    ("<f2> i"  . counsel-info-lookup-symbol)
    ("<f2> u"  . counsel-unicode-char)
@@ -137,6 +163,7 @@
   :config
   (general-define-key
    :states '(normal visual insert emacs)
+   :keymaps 'override
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
    "bs" 'ivy-switch-buffer
@@ -163,12 +190,37 @@
    "yn" 'yas-new-snippet
    "ys" 'yas-insert-snippet
    "yv" 'yas-visit-snippet-file
+   "jl" 'avy-goto-line
+   "jW" 'avy-goto-word-0
+   "jw" 'avy-goto-word-1
+   "jc" 'avy-goto-char
+   "jt" 'avy-goto-char-timer
    ))
+
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package command-log-mode
+  :ensure t
+  :config
+  (global-command-log-mode))
+
+(use-package ivy-rich
+  :ensure t
+  :init
+  (ivy-rich-mode 1))
+
+(use-package helpful
+  :ensure t)
+
+(setq counsel-describe-function-function #'helpful-callable)
+(setq counsel-describe-variable-function #'helpful-variable)
 
 (use-package csharp-mode
   :ensure t
   :init (add-hook 'csharp-mode-hook 'my-csharp-mode-setup)
-:mode "\\.cs")
+  :mode "\\.cs")
 
 (defun my-csharp-mode-setup ()
   (omnisharp-mode)
@@ -238,6 +290,9 @@
   (progn
     (add-hook 'js2-mode-hook 'tern-mode)))
 
+(use-package powershell
+  :ensure t)
+
 ;; (use-package company-tern
 ;;   :ensure t
 ;;   :defer t
@@ -245,6 +300,23 @@
 ;;   (progn
 ;;     (require 'company)
 ;;     (add-to-list 'company-backends 'company-tern)))
+
+(use-package org
+  :ensure t)
+
+;; (use-package org-evil
+;;   :ensure t)
+
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook 'evil-org-mode-hook
+            (lambda ()
+              (evil-org-set-key-theme)))
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 
 (use-package ag
   :ensure t)
@@ -331,7 +403,7 @@
  '(ispell-program-name "aspell")
  '(markdown-command "pandoc -f markdown -t html")
  '(package-selected-packages
-   '(evil-collection cider clojure-mode diminish yasnippet-snippets yasnippet auctex evil-magit general ag js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package))
+   '(helpful ivy-rich rainbow-delimiters command-log-mode evil-org powershell evil evil-commentary evil-collection cider clojure-mode diminish yasnippet-snippets yasnippet auctex evil-magit general ag js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package))
  '(visible-bell t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

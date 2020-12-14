@@ -33,6 +33,13 @@ nnoremap <leader>rm :vsc ReSharper.ReSharper_GotoFileMember<cr>
 nnoremap <leader>te :vsc Tools.ExternalCommand1<cr>
 nnoremap <leader>tv :vsc Tools.ExternalCommand2<cr>
 
+nnoremap <leader>jl :vsc Tools.InvokePeasyMotionJumpToLineBegining<cr>
+nnoremap <leader>jw :vsc Tools.InvokePeasyMotionLineJumpToWordBegining<cr>
+nnoremap <leader>je :vsc Tools.InvokePeasyMotionLineJumpToWordEnding<cr>
+nnoremap <leader>jd :vsc Tools.InvokePeasyMotionJumpToDocumentTab<cr>
+nnoremap <leader>jt :vsc Tools.InvokePeasyMotionTwoCharJump<cr>
+nnoremap <leader><leader> :vsc Tools.InvokePeasyMotion<cr>
+
 nnoremap <leader>we :vsc View.ErrorList<cr>
 nnoremap <leader>wt :vsc TestExplorer.ShowTestExplorer<cr>
 nnoremap <leader>wi :vsc View.FindResultsWindow1<cr>
