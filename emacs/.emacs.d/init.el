@@ -1,5 +1,3 @@
-(setq gc-cons-threshold 100000000)
-
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -83,10 +81,6 @@
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)))
-
-(use-package evil-magit
-  :after magit
-  :ensure t)
 
 (use-package snippet :ensure t)
 
@@ -184,9 +178,11 @@
    "w7" 'winum-select-window-7
    "w8" 'winum-select-window-8
    "w9" 'winum-select-window-9
-   "o" 'omnisharp-start-omnisharp-server
+   "wf" 'toggle-frame-fullscreen
+   "gs" 'omnisharp-start-omnisharp-server
    "gt" 'omnisharp-navigate-to-solution-member
    "gT" 'omnisharp-navigate-to-solution-member-other-window
+   "gf" 'omnisharp-navigate-to-solution-file
    "yn" 'yas-new-snippet
    "ys" 'yas-insert-snippet
    "yv" 'yas-visit-snippet-file
@@ -245,7 +241,6 @@
        "fu" 'omnisharp-find-usages
        "fi" 'omnisharp-find-implementations
        "gm" 'omnisharp-navigate-to-current-file-member
-       "gf" 'omnisharp-navigate-to-solution-file
        "gr" 'omnisharp-run-code-action-refactoring
        "sfh" 'snip-file-header
        "sfr" 'snip-file-revision
@@ -268,6 +263,7 @@
   )
 
 (add-to-list 'auto-mode-alist '("\\.xaml$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.igr$" . nxml-mode))
  
 (use-package js2-mode
   :ensure t
@@ -293,19 +289,27 @@
 (use-package powershell
   :ensure t)
 
-;; (use-package company-tern
-;;   :ensure t
-;;   :defer t
-;;   :init
-;;   (progn
-;;     (require 'company)
-;;     (add-to-list 'company-backends 'company-tern)))
+(defun dsa/insert-org-options ()
+    (interactive)
+  (insert "#+OPTIONS: toc:nil html-postamble:nil num:nil\n"))
 
 (use-package org
-  :ensure t)
+  :ensure t
+  :ensure org-plus-contrib
+  :pin org
+  :config
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  (setq org-indent-mode-turns-on-hiding-stars nil)
+  (general-define-key
+    :keymaps 'org-mode-map
+    :states '(normal visual insert emacs)
+    :prefix "SPC"
+    :non-normal-prefix "C-SPC"
+    "oe" 'org-export-dispatch
+    "oo" 'dsa/insert-org-options
+    ))
 
-;; (use-package org-evil
-;;   :ensure t)
+(require 'ox-md)
 
 (use-package evil-org
   :ensure t
@@ -403,7 +407,7 @@
  '(ispell-program-name "aspell")
  '(markdown-command "pandoc -f markdown -t html")
  '(package-selected-packages
-   '(helpful ivy-rich rainbow-delimiters command-log-mode evil-org powershell evil evil-commentary evil-collection cider clojure-mode diminish yasnippet-snippets yasnippet auctex evil-magit general ag js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package))
+   '(helpful ivy-rich rainbow-delimiters command-log-mode evil-org powershell evil evil-commentary evil-collection cider clojure-mode diminish yasnippet-snippets yasnippet auctex general ag js2-mode omnisharp company magit hc-zenburn-theme markdown-mode ivy counsel csharp-mode snippet evil undo-tree use-package))
  '(visible-bell t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

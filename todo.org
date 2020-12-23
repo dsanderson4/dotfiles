@@ -1,0 +1,15 @@
+#+OPTIONS: toc:nil html-postamble:nil num:nil
+* dotfiles todo list
+
+** General
+
+- Make a README file.
+
+** Emacs
+
+*** Cleanup of existing stuff
+
+- use-package-always-ensure
+
+- general-create-definer
+
