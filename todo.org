@@ -7,9 +7,11 @@
 
 ** Emacs
 
-*** Cleanup of existing stuff
+*** Move code into named features.
 
-- use-package-always-ensure
+- Snippets
 
-- general-create-definer
+- Eshell
+
+- C#
 

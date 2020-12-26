@@ -20,12 +20,11 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+(setq use-package-always-ensure t)
 
-(use-package diminish
-  :ensure t)
+(use-package diminish)
 
 (use-package evil
-  :ensure t
   :init
   (setq evil-want-keybinding nil)
   :config
@@ -33,12 +32,10 @@
 
 (use-package evil-collection
   :after evil
-  :ensure t
   :config
   (evil-collection-init))
 
 (use-package evil-escape
-  :ensure t
   :init
   (setq-default evil-escape-key-sequence "jk")
   (setq-default evil-escape-delay 0.2)
@@ -46,16 +43,13 @@
   (evil-escape-mode 1))
 
 (use-package evil-commentary
-  :ensure t
   :after evil
   :config
   (evil-commentary-mode))
 
-(use-package avy
-  :ensure t)
+(use-package avy)
 
 (use-package hc-zenburn-theme
-  :ensure t
   :config
   (load-theme 'hc-zenburn t))
 
@@ -64,39 +58,33 @@
  '(line-number-current-line ((t (:foreground "#A0EDF0"))))
 )
 
-(use-package all-the-icons :ensure t)
+(use-package all-the-icons)
 
 (use-package doom-modeline
-      :ensure t
       :hook (after-init . doom-modeline-mode))
 
-(use-package winum :ensure t)
+(use-package winum)
 (winum-mode)
 
 (use-package recentf 
-	:ensure t
 	:config
 	(recentf-mode 1))
 
 (use-package magit
-  :ensure t
   :bind (("C-x g" . magit-status)))
 
-(use-package snippet :ensure t)
+(use-package snippet)
 
 (use-package yasnippet
-  :ensure t
   :diminish yas-minor-mode
   :config
   (yas-global-mode 1))
 
-(use-package yasnippet-snippets         ; Collection of snippets
-  :ensure t)
+(use-package yasnippet-snippets)
 
-(use-package flycheck :ensure t)
+(use-package flycheck)
 
 (use-package ivy
-  :ensure t
   :diminish (ivy-mode . "")
   :bind (
          :map ivy-minibuffer-map
@@ -119,7 +107,6 @@
 
 
 (use-package counsel
-  :ensure t
   :bind* ; load when pressed
   (("M-x"     . counsel-M-x)
    ("C-s"     . swiper)
@@ -138,7 +125,6 @@
    ("C-c C-r" . ivy-resume)))     ; Resume last Ivy-based completion
 
 (use-package which-key
-  :ensure t
   :init
   (which-key-mode)
   :config
@@ -149,72 +135,79 @@
   :diminish which-key-mode)
 
 (use-package company
-  :ensure t
   :config
   (global-company-mode))
 
-(use-package general :ensure t
+(use-package general
   :config
-  (general-define-key
-   :states '(normal visual insert emacs)
-   :keymaps 'override
-   :prefix "SPC"
-   :non-normal-prefix "C-SPC"
-   "bs" 'ivy-switch-buffer
-   "bS" 'ivy-switch-buffer-other-window
-   "bk" 'kill-current-buffer
-   "bh" 'bs-show
-   "bl" 'list-buffers
-   "en" 'next-error
-   "ep" 'previous-error
-   "wk" 'my-kill-buffer-and-window
-   "w0" 'winum-select-window-0-or-10
-   "w1" 'winum-select-window-1
-   "w2" 'winum-select-window-2
-   "w3" 'winum-select-window-3
-   "w4" 'winum-select-window-4
-   "w5" 'winum-select-window-5
-   "w6" 'winum-select-window-6
-   "w7" 'winum-select-window-7
-   "w8" 'winum-select-window-8
-   "w9" 'winum-select-window-9
-   "wf" 'toggle-frame-fullscreen
-   "gs" 'omnisharp-start-omnisharp-server
-   "gt" 'omnisharp-navigate-to-solution-member
-   "gT" 'omnisharp-navigate-to-solution-member-other-window
-   "gf" 'omnisharp-navigate-to-solution-file
-   "yn" 'yas-new-snippet
-   "ys" 'yas-insert-snippet
-   "yv" 'yas-visit-snippet-file
-   "jl" 'avy-goto-line
-   "jW" 'avy-goto-word-0
-   "jw" 'avy-goto-word-1
-   "jc" 'avy-goto-char
-   "jt" 'avy-goto-char-timer
-   ))
+  (general-create-definer dsa/define-key
+    :states '(normal visual insert emacs)
+    :prefix "SPC"
+    :non-normal-prefix "C-SPC"))
+
+(dsa/define-key
+ :keymaps 'override
+ "b" '(:ignore t :which-key "Buffer")
+ "bs" '(ivy-switch-buffer :which-key "Switch")
+ "bS" '(ivy-switch-buffer-other-window :which-key "Switch - Other Window")
+ "bk" '(kill-current-buffer :which-key "Kill Current")
+ "bh" '(bs-show :which-key "Show Buffers")
+ "bl" '(list-buffers :which-key "List Buffers")
+
+ "e" '(:ignore t :which-key "Error")
+ "en" '(next-error :which-key "Next")
+ "ep" '(previous-error :which-key "Previous")
+
+ "w" '(:ignore t :which-key "Window")
+ "wk" '(my-kill-buffer-and-window :which-key "Kill buffer and Window")
+ "w0" '(winum-select-window-0-or-10 :which-key "Select 0 or 10")
+ "w1" '(winum-select-window-1 :which-key "Select 1")
+ "w2" '(winum-select-window-2 :which-key "Select 2")
+ "w3" '(winum-select-window-3 :which-key "Select 3")
+ "w4" '(winum-select-window-4 :which-key "Select 4")
+ "w5" '(winum-select-window-5 :which-key "Select 5")
+ "w6" '(winum-select-window-6 :which-key "Select 6")
+ "w7" '(winum-select-window-7 :which-key "Select 7")
+ "w8" '(winum-select-window-8 :which-key "Select 8")
+ "w9" '(winum-select-window-9 :which-key "Select 9")
+ "wf" '(toggle-frame-fullscreen :which-key "Toggle Fullscreen")
+
+ "g" '(:ignore t :which-key "Omnisharp Go")
+ "gs" '(omnisharp-start-omnisharp-server :which-key "Start Server")
+ "gt" '(omnisharp-navigate-to-solution-member :which-key "Go to Solution Member")
+ "gT" '(omnisharp-navigate-to-solution-member-other-window :which-key "Go to Solution Member, Other Window")
+ "gf" '(omnisharp-navigate-to-solution-file :which-key "Go to Solution File")
+
+ "y" '(:ignore t :which-key "yasnippet")
+ "yn" '(yas-new-snippet :which-key "New")
+ "ys" '(yas-insert-snippet :which-key "Insert")
+ "yv" '(yas-visit-snippet-file :which-key "Visit File")
+
+ "j" '(:ignore t :which-key "Jump")
+ "jl" '(avy-goto-line :which-key "Line")
+ "jW" '(avy-goto-word-0 :which-key "Word 0")
+ "jw" '(avy-goto-word-1 :which-key "Word 1")
+ "jc" '(avy-goto-char :which-key "Char")
+ "jt" '(avy-goto-char-timer :which-key "Char Timer")
+ )
 
 (use-package rainbow-delimiters
-  :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package command-log-mode
-  :ensure t
   :config
   (global-command-log-mode))
 
 (use-package ivy-rich
-  :ensure t
   :init
   (ivy-rich-mode 1))
 
-(use-package helpful
-  :ensure t)
+(use-package helpful)
 
 (setq counsel-describe-function-function #'helpful-callable)
 (setq counsel-describe-variable-function #'helpful-variable)
 
 (use-package csharp-mode
-  :ensure t
   :init (add-hook 'csharp-mode-hook 'my-csharp-mode-setup)
   :mode "\\.cs")
 
@@ -224,40 +217,46 @@
 
 ;; Omnisharp
 (use-package omnisharp
-  :ensure t
   :after csharp-mode
   :preface
-  (progn
     (defun my/configure-omnisharp ()
       (omnisharp-mode)
       (add-to-list 'company-backends #'company-omnisharp)
       (company-mode)
-      (general-define-key
+      (dsa/define-key
        :keymaps 'omnisharp-mode-map
-       :states '(normal)
-       :prefix "SPC"
-       "gd" 'omnisharp-go-to-definition
-       "gD" 'omnisharp-go-to-definition-other-window
-       "fu" 'omnisharp-find-usages
-       "fi" 'omnisharp-find-implementations
-       "gm" 'omnisharp-navigate-to-current-file-member
-       "gr" 'omnisharp-run-code-action-refactoring
-       "sfh" 'snip-file-header
-       "sfr" 'snip-file-revision
-       "sch" 'snip-class-header
-       "scr" 'snip-class-revision
-       "smh" 'snip-method-header
-       "smr" 'snip-method-revision
-       "smp" 'snip-method-param1
-       "smt" 'snip-method-return
-       "ss" 'snip-summary
-       "sp" 'snip-property-header
-       "sx" 'format-xml-comment
-       "su" 'snip-external-unit
-       "sv" 'snip-value
-       "sco" 'snip-construct
-       "se" 'snip-exception
-       )))
+       "gd" '(omnisharp-go-to-definition :which-key "Definition")
+       "gD" '(omnisharp-go-to-definition-other-window :which-key "Definition, Other Window")
+       "gm" '(omnisharp-navigate-to-current-file-member :which-key "File Member")
+       "gr" '(omnisharp-run-code-action-refactoring :which-key "Refactoring")
+
+       "f" '(:ignore t :which-key "Omnisharp Find")
+       "fu" '(omnisharp-find-usages :which-key "Usages")
+       "fi" '(omnisharp-find-implementations :which-key "Implementations")
+
+       "s" '(:ignore t :which-key "C# Snippets")
+       "se" '(snip-exception :which-key "Exception")
+       "sp" '(snip-property-header :which-key "Property Header")
+       "ss" '(snip-summary :which-key "Summary")
+       "su" '(snip-external-unit :which-key "External Unit")
+       "sx" '(format-xml-comment :which-key "Format XML Comment")
+       "sv" '(snip-value :which-key "Value")
+
+       "sf" '(:ignore t :which-key "File")
+       "sfh" '(snip-file-header) :which-key "File Header")
+       "sfr" '(snip-file-revision :which-key "File Revision")
+
+       "sc" '(:ignore t :which-key "Class")
+       "sch" '(snip-class-header :which-key "Class Header")
+       "scr" '(snip-class-revision :which-key "Class Revision")
+       "sco" '(snip-construct :which-key "Constructor")
+
+       "sm" '(:ignore t :which-key "Method")
+       "smh" '(snip-method-header :which-key "Header")
+       "smr" '(snip-method-revision :which-key "Revision")
+       "smp" '(snip-method-param1 :which-key "Parameter")
+       "smt" '(snip-method-return :which-key "Return")
+       )
   :init
   (add-hook 'csharp-mode-hook #'my/configure-omnisharp)
   )
@@ -266,53 +265,43 @@
 (add-to-list 'auto-mode-alist '("\\.igr$" . nxml-mode))
  
 (use-package js2-mode
-  :ensure t
   :defer t
   :commands js2-mode
   :init
-  (progn
     (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
     (setq-default js2-basic-offset 4)
-    (add-to-list 'interpreter-mode-alist (cons "node" 'js2-mode)))
+    (add-to-list 'interpreter-mode-alist (cons "node" 'js2-mode))
   :config
-  (progn
     (js2-imenu-extras-setup)
-    ))
+    )
 
 (use-package tern
-  :ensure t
   :defer t
   :config
-  (progn
-    (add-hook 'js2-mode-hook 'tern-mode)))
+    (add-hook 'js2-mode-hook 'tern-mode))
 
-(use-package powershell
-  :ensure t)
+(use-package powershell)
 
 (defun dsa/insert-org-options ()
-    (interactive)
+  (interactive)
   (insert "#+OPTIONS: toc:nil html-postamble:nil num:nil\n"))
 
 (use-package org
-  :ensure t
   :ensure org-plus-contrib
   :pin org
   :config
   (add-hook 'org-mode-hook 'org-indent-mode)
   (setq org-indent-mode-turns-on-hiding-stars nil)
-  (general-define-key
+  (dsa/define-key
     :keymaps 'org-mode-map
-    :states '(normal visual insert emacs)
-    :prefix "SPC"
-    :non-normal-prefix "C-SPC"
-    "oe" 'org-export-dispatch
-    "oo" 'dsa/insert-org-options
+    "o" '(:ignore t :which-key "Org")
+    "oe" '(org-export-dispatch :which-key "Export")
+    "oo" '(dsa/insert-org-options :which-key "Insert Default Options")
     ))
 
 (require 'ox-md)
 
 (use-package evil-org
-  :ensure t
   :after org
   :config
   (add-hook 'org-mode-hook 'evil-org-mode)
@@ -322,33 +311,26 @@
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
 
-(use-package ag
-  :ensure t)
+(use-package ag)
 
 (use-package flyspell
-  :ensure t
   :defer t
   :init
-  (progn
     (add-hook 'prog-mode-hook 'flyspell-prog-mode)
     (add-hook 'text-mode-hook 'flyspell-mode)
-    )
   )
 
 (use-package markdown-mode
-  :ensure t
   :preface
   (defun my/configure-markdown ()
-    (general-define-key
+    (dsa/define-key
      :keymaps 'markdown-mode-map
-     :states '(normal visual insert emacs)
-     :prefix "SPC"
-     :non-normal-prefix "C-SPC"
-     "mc" 'my-compile-markdown
-     "mh" 'snip-markdown-header
-     "mj" 'snip-jira-link
-     "ml" 'markdown-insert-link
-     "mo" 'markdown-follow-thing-at-point
+     "m" '(:ignore t :which-key "Markdown")
+     "mc" '(my-compile-markdown :which-key "Compile")
+     "mh" '(snip-markdown-header :which-key "Insert Header")
+     "mj" '(snip-jira-link :which-key "Insert JIRA Link")
+     "ml" '(markdown-insert-link :which-key "Insert Link")
+     "mo" '(markdown-follow-thing-at-point :which-key "Follow")
      ))
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
@@ -366,12 +348,10 @@
   (setq-default TeX-master nil))
 
 (use-package clojure-mode
-  :ensure t
   :mode (("\\.clj\\'" . clojure-mode)
          ("\\.edn\\'" . clojure-mode)))
 
 (use-package cider
-  :ensure t
   :defer t
   :init (add-hook 'cider-mode-hook #'clj-refactor-mode)
   :diminish subword-mode
