@@ -55,3 +55,5 @@
 (global-set-key "\C-czph" 'snip-property-header)
 
 (global-set-key "\C-czs" 'snip-summary)
+
+(provide 'init-global-keys)

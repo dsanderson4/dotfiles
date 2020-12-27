@@ -22,6 +22,8 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
 (use-package diminish)
 
 (use-package evil
@@ -368,9 +370,9 @@
 (add-hook 'cider-repl-mode-hook #'company-mode)
 (add-hook 'cider-mode-hook #'company-mode)
 
-(load "~/.emacs.d/funcs.el")
-(load "~/.emacs.d/config.el")
-(load "~/.emacs.d/keybindings.el")
+(require 'init-global-functions)
+(require 'init-snippets)
+(require 'init-global-keys)
 
 (dave-config)
 
