@@ -1,3 +1,72 @@
+(use-package which-key
+  :init
+  (which-key-mode)
+  :config
+  (which-key-setup-side-window-right-bottom)
+  (setq which-key-sort-order 'which-key-key-order-alpha
+    which-key-side-window-max-width 0.33
+    which-key-idle-delay 0.05)
+  :diminish which-key-mode)
+
+(use-package general
+  :config
+  (general-create-definer dsa/define-key
+    :states '(normal visual insert emacs)
+    :prefix "SPC"
+    :non-normal-prefix "C-SPC"))
+
+(dsa/define-key
+ :keymaps 'override
+ "b" '(:ignore t :which-key "Buffer")
+ "bs" '(ivy-switch-buffer :which-key "Switch")
+ "bS" '(ivy-switch-buffer-other-window :which-key "Switch - Other Window")
+ "bk" '(kill-current-buffer :which-key "Kill Current")
+ "bh" '(bs-show :which-key "Show Buffers")
+ "bl" '(list-buffers :which-key "List Buffers")
+
+ "e" '(:ignore t :which-key "Error")
+ "en" '(next-error :which-key "Next")
+ "ep" '(previous-error :which-key "Previous")
+
+ "w" '(:ignore t :which-key "Window")
+ "wx" '(my-kill-buffer-and-window :which-key "Kill buffer and Window")
+ "w0" '(winum-select-window-0-or-10 :which-key "Select 0 or 10")
+ "w1" '(winum-select-window-1 :which-key "Select 1")
+ "w2" '(winum-select-window-2 :which-key "Select 2")
+ "w3" '(winum-select-window-3 :which-key "Select 3")
+ "w4" '(winum-select-window-4 :which-key "Select 4")
+ "w5" '(winum-select-window-5 :which-key "Select 5")
+ "w6" '(winum-select-window-6 :which-key "Select 6")
+ "w7" '(winum-select-window-7 :which-key "Select 7")
+ "w8" '(winum-select-window-8 :which-key "Select 8")
+ "w9" '(winum-select-window-9 :which-key "Select 9")
+ "wf" '(toggle-frame-fullscreen :which-key "Toggle Fullscreen")
+ "wj" '(evil-window-down :which-key "Down")
+ "wk" '(evil-window-up :which-key "Up")
+ "wh" '(evil-window-left :which-key "Left")
+ "wl" '(evil-window-right :which-key "Right")
+ "ww" '(evil-window-next :which-key "Next")
+ "wr" '(evil-window-rotate-downwards :which-key "Rotate")
+
+ "g" '(:ignore t :which-key "Omnisharp Go")
+ "gs" '(omnisharp-start-omnisharp-server :which-key "Start Server")
+ "gt" '(omnisharp-navigate-to-solution-member :which-key "Go to Solution Member")
+ "gT" '(omnisharp-navigate-to-solution-member-other-window :which-key "Go to Solution Member, Other Window")
+ "gf" '(omnisharp-navigate-to-solution-file :which-key "Go to Solution File")
+
+ "y" '(:ignore t :which-key "yasnippet")
+ "yn" '(yas-new-snippet :which-key "New")
+ "ys" '(yas-insert-snippet :which-key "Insert")
+ "yv" '(yas-visit-snippet-file :which-key "Visit File")
+
+ "j" '(:ignore t :which-key "Jump")
+ "jl" '(avy-goto-line :which-key "Line")
+ "jW" '(avy-goto-word-0 :which-key "Word 0")
+ "jw" '(avy-goto-word-1 :which-key "Word 1")
+ "jc" '(avy-goto-char :which-key "Char")
+ "jt" '(avy-goto-char-timer :which-key "Char Timer")
+ )
+
 (global-set-key [C-tab] 'bs-cycle-next)
 (global-set-key "\C-o" 'other-window)
 (global-set-key [?\C-%] 'shrink-window)

@@ -96,27 +96,6 @@
   (switch-to-buffer other-buffer)
   (other-window 1))
 
-(defun eshell/c (src &optional dest)
-  (eshell/cp "-pv" src (or dest ".")))
-
-(defun eshell/m (src &optional dest)
-  (eshell/mv "-fv" src (or dest ".")))
-
-(defun eshell/de (&optional args)
-  (dired (or args ".")))
-
-(defun eshell/deo (&optional args)
-  (dired-other-window (or args ".")))
-
-(defun eshell/start (FILE)
-  "Invoke (w32-shell-execute \"Open\" FILE) and substitute slashes for backslashes"
-  (w32-shell-execute "Open" (substitute ?\\ ?/ (expand-file-name FILE)))
-  nil)
-
-(defalias 'eshell/e 'find-file)
-(defalias 'eshell/eo 'find-file-other-window)
-(defalias 'eshell/he 'hexl-find-file)
-
 (defun split-window-more-sensibly (window)
   (if (one-window-p)
       (split-window-sensibly window)
@@ -276,7 +255,6 @@
 
   (eval-after-load "vc-dir"
     '(evil-define-key 'normal vc-dir-mode-map "h" 'my-vc-dir-hide-some))
-    ;; '(define-key vc-dir-mode-map "H" 'my-vc-dir-hide-some))
 
   (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
@@ -289,9 +267,9 @@
   (eval-after-load "dired" '(my-dired-load-hook))
   (add-hook 'dired-mode-hook 'my-dired-mode-hook)
 
-  (add-hook 'outline-mode-hook
-            '(lambda ()
-               (define-key outline-mode-map "\M-q" 'outline-fill-paragraph)))
+  ;; (add-hook 'outline-mode-hook
+  ;;           '(lambda ()
+  ;;              (define-key outline-mode-map "\M-q" 'outline-fill-paragraph)))
 
   (add-hook 'vc-svn-log-view-mode-hook
             '(lambda ()

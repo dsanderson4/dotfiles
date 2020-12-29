@@ -7,11 +7,6 @@
 
 ** Emacs
 
-*** Move code into named features.
+- Add docstrings to all interactive functions.
 
-- Snippets
-
-- Eshell
-
-- C#
-
+- Move configuration code out of dave-config.
