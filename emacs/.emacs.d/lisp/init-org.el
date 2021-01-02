@@ -12,6 +12,7 @@
     :keymaps 'org-mode-map
     "o" '(:ignore t :which-key "Org")
     "oe" '(org-export-dispatch :which-key "Export")
+    "ol" '(org-insert-link :which-key "Insert Link")
     "oo" '(dsa/insert-org-options :which-key "Insert Default Options")
     ))
 

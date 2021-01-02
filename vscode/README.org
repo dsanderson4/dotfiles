@@ -1,0 +1,10 @@
+#+OPTIONS: toc:nil html-postamble:nil num:nil
+* Visual Studio Code Settings
+
+- cdsettings.ps1: Change to the Visual Studio Code settings directory.
+
+- editsettings.ps1: Directly edit settings.json in the settings directory.
+
+- getsettings.ps1: Copy settings.json here from the settings directory.
+
+- putsettings.ps1: Copy the settings.json in this directory to the settings directory.

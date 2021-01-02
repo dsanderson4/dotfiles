@@ -1,0 +1,9 @@
+#+OPTIONS: toc:nil html-postamble:nil num:nil
+* Vim Scripts
+
+I use minpac for plugin management. 
+
+On Windows, run minpac-install.ps1 after running link.ps1.
+
+On other platforms, run minpac-install.sh after running stow for vim.
+

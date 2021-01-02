@@ -3,10 +3,12 @@
 
 ** General
 
-- Make a README file.
-
 ** Emacs
 
 - Add docstrings to all interactive functions.
 
 - Move configuration code out of dave-config.
+
+** Vim
+
+- Use a plugin for color schemes.

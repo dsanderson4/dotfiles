@@ -1,3 +1,29 @@
+#+OPTIONS: toc:nil html-postamble:nil num:nil
 * dotfiles
 
-This repository contains configuration files.
+This repository contains configuration files, and tries to be cross-platform
+where possible:
+
+| Software                      | Windows | Linux | Mac | WSL | Cygwin |
+|-------------------------------+---------+-------+-----+-----+--------|
+| Emacs                         | X       | X     | X   | X   |        |
+| Vim                           | X       | X     | X   | X   | X      |
+| i3 Window Manager             |         | X     |     |     |        |
+| Kitty Terminal                |         | X     | X   | X   |        |
+| Powershell                    | X       |       |     |     |        |
+| Visual Studio Code            | X       | X     | X   | X   |        |
+| Vsvim Visual Studio Extension | X       |       |     |     |        |
+| Windows Terminal              | X       |       |     |     |        |
+| Z Shell                       |         | X     | X   | X   | X      |
+
+The fonts and scripts directories contain support files.
+
+For platforms other than Windows, GNU Stow (package name "stow") can be used to
+create the necessary symbolic links for emacs, vim, kitty, and i3. In Windows,
+there are "link.ps1" scripts to create symbolic links for emacs, vim, and
+vsvim. These scripts assume that this repository is cloned to ~/dotfiles; also
+they depend on a PowerShell "sudo" script that can be found here:
+[[https://github.com/lukesampson/psutils]].
+
+See README files in subfolders for further details.
+

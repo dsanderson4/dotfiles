@@ -1,0 +1,20 @@
+#+OPTIONS: toc:nil html-postamble:nil num:nil
+* Z Shell Settings
+
+I use Oh My Zsh as a framework for zsh; the ohmy.sh script installs it.
+
+I use the default .zshrc, except that I cange the theme to "agnoster". This
+theme wants a PowerLine font; I use "Lucdica Console for PowerLine" in my
+terminals.
+
+Oh My Zsh automatically runs all .zsh files in ~/.oh-zsh/custom. The .zsh files
+in this repository should be selectively copied into the custom directory,
+depending on the environment:
+
+- all.zsh: All environments.
+
+- wsl.zsh: All WSL enviromments.
+
+- wsl1.zsh: WSL 1 only.
+
+- wsl2.zsh: WSL 2 only.

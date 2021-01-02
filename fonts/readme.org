@@ -1,8 +1,7 @@
----
-title: dotfiles\fonts
-...
+#+OPTIONS: toc:nil html-postamble:nil num:nil
+* Fonts
 
-- Linux: Install both Lucida Console fonts.
+- Linux and Mac: Install both Lucida Console fonts.
 
 - WSL: Copy local.conf to /etc/fonts, to share Windows fonts.
 

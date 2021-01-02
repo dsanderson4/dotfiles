@@ -1,0 +1,15 @@
+#+OPTIONS: toc:nil html-postamble:nil num:nil
+* Windows Terminal Settings
+
+- cdsettings.ps1: Change to the Windows Terminal settings directory.
+
+- editsettings.ps1: Directly edit settings.json in the settings directory.
+
+- getsettings.ps1: Copy settings.json here from the settings directory.
+
+- putsettings.ps1: Copy the settings.json in this directory to the settings directory.
+
+- vs2019.ps1: Helper script for "VS2019 PowerShell" profile. This needs to be in
+  the path. Also, the hex number in the Enter-VsDevShell line needs to be
+  changed to match the one found in the "Developer PowerShell for VS 2019"
+  shortcut.
