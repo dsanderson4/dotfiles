@@ -43,6 +43,7 @@ call minpac#add('kkoenig/wimproved.vim')
 call minpac#add('OmniSharp/omnisharp-vim')
 call minpac#add('mileszs/ack.vim')
 call minpac#add('easymotion/vim-easymotion')
+call minpac#add('flazz/vim-colorschemes')
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
