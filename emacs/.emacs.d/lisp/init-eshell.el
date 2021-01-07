@@ -15,6 +15,26 @@
   (w32-shell-execute "Open" (substitute ?\\ ?/ (expand-file-name FILE)))
   nil)
 
+(defun eshell/cdo ()
+  "Change to cloud org file directory"
+    (eshell/cd "~/Box/org"))
+
+(defun eshell/etw ()
+  "Edit work to do list"
+    (find-file "~/Box/org/WorkTodo.org"))
+
+(defun eshell/eotw ()
+  "Edit work to do list in other window"
+    (find-file-other-window "~/Box/org/WorkTodo.org"))
+
+(defun eshell/etl ()
+  "Edit life to do list"
+    (find-file "~/LifeTodo.org"))
+
+(defun eshell/eotl ()
+  "Edit life to do list in other window"
+    (find-file-other-window "~/Box/org/LifeTodo.org"))
+
 (defalias 'eshell/e 'find-file)
 (defalias 'eshell/eo 'find-file-other-window)
 (defalias 'eshell/he 'hexl-find-file)

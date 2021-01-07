@@ -136,5 +136,29 @@
 (require 'init-global-functions)
 (require 'init-snippets)
 (require 'init-eshell)
+(require 'init-misc)
 
-(dave-config)
+(dolist (mode '(eshell-mode-hook
+                bs-mode-hook))
+  (add-hook mode (lambda () (setq display-line-numbers nil))))
+
+(use-package dired
+  :ensure nil
+  :config
+  (defun dired-shell-execute ()
+    (interactive)
+    (w32-shell-execute "Open" (substitute ?\\ ?/ (dired-get-filename))))
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              (setq bs-buffer-show-mark 'always))
+            )
+  (define-key dired-mode-map (kbd "M-e") 'dired-shell-execute))
+
+(mouse-avoidance-mode 'banish)
+(set-tab-stops)
+(toggle-frame-fullscreen)
+(split-window-right)
+(other-window 1)
+(eshell)
+(server-start)
+(global-auto-revert-mode)

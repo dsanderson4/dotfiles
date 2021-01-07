@@ -17,11 +17,16 @@
 
 (dsa/define-key
  :keymaps 'override
+
+ "TAB" '(indent-for-tab-command :which-key "Indent")
+
  "b" '(:ignore t :which-key "Buffer")
  "bs" '(ivy-switch-buffer :which-key "Switch")
  "bS" '(ivy-switch-buffer-other-window :which-key "Switch - Other Window")
  "bk" '(kill-current-buffer :which-key "Kill Current")
  "bh" '(bs-show :which-key "Show Buffers")
+ "bi" '(ibuffer :which-key "ibuffer")
+ "bI" '(ibuffer-other-window :which-key "ibuffer - Other Window")
  "bl" '(list-buffers :which-key "List Buffers")
 
  "e" '(:ignore t :which-key "Error")

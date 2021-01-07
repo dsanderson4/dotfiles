@@ -14,6 +14,7 @@
     "oe" '(org-export-dispatch :which-key "Export")
     "ol" '(org-insert-link :which-key "Insert Link")
     "oo" '(dsa/insert-org-options :which-key "Insert Default Options")
+    "ot" '(org-todo :which-key "Rotate TODO")
     ))
 
 (require 'ox-md)

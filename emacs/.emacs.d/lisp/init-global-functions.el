@@ -105,19 +105,6 @@
   (interactive)
   (vc-dir-hide-state 'unregistered))
 
-(defun dired-shell-execute ()
-  (interactive)
-  (w32-shell-execute "Open" (substitute ?\\ ?/ (dired-get-filename))))
-
-(defun my-dired-load-hook ()
-  (define-key dired-mode-map "\C-o" 'other-window)
-  (define-key dired-mode-map "\C-d" 'dired-display-file)
-  (define-key dired-mode-map "r" 'dired-shell-execute))
-;;(add-hook 'dired-load-hook 'my-dired-load-hook)
-
-(defun my-dired-mode-hook ()
-  (setq bs-buffer-show-mark 'always))
-
 (defun outline-fill-paragraph ()
   (interactive)
   (save-excursion
@@ -226,47 +213,6 @@
   (insert "/// ")
   (forward-line 0)
   (backward-char 1)
-  )
-
-(defun dave-config ()
-  (load-library "bs")
-
-  (set-tab-stops)
-
-  (eval-after-load "vc-dir"
-    '(evil-define-key 'normal vc-dir-mode-map "h" 'my-vc-dir-hide-some))
-
-  (add-hook 'text-mode-hook 'turn-on-auto-fill)
-
-  (define-key lisp-mode-shared-map "\C-m" 'newline-and-indent)
-
-  (add-hook 'emacs-lisp-mode-hook
-            '(lambda ()
-               (setq tab-width 8)))
-
-  (eval-after-load "dired" '(my-dired-load-hook))
-  (add-hook 'dired-mode-hook 'my-dired-mode-hook)
-
-  ;; (add-hook 'outline-mode-hook
-  ;;           '(lambda ()
-  ;;              (define-key outline-mode-map "\M-q" 'outline-fill-paragraph)))
-
-  (add-hook 'vc-svn-log-view-mode-hook
-            '(lambda ()
-               (evil-define-key 'normal vc-svn-log-view-mode-map "n" 'log-view-msg-next)
-               (evil-define-key 'normal vc-svn-log-view-mode-map "p" 'log-view-msg-prev)))
-
-  (mouse-avoidance-mode 'banish)
-
-  (setq split-window-preferred-function (quote split-window-more-sensibly))
-
-  (evil-set-initial-state 'bs-mode 'emacs)
-  (toggle-frame-fullscreen)
-  (split-window-right)
-  (other-window 1)
-  (eshell)
-  (server-start)
-  (global-auto-revert-mode)
   )
 
 (provide 'init-global-functions)
