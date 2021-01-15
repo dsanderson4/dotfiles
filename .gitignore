@@ -1,0 +1,7 @@
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+.\#*
+
+README.html
+todo.html

@@ -26,11 +26,13 @@
 
        "s" '(:ignore t :which-key "C# Snippets")
        "se" '(snip-exception :which-key "Exception")
+       "so" '(open-xml-comment :which-key "Open XML Comment")
        "sp" '(snip-property-header :which-key "Property Header")
        "ss" '(snip-summary :which-key "Summary")
        "su" '(snip-external-unit :which-key "External Unit")
        "sx" '(format-xml-comment :which-key "Format XML Comment")
        "sv" '(snip-value :which-key "Value")
+       "sw" '(snip-gsw :which-key "Gets or Sets Whether...")
 
        "sf" '(:ignore t :which-key "File")
        "sfh" '(snip-file-header :which-key "File Header")

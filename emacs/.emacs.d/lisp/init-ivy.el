@@ -42,4 +42,10 @@
   :init
   (ivy-rich-mode 1))
 
+;; Ivy buffer switching is extremely slow with ivy-rich, so turn it off.
+(advice-add 'ivy-switch-buffer :before '(lambda () (ivy-rich-mode 0)))
+(advice-add 'ivy-switch-buffer :after '(lambda () (ivy-rich-mode)))
+(advice-add 'ivy-switch-buffer-other-window :before '(lambda () (ivy-rich-mode 0)))
+(advice-add 'ivy-switch-buffer-other-window :after '(lambda () (ivy-rich-mode)))
+
 (provide 'init-ivy)

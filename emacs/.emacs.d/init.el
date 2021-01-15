@@ -27,6 +27,8 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
 (use-package diminish)
 
 (require 'init-evil)
@@ -53,9 +55,6 @@
 (use-package recentf 
 	:config
 	(recentf-mode 1))
-
-(use-package magit
-  :bind (("C-x g" . magit-status)))
 
 (use-package snippet)
 
@@ -136,23 +135,21 @@
 (require 'init-global-functions)
 (require 'init-snippets)
 (require 'init-eshell)
-(require 'init-misc)
+(require 'init-dired)
+(require 'init-buffers)
+(require 'init-vc)
 
 (dolist (mode '(eshell-mode-hook
                 bs-mode-hook))
   (add-hook mode (lambda () (setq display-line-numbers nil))))
 
-(use-package dired
-  :ensure nil
-  :config
-  (defun dired-shell-execute ()
-    (interactive)
-    (w32-shell-execute "Open" (substitute ?\\ ?/ (dired-get-filename))))
-  (add-hook 'dired-mode-hook
-            (lambda ()
-              (setq bs-buffer-show-mark 'always))
-            )
-  (define-key dired-mode-map (kbd "M-e") 'dired-shell-execute))
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+(define-key lisp-mode-shared-map "\C-m" 'newline-and-indent)
+
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda ()
+             (setq tab-width 8)))
 
 (mouse-avoidance-mode 'banish)
 (set-tab-stops)
