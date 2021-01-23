@@ -53,12 +53,6 @@
  "ww" '(evil-window-next :which-key "Next")
  "wr" '(evil-window-rotate-downwards :which-key "Rotate")
 
- "g" '(:ignore t :which-key "Omnisharp Go")
- "gs" '(omnisharp-start-omnisharp-server :which-key "Start Server")
- "gt" '(omnisharp-navigate-to-solution-member :which-key "Go to Solution Member")
- "gT" '(omnisharp-navigate-to-solution-member-other-window :which-key "Go to Solution Member, Other Window")
- "gf" '(omnisharp-navigate-to-solution-file :which-key "Go to Solution File")
-
  "y" '(:ignore t :which-key "yasnippet")
  "yn" '(yas-new-snippet :which-key "New")
  "ys" '(yas-insert-snippet :which-key "Insert")

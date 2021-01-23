@@ -87,6 +87,24 @@
 (setq counsel-describe-function-function #'helpful-callable)
 (setq counsel-describe-variable-function #'helpful-variable)
 
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (setq projectile-switch-project-action #'projectile-dired))
+
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
+
+(dsa/define-key
+   "p" '(:keymap projectile-command-map :wk "Projectile")
+   )
+
+;; (require 'init-omnisharp)
+(require 'init-lsp)
 (require 'init-csharp)
 
 (require 'init-javascript)
@@ -149,7 +167,8 @@
 
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
-             (setq tab-width 8)))
+             (setq tab-width 8)
+             (show-paren-mode)))
 
 (mouse-avoidance-mode 'banish)
 (set-tab-stops)
