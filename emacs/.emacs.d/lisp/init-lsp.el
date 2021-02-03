@@ -1,7 +1,4 @@
 (use-package lsp-mode
-  :hook (
-         (csharp-mode . lsp)
-         )
   :init
   (setq lsp-keymap-prefix "C-l")
 
@@ -22,7 +19,21 @@
   :custom
   (lsp-ui-doc-position 'bottom))
 
-(use-package lsp-ivy)
+(use-package lsp-treemacs
+  :after lsp)
+
+;; (use-package python
+;;   :ensure nil
+;;   :config 
+;;   (lsp-deferred))
+
+  
+(use-package dap-mode
+  :config
+  (require 'dap-node)
+  (require 'dap-chrome)
+  (require 'dap-python)
+  (dap-node-setup))
 
 (dsa/define-key
   :keymaps 'lsp-mode-map

@@ -34,7 +34,7 @@
 
 (defun dsa/csharp-mode-hook ()
   (lsp-deferred)
-  (electric-pair-mode)
+  (electric-pair-local-mode)
   (show-paren-mode)
   )
 

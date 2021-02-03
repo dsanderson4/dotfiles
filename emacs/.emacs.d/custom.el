@@ -12,7 +12,7 @@
  '(ispell-program-name "aspell")
  '(markdown-command "pandoc -f markdown -t html")
  '(package-selected-packages
-   '(counsel-projectile projectile lsp-ivy lsp-ui lsp-mode markdown-mode dired-single all-the-icons-dired org-plus-contrib tern which-key winum doom-modeline all-the-icons helpful ivy-rich rainbow-delimiters command-log-mode evil-org powershell evil evil-commentary evil-collection cider clojure-mode diminish yasnippet-snippets yasnippet auctex general ag js2-mode omnisharp company magit hc-zenburn-theme ivy counsel csharp-mode snippet evil undo-tree use-package))
+   '(evil-surround smartparens lsp-python-ms dap-mode counsel-projectile projectile lsp-ui lsp-mode markdown-mode dired-single all-the-icons-dired org-plus-contrib tern which-key winum doom-modeline all-the-icons helpful ivy-rich rainbow-delimiters command-log-mode evil-org powershell evil evil-commentary evil-collection cider clojure-mode diminish yasnippet-snippets yasnippet auctex general ag js2-mode omnisharp company magit hc-zenburn-theme ivy counsel csharp-mode snippet evil undo-tree use-package))
  '(split-window-preferred-function 'split-window-more-sensibly)
  '(visible-bell t))
 (custom-set-faces

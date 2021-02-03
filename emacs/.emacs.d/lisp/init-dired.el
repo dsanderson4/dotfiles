@@ -11,7 +11,7 @@
   (evil-collection-define-key 'normal 'dired-mode-map
     "h" 'dired-single-up-directory
     "l" 'dired-single-buffer
-     "M-e" 'dired-shell-execute
+     (kbd "M-e") 'dired-shell-execute
     )
   )
 

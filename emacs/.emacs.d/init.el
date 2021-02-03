@@ -103,11 +103,16 @@
    "p" '(:keymap projectile-command-map :wk "Projectile")
    )
 
+(use-package smartparens)
+(require 'smartparens-config)
+
 ;; (require 'init-omnisharp)
 (require 'init-lsp)
 (require 'init-csharp)
 
 (require 'init-javascript)
+
+(require 'init-python-lsp)
 
 (use-package powershell)
 

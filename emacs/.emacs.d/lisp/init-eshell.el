@@ -29,7 +29,7 @@
 
 (defun eshell/etl ()
   "Edit life to do list"
-    (find-file "~/LifeTodo.org"))
+    (find-file "~/Box/org/LifeTodo.org"))
 
 (defun eshell/eotl ()
   "Edit life to do list in other window"

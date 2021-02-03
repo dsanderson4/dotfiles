@@ -7,6 +7,7 @@
     (add-to-list 'interpreter-mode-alist (cons "node" 'js2-mode))
   :config
     (js2-imenu-extras-setup)
+    (lsp-deferred)
     )
 
 (use-package tern
