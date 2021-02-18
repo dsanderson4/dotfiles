@@ -106,6 +106,9 @@
 (use-package smartparens)
 (require 'smartparens-config)
 
+(use-package evil-cleverparens)
+(require 'evil-cleverparens-text-objects)
+
 ;; (require 'init-omnisharp)
 (require 'init-lsp)
 (require 'init-csharp)
@@ -154,6 +157,20 @@
   (setq TeX-parse-self t)
   (setq-default TeX-master nil))
 
+(show-paren-mode 1)
+
+(defun dsa/lisp-hook ()
+  (smartparens-mode)
+  (smartparens-strict-mode)
+  (evil-cleverparens-mode))
+
+(define-key lisp-mode-shared-map "\C-m" 'newline-and-indent)
+
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda ()
+             (setq tab-width 8)
+             (dsa/lisp-hook)))
+
 (require 'init-clojure)
 (require 'init-global-functions)
 (require 'init-snippets)
@@ -167,13 +184,6 @@
   (add-hook mode (lambda () (setq display-line-numbers nil))))
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-
-(define-key lisp-mode-shared-map "\C-m" 'newline-and-indent)
-
-(add-hook 'emacs-lisp-mode-hook
-          '(lambda ()
-             (setq tab-width 8)
-             (show-paren-mode)))
 
 (mouse-avoidance-mode 'banish)
 (set-tab-stops)

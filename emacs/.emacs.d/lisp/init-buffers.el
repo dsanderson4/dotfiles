@@ -1,6 +1,8 @@
 (require 'bs)
 (evil-set-initial-state 'bs-mode 'emacs)
 
+(evil-set-initial-state 'ediff-mode 'emacs)
+
 (setq ibuffer-formats 
       '((mark modified read-only " "
               (name 30 30 :left :elide)

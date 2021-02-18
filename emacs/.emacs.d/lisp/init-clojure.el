@@ -2,13 +2,18 @@
   :mode (("\\.clj\\'" . clojure-mode)
          ("\\.edn\\'" . clojure-mode)))
 
+(add-hook 'clojure-mode-hook
+          '(lambda ()
+             (lsp-deferred) 
+             (dsa/lisp-hook)))
+
 (use-package cider
   :defer t
   :init (add-hook 'cider-mode-hook #'clj-refactor-mode)
   :diminish subword-mode
   :config
   (setq nrepl-log-messages t                  
-        cider-repl-display-in-current-window t
+        cider-repl-display-in-current-window nil
         cider-repl-use-clojure-font-lock t    
         cider-prompt-save-file-on-load 'always-save
         cider-font-lock-dynamically '(macro core function var)
@@ -16,7 +21,10 @@
         cider-overlays-use-font-lock t)         
   (cider-repl-toggle-pretty-printing))
 
-(add-hook 'cider-repl-mode-hook #'company-mode)
-(add-hook 'cider-mode-hook #'company-mode)
+(add-hook 'cider-repl-mode-hook
+          '(lambda ()
+             (company-mode)
+             (dsa/lisp-hook)))
+;; (add-hook 'cider-mode-hook #'company-mode)
 
 (provide 'init-clojure)

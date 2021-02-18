@@ -40,6 +40,7 @@ nnoremap <leader>jd :vsc Tools.InvokePeasyMotionJumpToDocumentTab<cr>
 nnoremap <leader>jt :vsc Tools.InvokePeasyMotionTwoCharJump<cr>
 nnoremap <leader><leader> :vsc Tools.InvokePeasyMotion<cr>
 
+nnoremap <leader>wc :vsc View.CallHierarchy<cr>
 nnoremap <leader>we :vsc View.ErrorList<cr>
 nnoremap <leader>wt :vsc TestExplorer.ShowTestExplorer<cr>
 nnoremap <leader>wi :vsc View.FindResultsWindow1<cr>
@@ -52,5 +53,7 @@ nnoremap <leader>wn :vsc Window.MoveToNextTabGroup<cr>
 nnoremap <leader>wp :vsc Window.MoveToPreviousTabGroup<cr>
 nnoremap <leader>wv :vsc Window.NewVerticalTabGroup<cr>
 nnoremap <leader>ww :vsc Window.Windows<cr>
+
+nnoremap <leader>bt :vsc Debug.ToggleBreakpoint<cr>
 
 nnoremap <leader>n :set number<cr>
