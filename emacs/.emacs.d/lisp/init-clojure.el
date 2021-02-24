@@ -4,7 +4,10 @@
 
 (add-hook 'clojure-mode-hook
           '(lambda ()
-             (lsp-deferred) 
+             (lsp) 
+             (when (eq system-type 'windows-nt)
+               (setq lsp-clojure-custom-server-command
+                     (list "cmd" "/c" (lsp-clojure--server-executable-path))))
              (dsa/lisp-hook)))
 
 (use-package cider
@@ -25,6 +28,5 @@
           '(lambda ()
              (company-mode)
              (dsa/lisp-hook)))
-;; (add-hook 'cider-mode-hook #'company-mode)
 
 (provide 'init-clojure)
