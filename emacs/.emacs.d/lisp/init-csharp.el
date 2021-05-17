@@ -30,6 +30,11 @@
   "smr" '(snip-method-revision :which-key "Revision")
   "smp" '(snip-method-param1 :which-key "Parameter")
   "smt" '(snip-method-return :which-key "Return")
+  "smg" '(snip-method-tag :which-key "Tag")
+
+  "sb" '(:ignore t :which-key "Belgrade")
+  "sbc" '(snip-belgrade-class-revision :which-key "Class Revision")
+  "sbm" '(snip-belgrade-method-revision :which-key "Method Revision")
   )
 
 (defun dsa/csharp-mode-hook ()

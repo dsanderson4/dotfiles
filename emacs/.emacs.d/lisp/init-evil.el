@@ -25,4 +25,8 @@
   :config
   (global-evil-surround-mode 1))
 
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode 1))
+
 (provide 'init-evil)

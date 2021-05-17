@@ -26,6 +26,8 @@ Set-Alias hd Format-Hex
 
 Set-Alias find "C:\Program Files\Git\usr\bin\find.exe"
 
+Set-Alias 7z "C:\Program Files\7-Zip\7z.exe"
+
 # Set-Alias vim "C:\Program Files (x86)\Vim\vim81\vim.exe"
 # Set-Alias gvim "C:\Program Files (x86)\Vim\vim81\gvim.exe"
 
@@ -44,3 +46,4 @@ Remove-Item alias:rm -Force
 Remove-Item alias:cp -Force
 Remove-Item alias:ls -Force
 Remove-Item alias:diff -Force
+Remove-Item alias:sc -Force

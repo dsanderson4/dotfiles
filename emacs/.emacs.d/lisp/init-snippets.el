@@ -82,6 +82,10 @@
 (setq snip-text-method-return
       "        /// <returns>$.</returns>\n")
 
+(setq snip-text-method-tag
+      "        /// <$${name}>
+        /// </$${name}>\n")
+
 (setq snip-text-external-unit
       "        /// <externalUnit cref=\"$.\" />\n")
 
@@ -210,6 +214,12 @@ title: $.
   (force-insert-mode)
   (snippet-insert snip-text-method-return))
 
+(defun snip-method-tag()
+  (interactive)
+  (beginning-of-line)
+  (force-insert-mode)
+  (snippet-insert snip-text-method-tag))
+
 (defun snip-external-unit ()
   (interactive)
   (beginning-of-line)
@@ -257,6 +267,22 @@ title: $.
 (defun snip-gsw ()
   (interactive)
   (insert "Gets or sets a value indicating whether "))
+
+(setq snip-text-belgrade-revision
+      "%s/// $. - %s - dave.anderson #$\n")
+
+(defun snip-belgrade-method-revision ()
+  (interactive)
+  (snip-belgrade-revision "        "))
+
+(defun snip-belgrade-class-revision ()
+  (interactive)
+  (snip-belgrade-revision "    "))
+
+(defun snip-belgrade-revision (leading-spaces)
+  (beginning-of-line)
+  (force-insert-mode)
+  (snippet-insert (format snip-text-belgrade-revision leading-spaces (format-time-string "%m/%d/%Y %R %p"))))
 
 (defun snip-date (text)
   (let ((rev-date (format-time-string "%m/%d/%y")))

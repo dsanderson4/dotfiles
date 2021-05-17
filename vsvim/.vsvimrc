@@ -45,6 +45,8 @@ nnoremap <leader>we :vsc View.ErrorList<cr>
 nnoremap <leader>wt :vsc TestExplorer.ShowTestExplorer<cr>
 nnoremap <leader>wi :vsc View.FindResultsWindow1<cr>
 nnoremap <leader>wu :vsc View.FindReferencesWindow1<cr>
+nnoremap <leader>wd :vsc View.EntityDataModelBrowser<cr>
+nnoremap <leader>wm :vsc View.EntityDataMappingDetails<cr>
 
 nnoremap <leader>wf :vsc Window.Float<cr>
 nnoremap <leader>wg :vsc Window.MoveToMainDocumentGroup<cr>
