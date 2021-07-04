@@ -27,6 +27,17 @@
 // </revision>
 // -----------------------------------------------------------------------------\n")
 
+(setq snip-text-belgrade-file-header
+      "// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=\"$${itemname}.cs\" company=\"Dominion Voting Systems Corporation\">
+// Copyright $${year} (c) Dominion Voting Systems Corporation
+// </copyright>
+// <summary>
+//      #ProjectName: $${projectname} #
+//  #AssemblyVersion: 1.0 #
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------\n")
+
 (setq snip-text-class-header
     "    /// <summary>
     ///     $.
@@ -50,6 +61,32 @@
         /// <revision revisor=\"dave.anderson\" date=\"%s\">
         ///     Method created.
         /// </revision>\n")
+
+(setq snip-text-belgrade-class-header
+    "    /// <summary>
+    ///     $.
+    /// </summary>
+    /// <Revisions>
+    /// Initial Revision - %s - dave.anderson #$
+    /// </Revisions>\n")
+
+(setq snip-text-belgrade-method-header
+    "        /// <summary>
+        ///     $.
+        /// </summary>
+        /// <CallSequence>
+        /// </CallSequence>
+        /// <Revisions>
+        /// Initial Revision - %s - dave.anderson #$
+        /// </Revisions>\n")
+
+(setq snip-text-belgrade-property-header
+    "        /// <summary>
+        ///     $.
+        /// </summary>
+        /// <Revisions>
+        /// Initial Revision - %s - dave.anderson #$
+        /// </Revisions>\n")
 
 (setq snip-text-property-header
     "        /// <summary>
@@ -88,6 +125,9 @@
 
 (setq snip-text-external-unit
       "        /// <externalUnit cref=\"$.\" />\n")
+
+(setq snip-text-belgrade-call
+      "        /// $.\n")
 
 (setq snip-text-summary
       "        /// <summary>$.</summary>\n")
@@ -226,6 +266,12 @@ title: $.
   (force-insert-mode)
   (snippet-insert snip-text-external-unit))
 
+(defun snip-belgrade-call ()
+  (interactive)
+  (beginning-of-line)
+  (force-insert-mode)
+  (snippet-insert snip-text-belgrade-call))
+
 (defun snip-summary ()
   (interactive)
   (beginning-of-line)
@@ -271,6 +317,12 @@ title: $.
 (setq snip-text-belgrade-revision
       "%s/// $. - %s - dave.anderson #$\n")
 
+(defun snip-belgrade-file-header ()
+  (interactive)
+  (beginning-of-line)
+  (force-insert-mode)
+  (snippet-insert snip-text-belgrade-file-header))
+
 (defun snip-belgrade-method-revision ()
   (interactive)
   (snip-belgrade-revision "        "))
@@ -284,10 +336,27 @@ title: $.
   (force-insert-mode)
   (snippet-insert (format snip-text-belgrade-revision leading-spaces (format-time-string "%m/%d/%Y %R %p"))))
 
+(defun snip-belgrade-class-header ()
+  (interactive)
+  (beginning-of-line)
+  (force-insert-mode)
+  (snippet-insert (format snip-text-belgrade-class-header (format-time-string "%m/%d/%Y %R %p"))))
+
+(defun snip-belgrade-method-header ()
+  (interactive)
+  (beginning-of-line)
+  (force-insert-mode)
+  (snippet-insert (format snip-text-belgrade-method-header (format-time-string "%m/%d/%Y %R %p"))))
+
+(defun snip-belgrade-property-header ()
+  (interactive)
+  (beginning-of-line)
+  (force-insert-mode)
+  (snippet-insert (format snip-text-belgrade-property-header (format-time-string "%m/%d/%Y %R %p"))))
+
 (defun snip-date (text)
   (let ((rev-date (format-time-string "%m/%d/%y")))
-    (snippet-insert (format text rev-date))
-    )
+    (snippet-insert (format text rev-date)))
   )
 
 (provide 'init-snippets)

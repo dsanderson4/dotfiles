@@ -57,5 +57,19 @@ nnoremap <leader>wv :vsc Window.NewVerticalTabGroup<cr>
 nnoremap <leader>ww :vsc Window.Windows<cr>
 
 nnoremap <leader>bt :vsc Debug.ToggleBreakpoint<cr>
+nnoremap <leader>bd :vsc Debug.DeleteAllBreakpoints<cr>
+
+nnoremap <leader>dg :vsc Debug.Start<cr>
+nnoremap <leader>dc :vsc Debug.RunToCursor<cr>
+nnoremap <leader>di :vsc Debug.StepInto<cr>
+nnoremap <leader>do :vsc Debug.StepOver<cr>
+nnoremap <leader>dt :vsc Debug.StepOut<cr>
+nnoremap <leader>ds :vsc Debug.StopDebugging<cr>
+
+nnoremap <leader>dn :vsc Diff.NextDifference<cr>
+nnoremap <leader>dp :vsc Diff.PreviousDifference<cr>
+
+nnoremap <leader>vi :vsc Edit.QuickInfo<cr>
+nnoremap <leader>vd :vsc Edit.PeekDefinition<cr>
 
 nnoremap <leader>n :set number<cr>

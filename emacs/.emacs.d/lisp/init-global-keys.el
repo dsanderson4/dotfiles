@@ -66,6 +66,8 @@
  "jt" '(avy-goto-char-timer :which-key "Char Timer")
  )
 
+(global-set-key (kbd "<C-lwindow>") 'ignore)
+
 (global-set-key [C-tab] 'bs-cycle-next)
 (global-set-key "\C-o" 'other-window)
 (global-set-key [?\C-%] 'shrink-window)

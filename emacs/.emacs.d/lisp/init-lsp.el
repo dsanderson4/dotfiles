@@ -44,7 +44,7 @@
   "gm" '(counsel-imenu :which-key "File Member")
   "ga" '(lsp-execute-code-action :which-key "Action")
 
-  "f" '(:ignore t :which-key "Find")
+  "f" '(:ignore t :which-key "LSP Find")
   "fu" '(lsp-find-references :which-key "Usages")
   "fi" '(lsp-find-implementation :which-key "Implementations")
   )

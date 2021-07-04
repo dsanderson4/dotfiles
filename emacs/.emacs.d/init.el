@@ -190,6 +190,6 @@
 (toggle-frame-fullscreen)
 (split-window-right)
 (other-window 1)
-(eshell)
 (server-start)
 (global-auto-revert-mode)
+(eshell)

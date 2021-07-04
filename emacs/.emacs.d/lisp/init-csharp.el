@@ -1,10 +1,11 @@
 (use-package csharp-mode
   :ensure t
-  :init (add-hook 'csharp-mode-hook 'dsa/csharp-mode-hook)
-  :mode "\\.cs")
+  :init
+  (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode))
+  (add-hook 'csharp-tree-sitter-mode-hook 'dsa/csharp-mode-hook))
 
 (dsa/define-key
-  :keymaps 'csharp-mode-map
+  :keymaps '(csharp-mode-map csharp-tree-sitter-mode-map)
 
   "s" '(:ignore t :which-key "C# Snippets")
   "se" '(snip-exception :which-key "Exception")
@@ -33,8 +34,13 @@
   "smg" '(snip-method-tag :which-key "Tag")
 
   "sb" '(:ignore t :which-key "Belgrade")
+  "sbf" '(snip-belgrade-file-header :which-key "File Header")
+  "sbl" '(snip-belgrade-class-header :which-key "Class Header")
   "sbc" '(snip-belgrade-class-revision :which-key "Class Revision")
   "sbm" '(snip-belgrade-method-revision :which-key "Method Revision")
+  "sbh" '(snip-belgrade-method-header :which-key "Method Header")
+  "sbp" '(snip-belgrade-property-header :which-key "Property Header")
+  "sbu" '(snip-belgrade-call :which-key "Call Sequence Unit")
   )
 
 (defun dsa/csharp-mode-hook ()
