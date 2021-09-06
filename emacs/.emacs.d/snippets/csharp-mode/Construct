@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Construct
+# key: /co
+# --
+Initializes a new instance of the <see cref=\"$1\"/> class.

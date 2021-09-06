@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Belgrade Class Header
+# key: /bch
+# --
+    /// <summary>
+    ///     $1
+    /// </summary>
+    /// <Revisions>
+    /// Initial Revision - `(format-time-string "%m/%d/%Y %I:%M %p")` - dave.anderson #$
+    /// </Revisions>
+$0

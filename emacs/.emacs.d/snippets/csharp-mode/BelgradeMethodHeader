@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Belgrade Method Header
+# key: /bmh
+# --
+        /// <summary>
+        ///     $1
+        /// </summary>
+        /// <CallSequence>
+        /// </CallSequence>
+        /// <Revisions>
+        /// Initial Revision - `(format-time-string "%m/%d/%Y %I:%M %p")` - dave.anderson #$
+        /// </Revisions>
+$0

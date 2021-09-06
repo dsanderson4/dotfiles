@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Belgrade Call
+# key: /bc
+# --
+        /// $1
+$0

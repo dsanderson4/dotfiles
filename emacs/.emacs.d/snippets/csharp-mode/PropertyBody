@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: Property Body
+# key: /pb
+# --
+        public $1 $2
+        {
+            get
+            {
+                return this.$3;
+            }
+            set
+            {
+                this.$3 = value;
+            }
+        }
+
+$0

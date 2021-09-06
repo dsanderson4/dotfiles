@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Class Revision
+# key: /cr
+# --
+    /// <revision revisor="dave.anderson" date="`(format-time-string "%m/%d/%y")`">
+    ///     $1
+    /// </revision>
+$0

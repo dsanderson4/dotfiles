@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Property Value
+# key: /pv
+# --
+        /// <value>$1</value>
+$0

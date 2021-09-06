@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: External Unit
+# key: /eu
+# --
+        /// <externalUnit cref="$1" />
+$0

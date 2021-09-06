@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Class Header
+# key: /ch
+# --
+    /// <summary>
+    ///     $1
+    /// </summary>
+    /// <revision revisor="dave.anderson" date="`(format-time-string "%m/%d/%y")`">
+    ///     Class created.
+    /// </revision>
+$0

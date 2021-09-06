@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: File Header
+# key: /fh
+# --
+// -----------------------------------------------------------------------------
+// <copyright file="`(file-name-nondirectory (buffer-file-name))`" company="Dominion Voting Systems">
+//     Copyright (c) `(format-time-string "%Y")` Dominion Voting Systems, Inc. All Rights Reserved.
+//     Any distribution of source code by others is prohibited.
+// </copyright>
+// <summary>
+//     $1
+// </summary>
+// <revision revisor="dave.anderson" date="`(format-time-string "%m/%d/%y")`">
+//     File Created.
+// </revision>
+// -----------------------------------------------------------------------------
+$0

@@ -1,161 +1,9 @@
-(setq snip-text-file-revision
-      "// <revision revisor=\"dave.anderson\" date=\"%s\">
-//     %s
-// </revision>\n")
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :config
+  (yas-global-mode 1))
 
-(setq snip-text-class-revision
-      "    /// <revision revisor=\"dave.anderson\" date=\"%s\">
-    ///     $.
-    /// </revision>\n")
-
-(setq snip-text-method-revision
-      "        /// <revision revisor=\"dave.anderson\" date=\"%s\">
-        ///     $.
-        /// </revision>\n")
-
-(setq snip-text-file-header
-      "// -----------------------------------------------------------------------------
-// <copyright file=\"$${itemname}.cs\" company=\"Dominion Voting Systems\">
-//     Copyright (c) $${year} Dominion Voting Systems, Inc. All Rights Reserved.
-//     Any distribution of source code by others is prohibited.
-// </copyright>
-// <summary>
-//     $.
-// </summary>
-// <revision revisor=\"dave.anderson\" date=\"%s\">
-//     File Created.
-// </revision>
-// -----------------------------------------------------------------------------\n")
-
-(setq snip-text-belgrade-file-header
-      "// --------------------------------------------------------------------------------------------------------------------
-// <copyright file=\"$${itemname}.cs\" company=\"Dominion Voting Systems Corporation\">
-// Copyright $${year} (c) Dominion Voting Systems Corporation
-// </copyright>
-// <summary>
-//      #ProjectName: $${projectname} #
-//  #AssemblyVersion: 1.0 #
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------\n")
-
-(setq snip-text-class-header
-    "    /// <summary>
-    ///     $.
-    /// </summary>
-    /// <revision revisor=\"dave.anderson\" date=\"%s\">
-    ///     Class created.
-    /// </revision>\n")
-
-(setq snip-text-enum-header
-    "    /// <summary>
-    ///     $.
-    /// </summary>
-    /// <revision revisor=\"dave.anderson\" date=\"%s\">
-    ///     Created.
-    /// </revision>\n")
-
-(setq snip-text-method-header
-    "        /// <summary>
-        ///     $.
-        /// </summary>
-        /// <revision revisor=\"dave.anderson\" date=\"%s\">
-        ///     Method created.
-        /// </revision>\n")
-
-(setq snip-text-belgrade-class-header
-    "    /// <summary>
-    ///     $.
-    /// </summary>
-    /// <Revisions>
-    /// Initial Revision - %s - dave.anderson #$
-    /// </Revisions>\n")
-
-(setq snip-text-belgrade-method-header
-    "        /// <summary>
-        ///     $.
-        /// </summary>
-        /// <CallSequence>
-        /// </CallSequence>
-        /// <Revisions>
-        /// Initial Revision - %s - dave.anderson #$
-        /// </Revisions>\n")
-
-(setq snip-text-belgrade-property-header
-    "        /// <summary>
-        ///     $.
-        /// </summary>
-        /// <Revisions>
-        /// Initial Revision - %s - dave.anderson #$
-        /// </Revisions>\n")
-
-(setq snip-text-property-header
-    "        /// <summary>
-        ///     $.
-        /// </summary>
-        /// <revision revisor=\"dave.anderson\" date=\"%s\">
-        ///     Property created.
-        /// </revision>\n")
-
-(setq snip-text-property-body
-      "        public $${type} $${property}
-        {
-            get
-            {
-                return this.$${field};
-            }
-            set
-            {
-                this.$${field} = value;
-            }
-        }\n\n")
-
-
-(setq snip-text-method-param1
-  "        /// <param name=\"$${name}\">$.</param>\n")
-
-(setq snip-text-type-param
-  "        /// <typeparam name=\"$${name}\">$.</typeparam>\n")
-
-(setq snip-text-method-return
-      "        /// <returns>$.</returns>\n")
-
-(setq snip-text-method-tag
-      "        /// <$${name}>
-        /// </$${name}>\n")
-
-(setq snip-text-external-unit
-      "        /// <externalUnit cref=\"$.\" />\n")
-
-(setq snip-text-belgrade-call
-      "        /// $.\n")
-
-(setq snip-text-summary
-      "        /// <summary>$.</summary>\n")
-
-(setq snip-text-value
-      "        /// <value>$.</value>\n")
-
-(setq snip-text-file
-      "        /// <file>$.</file>\n")
-
-(setq snip-text-region
-      "\n        #region $.\n\n        #endregion\n")
-
-(setq snip-text-construct
-      "Initializes a new instance of the <see cref=\"$.\"/> class.")
-
-(setq snip-text-exception
-    "        /// <exception cref=\"$${name}\">
-        ///     $.
-        /// </exception>\n")
-
-(setq snip-text-markdown-header
-      "---
-title: $.
-...")
-
-(setq snip-text-jira-link
-      "[$${project}-$${number}](http://jirabg.dominionvoting.com/browse/$${project}-$${number})")
+(use-package yasnippet-snippets)
 
 (defun my-compile-markdown ()
   (interactive)
@@ -172,12 +20,11 @@ title: $.
 
 (defun snip-markdown-header ()
   (interactive)
-  (force-insert-mode)
-  (snippet-insert snip-text-markdown-header))
+  (insert-yas-snippet "Header"))
 
 (defun snip-jira-link ()
   (interactive)
-  (snippet-insert snip-text-jira-link))
+  (yas-expand-snippet (yas-lookup-snippet "Jira Link")))
 
 (defun snip-file-revision ()
   (interactive)
@@ -187,120 +34,80 @@ title: $.
     (forward-line 1)
     (search-forward "------------")
     (forward-line 0)
-    (insert (format snip-text-file-revision rev-date comment))
-    )
-  )
+    (yas-expand-snippet (yas-lookup-snippet "File Modified"))))
 
 (defun snip-class-revision ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snip-date snip-text-class-revision))
+  (insert-yas-snippet "Class Revision"))
 
 (defun snip-method-revision ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snip-date snip-text-method-revision))
+  (insert-yas-snippet "Method Revision"))
 
 (defun snip-file-header ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snip-date snip-text-file-header))
+  (insert-yas-snippet "File Header"))
 
 (defun snip-class-header ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snip-date snip-text-class-header))
+  (insert-yas-snippet "Class Header"))
 
 (defun snip-enum-header ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snip-date snip-text-enum-header))
+  (insert-yas-snippet "Enum Header"))
 
 (defun snip-method-header ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snip-date snip-text-method-header))
+  (insert-yas-snippet "Method Header"))
 
 (defun snip-property-header ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snip-date snip-text-property-header))
+  (insert-yas-snippet "Property Header"))
 
 (defun snip-property-body ()
   (interactive)
-  (snippet-insert snip-text-property-body))
+  (insert-yas-snippet "Property Body"))
 
 (defun snip-method-param1 ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snippet-insert snip-text-method-param1))
+  (insert-yas-snippet "Method Parameter"))
 
 (defun snip-type-param ()
   (interactive)
-  (force-insert-mode)
-  (snippet-insert snip-text-type-param))
+  (insert-yas-snippet "Type Parameter"))
 
 (defun snip-method-return ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snippet-insert snip-text-method-return))
+  (insert-yas-snippet "Method Return"))
 
 (defun snip-method-tag()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snippet-insert snip-text-method-tag))
+  (insert-yas-snippet "Method Tag"))
 
 (defun snip-external-unit ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snippet-insert snip-text-external-unit))
+  (insert-yas-snippet "External Unit"))
 
 (defun snip-belgrade-call ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snippet-insert snip-text-belgrade-call))
+  (insert-yas-snippet "Belgrade Call"))
 
 (defun snip-summary ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snippet-insert snip-text-summary))
+  (insert-yas-snippet "Summary"))
 
-(defun snip-value ()
+(defun snip-value()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snippet-insert snip-text-value))
-
-(defun snip-file ()
-  (interactive)
-  (snippet-insert snip-text-file))
-
-(defun snip-region ()
-  (interactive)
-  (snippet-insert snip-text-region))
+  (insert-yas-snippet "Property Value"))
 
 (defun snip-construct ()
   (interactive)
   (force-insert-mode)
-  (snippet-insert snip-text-construct))
+  (yas-expand-snippet (yas-lookup-snippet "Construct")))
 
 (defun snip-exception ()
   (interactive)
-  (force-insert-mode)
-  (snippet-insert snip-text-exception))
+  (insert-yas-snippet "Exception"))
 
 (defun snip-gw ()
   (interactive)
@@ -314,49 +121,33 @@ title: $.
   (interactive)
   (insert "Gets or sets a value indicating whether "))
 
-(setq snip-text-belgrade-revision
-      "%s/// $. - %s - dave.anderson #$\n")
-
 (defun snip-belgrade-file-header ()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snippet-insert snip-text-belgrade-file-header))
+  (insert-yas-snippet "Belgrade File Header"))
 
 (defun snip-belgrade-method-revision ()
   (interactive)
-  (snip-belgrade-revision "        "))
+  (insert-yas-snippet "Belgrade Method Revision"))
 
 (defun snip-belgrade-class-revision ()
   (interactive)
-  (snip-belgrade-revision "    "))
+  (insert-yas-snippet "Belgrade Class Revision"))
 
-(defun snip-belgrade-revision (leading-spaces)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snippet-insert (format snip-text-belgrade-revision leading-spaces (format-time-string "%m/%d/%Y %R %p"))))
-
-(defun snip-belgrade-class-header ()
+(defun snip-belgrade-class-header()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snippet-insert (format snip-text-belgrade-class-header (format-time-string "%m/%d/%Y %R %p"))))
+  (insert-yas-snippet "Belgrade Class Header"))
 
-(defun snip-belgrade-method-header ()
+(defun snip-belgrade-method-header()
   (interactive)
-  (beginning-of-line)
-  (force-insert-mode)
-  (snippet-insert (format snip-text-belgrade-method-header (format-time-string "%m/%d/%Y %R %p"))))
+  (insert-yas-snippet "Belgrade Method Header"))
 
-(defun snip-belgrade-property-header ()
+(defun snip-belgrade-property-header()
   (interactive)
+  (insert-yas-snippet "Belgrade Property Header"))
+
+(defun insert-yas-snippet (name)
   (beginning-of-line)
   (force-insert-mode)
-  (snippet-insert (format snip-text-belgrade-property-header (format-time-string "%m/%d/%Y %R %p"))))
-
-(defun snip-date (text)
-  (let ((rev-date (format-time-string "%m/%d/%y")))
-    (snippet-insert (format text rev-date)))
-  )
+  (yas-expand-snippet (yas-lookup-snippet name)))
 
 (provide 'init-snippets)

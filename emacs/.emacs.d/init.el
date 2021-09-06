@@ -56,15 +56,6 @@
 	:config
 	(recentf-mode 1))
 
-(use-package snippet)
-
-(use-package yasnippet
-  :diminish yas-minor-mode
-  :config
-  (yas-global-mode 1))
-
-(use-package yasnippet-snippets)
-
 (use-package flycheck)
 
 (require 'init-ivy)
@@ -109,7 +100,6 @@
 (use-package evil-cleverparens)
 (require 'evil-cleverparens-text-objects)
 
-;; (require 'init-omnisharp)
 (require 'init-lsp)
 (require 'init-csharp)
 

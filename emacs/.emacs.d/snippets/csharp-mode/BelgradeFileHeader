@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: Belgrade File Header
+# key: /bfh
+# --
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="`(file-name-nondirectory (buffer-file-name))`" company="Dominion Voting Systems Corporation">
+// Copyright `(format-time-string "%Y")` (c) Dominion Voting Systems Corporation
+// </copyright>
+// <summary>
+//      #ProjectName: $1 #
+//  #AssemblyVersion: 1.0 #
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+$0

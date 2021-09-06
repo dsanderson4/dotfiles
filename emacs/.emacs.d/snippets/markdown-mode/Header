@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Header
+# key: /h
+# --
+---
+title: $1
+...
+$0

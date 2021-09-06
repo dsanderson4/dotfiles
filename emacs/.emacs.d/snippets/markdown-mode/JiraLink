@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Jira Link
+# key: /jl
+# --
+[$1-$2](http://jirabg.dominionvoting.com/browse/$1-$2)

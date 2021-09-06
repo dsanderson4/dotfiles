@@ -24,6 +24,7 @@ nnoremap <leader>en :vsc Edit.GotoNextLocation<cr>
 nnoremap <leader>ep :vsc Edit.GotoPrevLocation<cr>
 vnoremap <leader>ec :vsc Edit.CommentSelection<cr>
 vnoremap <leader>eu :vsc Edit.UncommentSelection<cr>
+vnoremap <leader>es :vsc Edit.SurroundWith<cr>
 
 nnoremap <leader>rn :vsc ReSharper.ReSharper_NavigateTo<cr>
 nnoremap <leader>rr :vsc ReSharper.ReSharper_Rename<cr>

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Property Header
+# key: /ph
+# --
+        /// <summary>
+        ///     $1
+        /// </summary>
+        /// <value>$2</value>
+        /// <revision revisor="dave.anderson" date="`(format-time-string "%m/%d/%y")`">
+        ///     Property created.
+        /// </revision>
+$0

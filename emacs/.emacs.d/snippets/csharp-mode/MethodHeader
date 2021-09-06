@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Method Header
+# key: /mh
+# --
+        /// <summary>
+        ///     $1
+        /// </summary>
+        /// <revision revisor="dave.anderson" date="`(format-time-string "%m/%d/%y")`">
+        ///     Method created.
+        /// </revision>
+$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Type Parameter
+# key: /tp
+# --
+        /// <typeparam name="$1">$2</param>
+$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Method Parameter
+# key: /mp
+# --
+        /// <param name="$1">$2</param>
+$0

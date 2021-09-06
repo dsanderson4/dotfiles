@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Belgrade Class Revision
+# key: /bcr
+# --
+    /// $1 - `(format-time-string "%m/%d/%Y %I:%M %p")` - dave.anderson #$
+$0

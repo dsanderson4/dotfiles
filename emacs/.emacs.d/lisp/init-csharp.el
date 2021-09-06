@@ -2,7 +2,8 @@
   :ensure t
   :init
   (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode))
-  (add-hook 'csharp-tree-sitter-mode-hook 'dsa/csharp-mode-hook))
+  (add-hook 'csharp-tree-sitter-mode-hook 'dsa/csharp-mode-hook)
+  (add-hook 'csharp-tree-sitter-mode-hook '(lambda () (yas-activate-extra-mode 'csharp-mode))))
 
 (dsa/define-key
   :keymaps '(csharp-mode-map csharp-tree-sitter-mode-map)

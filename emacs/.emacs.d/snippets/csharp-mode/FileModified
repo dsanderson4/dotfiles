@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: File Modified
+# key: /fm
+# --
+// <revision revisor="dave.anderson" date="`(format-time-string "%m/%d/%y")`">
+//     File Modified.
+// </revision>
+$0
