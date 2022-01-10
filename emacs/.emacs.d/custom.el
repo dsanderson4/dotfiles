@@ -13,9 +13,10 @@
  '(ispell-program-name "aspell")
  '(markdown-command "pandoc -f markdown -t html")
  '(package-selected-packages
-   '(evil-cleverparens evil-surround lsp-python-ms dap-mode counsel-projectile dired-single all-the-icons-dired tern winum doom-modeline all-the-icons helpful ivy-rich rainbow-delimiters command-log-mode evil-org powershell evil evil-commentary cider clojure-mode diminish yasnippet-snippets yasnippet auctex general ag omnisharp company hc-zenburn-theme counsel csharp-mode snippet evil undo-tree use-package))
+   '(js2-mode lsp-treemacs lsp-ui lsp-mode smartparens projectile flycheck "ivy" ivy evil-collection magit which-key org ranger evil-cleverparens evil-surround lsp-python-ms dap-mode counsel-projectile dired-single all-the-icons-dired tern winum doom-modeline all-the-icons helpful ivy-rich rainbow-delimiters command-log-mode evil-org powershell evil evil-commentary cider clojure-mode diminish yasnippet-snippets yasnippet auctex general ag omnisharp company hc-zenburn-theme counsel csharp-mode snippet evil undo-tree use-package))
  '(split-window-preferred-function 'split-window-more-sensibly)
- '(visible-bell t))
+ '(visible-bell t)
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

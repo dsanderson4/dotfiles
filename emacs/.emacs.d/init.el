@@ -10,8 +10,7 @@
 ;; Package configs
 (require 'package)
 (setq package-enable-at-startup nil)
-(setq package-archives '(("org"   . "http://orgmode.org/elpa/")
-                         ("gnu"   . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)
@@ -157,9 +156,9 @@
 (define-key lisp-mode-shared-map "\C-m" 'newline-and-indent)
 
 (add-hook 'emacs-lisp-mode-hook
-          '(lambda ()
-             (setq tab-width 8)
-             (dsa/lisp-hook)))
+          (lambda ()
+            (setq tab-width 8)
+            (dsa/lisp-hook)))
 
 (require 'init-clojure)
 (require 'init-global-functions)

@@ -3,8 +3,7 @@
   (insert "#+OPTIONS: toc:nil html-postamble:nil num:nil\n"))
 
 (use-package org
-  :ensure org-plus-contrib
-  :pin org
+  :pin gnu
   :config
   (add-hook 'org-mode-hook 'org-indent-mode)
   (setq org-indent-mode-turns-on-hiding-stars nil)

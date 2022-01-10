@@ -144,6 +144,21 @@
       (setq fill-column save-fill-column))
     (forward-paragraph 1)))
 
+(defun windows-start-file (file)
+  (w32-shell-execute "Open" (subst-char-in-string ?\\ ?/ file)))
+
+(defun unix-start-file (file)
+   (call-process-shell-command (format "xdg-open '%s' &" file)))
+
+(defun darwin-start-file (file)
+   (call-process-shell-command (format "open '%s'" file)))
+
+(defun os-start-file (file)
+  (cond
+   ((eq system-type 'windows-nt) (windows-start-file file))
+   ((eq system-type 'gnu-linux) (unix-start-file file))
+   ((eq system-type 'darwin) (darwin-start-file file))))
+
 (defun my-units-called ()
   (interactive)
   (recenter 2)

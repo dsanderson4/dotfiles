@@ -3,12 +3,12 @@
          ("\\.edn\\'" . clojure-mode)))
 
 (add-hook 'clojure-mode-hook
-          '(lambda ()
-             (lsp) 
-             (when (eq system-type 'windows-nt)
-               (setq lsp-clojure-custom-server-command
-                     (list "cmd" "/c" (lsp-clojure--server-executable-path))))
-             (dsa/lisp-hook)))
+          (lambda ()
+            (lsp) 
+            (when (eq system-type 'windows-nt)
+              (setq lsp-clojure-custom-server-command
+                    (list "cmd" "/c" (lsp-clojure--server-executable-path))))
+            (dsa/lisp-hook)))
 
 (use-package cider
   :defer t
@@ -25,8 +25,8 @@
   (cider-repl-toggle-pretty-printing))
 
 (add-hook 'cider-repl-mode-hook
-          '(lambda ()
-             (company-mode)
-             (dsa/lisp-hook)))
+          (lambda ()
+            (company-mode)
+            (dsa/lisp-hook)))
 
 (provide 'init-clojure)
