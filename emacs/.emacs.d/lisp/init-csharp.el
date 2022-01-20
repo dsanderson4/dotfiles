@@ -1,3 +1,7 @@
+(use-package tree-sitter)
+(use-package tree-sitter-indent)
+(use-package tree-sitter-langs)
+
 (use-package csharp-mode
   :ensure t
   :init

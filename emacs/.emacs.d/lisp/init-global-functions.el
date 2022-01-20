@@ -156,7 +156,7 @@
 (defun os-start-file (file)
   (cond
    ((eq system-type 'windows-nt) (windows-start-file file))
-   ((eq system-type 'gnu-linux) (unix-start-file file))
+   ((eq system-type 'gnu/linux) (unix-start-file file))
    ((eq system-type 'darwin) (darwin-start-file file))))
 
 (defun my-units-called ()

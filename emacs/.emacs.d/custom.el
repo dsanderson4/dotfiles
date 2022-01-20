@@ -13,7 +13,7 @@
  '(ispell-program-name "aspell")
  '(markdown-command "pandoc -f markdown -t html")
  '(package-selected-packages
-   '(js2-mode lsp-treemacs lsp-ui lsp-mode smartparens projectile flycheck "ivy" ivy evil-collection magit which-key org ranger evil-cleverparens evil-surround lsp-python-ms dap-mode counsel-projectile dired-single all-the-icons-dired tern winum doom-modeline all-the-icons helpful ivy-rich rainbow-delimiters command-log-mode evil-org powershell evil evil-commentary cider clojure-mode diminish yasnippet-snippets yasnippet auctex general ag omnisharp company hc-zenburn-theme counsel csharp-mode snippet evil undo-tree use-package))
+   '(tree-sitter-langs tree-sitter-indent tree-sitter js2-mode lsp-treemacs lsp-ui lsp-mode smartparens projectile flycheck "ivy" ivy evil-collection magit which-key org ranger evil-cleverparens evil-surround lsp-python-ms dap-mode counsel-projectile dired-single all-the-icons-dired tern winum doom-modeline all-the-icons helpful ivy-rich rainbow-delimiters command-log-mode evil-org powershell evil evil-commentary cider clojure-mode diminish yasnippet-snippets yasnippet auctex general ag omnisharp company hc-zenburn-theme counsel csharp-mode snippet evil undo-tree use-package))
  '(split-window-preferred-function 'split-window-more-sensibly)
  '(visible-bell t)
  '(warning-suppress-types '((comp))))
