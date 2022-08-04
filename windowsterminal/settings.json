@@ -74,7 +74,7 @@
             {
                 "guid": "{F97CC96E-C31F-43D1-B387-A29995A62940}",
                 "name": "VS2019 PowerShell",
-                "commandline": "powershell.exe -NoExit -File c:/u/vs2019.ps1",
+                "commandline": "powershell.exe -NoExit -File %USERPROFILE%/bin/vs2019.ps1",
                 "hidden": false
             },
             {
