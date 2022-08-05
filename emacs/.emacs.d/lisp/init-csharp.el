@@ -46,13 +46,76 @@
   "sbh" '(snip-belgrade-method-header :which-key "Method Header")
   "sbp" '(snip-belgrade-property-header :which-key "Property Header")
   "sbu" '(snip-belgrade-call :which-key "Call Sequence Unit")
+
+  "st" '(:ignore t :which-key "StyleCop")
+  "stf" '(style-cop-file :which-key "Current File")
+  "std" '(style-cop-folder :which-key "Directory")
+  "stn" '(style-cop-next-violation :which-key "Next Violation")
+  "stj" '(style-cop-next-violation :which-key "Next Violation")
+  "stp" '(style-cop-previous-violation :which-key "Previous Violation")
+  "stk" '(style-cop-previous-violation :which-key "Previous Violation")
   )
+
+(defcustom style-cop-batch-path "c:/StyleCop"
+  "The directory containing StyleCop batch and project files."
+  :type 'string
+  :group 'StyleCop)
+
+(defun style-cop-process-ouptut ()
+  (switch-to-buffer-other-window "*StyleCop*")
+  (keep-lines "SA[0-9]+:\\|^  Succeeded:\\|^  Adding file:")
+  (replace-regexp " - Failed on Line " ":")
+  (beginning-of-buffer)
+  (search-forward "Succeeded:")
+  (backward-word)
+  (evil-next-line))
+
+(defun style-cop-file ()
+  (interactive)
+  (shell-command (format "%s/StyleCopFile.bat \"%s\"" style-cop-batch-path (buffer-file-name)) "*StyleCop*")
+  (style-cop-process-ouptut))
+
+(defun style-cop-folder(folder)
+  (interactive "D")
+  (shell-command
+   (format "%s/StyleCopFolder.bat \"%s\"" style-cop-batch-path (substring (subst-char-in-string ?/ ?\\ folder) 0 -1))
+   "*StyleCop*")
+  (style-cop-process-ouptut))
+
+(defun style-cop-go-to-violation ()
+  (interactive)
+  (let ((position (point)) error-position error-message)
+    (search-forward-regexp "SA[0-9]+: ")
+    (backward-word)
+    (setq error-position (point))
+    (end-of-line)
+    (setq error-message (buffer-substring error-position (point)))
+    (goto-char position)
+    (evil-find-file-at-point-with-line)
+    (evil-window-rotate-downwards)
+    (message error-message)
+    (switch-to-buffer "*StyleCop*")
+    (goto-char position)
+    (other-window 1)))
+
+(defun style-cop-next-violation ()
+  (interactive)
+  (switch-to-buffer-other-window "*StyleCop*")
+  (evil-next-line)
+  (style-cop-go-to-violation))
+
+(defun style-cop-previous-violation ()
+  (interactive)
+  (switch-to-buffer-other-window "*StyleCop*")
+  (evil-previous-line)
+  (style-cop-go-to-violation))
+
+(define-key evil-normal-state-map "gp" 'style-cop-go-to-violation)
 
 (defun dsa/csharp-mode-hook ()
   (lsp-deferred)
   (electric-pair-local-mode)
-  (show-paren-mode)
-  )
+  (show-paren-mode))
 
 (add-to-list 'auto-mode-alist '("\\.xaml$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.igr$" . nxml-mode))
