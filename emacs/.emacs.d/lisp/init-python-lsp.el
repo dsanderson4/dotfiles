@@ -11,11 +11,18 @@
   (setq python-indent-offset 4)
   )
 
-(use-package lsp-python-ms
-  :init (setq lsp-python-ms-auto-install-server t)
+;; (use-package lsp-python-ms
+;;   :init (setq lsp-python-ms-auto-install-server t)
+;;   :hook (python-mode . (lambda ()
+;;                          (require 'lsp-python-ms)
+;;                          (smartparens-mode)
+;;                          (lsp-deferred))))
+
+(use-package lsp-pyright
+  :ensure t
   :hook (python-mode . (lambda ()
-                         (require 'lsp-python-ms)
-                         (smartparens-mode)
-                         (lsp-deferred))))
+                          (require 'lsp-pyright)
+                          (smartparens-mode)
+                          (lsp-deferred))))
 
 (provide 'init-python-lsp)

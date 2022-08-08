@@ -64,6 +64,11 @@
  "jw" '(avy-goto-word-1 :which-key "Word 1")
  "jc" '(avy-goto-char :which-key "Char")
  "jt" '(avy-goto-char-timer :which-key "Char Timer")
+
+ "h" '(:ignore t :which-key "Describe")
+ "hk" '(describe-key :which-key "Key")
+
+ "u" '(universal-argument :which-key "Universal Argument")
  )
 
 (global-set-key (kbd "<C-lwindow>") 'ignore)
