@@ -21,7 +21,7 @@
 
 
 (use-package counsel
-  :bind* ; load when pressed
+  :bind ; load when pressed
   (("M-x"     . counsel-M-x)
    ("C-s"     . swiper)
    ("C-x C-f" . counsel-find-file)

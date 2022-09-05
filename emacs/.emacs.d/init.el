@@ -144,6 +144,7 @@
   :config
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
+  (setq TeX-PDF-mode t)
   (setq-default TeX-master nil))
 
 (show-paren-mode 1)

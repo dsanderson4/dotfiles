@@ -4,6 +4,10 @@
 (defun eshell/m (src &optional dest)
   (eshell/mv "-fv" src (or dest ".")))
 
+(defun eshell/nd (dir)
+  (eshell/mkdir dir)
+  (eshell/cd dir))
+
 (defun eshell/de (&optional args)
   (dired (or args ".")))
 
