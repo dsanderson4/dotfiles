@@ -19,6 +19,7 @@ require('packer').startup(function(use)
   }
   use 'windwp/nvim-autopairs'
   use 'nvim-telescope/telescope.nvim'
+  use 'akinsho/toggleterm.nvim'
 
   if is_bootstrap then
     require('packer').sync()
@@ -36,9 +37,15 @@ vim.opt.tabstop = 4
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 0
+vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.autochdir = true
-vim.opt.guifont = "LucidaConsole_Nerd_Font:h9.000000"
+vim.opt.mouse = "a"
+-- vim.opt.guifont = "LucidaConsole_Nerd_Font:h9.000000"
+
+-- if vim.loop.os_uname().sysname == "Windows_NT" then
+--     vim.opt.shell = "powershell"
+-- end
 
 local keymap = vim.keymap.set
 local opts = { silent = true }
@@ -51,6 +58,7 @@ keymap('i', 'jk', '<ESC>')
 require('lualine').setup {
   options = {
     icons_enabled = true,
+    theme = 'powerline',
     component_separators = '|',
     section_separators = '',
   },
@@ -88,6 +96,8 @@ require('telescope').setup{
         -- map actions.which_key to <C-h> (default: <C-/>)
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["<C-j>"] = "move_selection_next",
+        ["<C-k>"] = "move_selection_previous",
         ["<C-h>"] = "which_key"
       }
     }
@@ -100,6 +110,12 @@ require('telescope').setup{
     -- }
     -- Now the picker_config_key will be applied every time you call this
     -- builtin picker
+    find_files = {
+        theme = "ivy"
+    },
+    buffers = {
+        theme = "ivy"
+    }
   },
   extensions = {
     -- Your extension configuration goes here:
@@ -112,6 +128,20 @@ require('telescope').setup{
 
 keymap("n", "<leader>tf", "<cmd>Telescope find_files<CR>", opts)
 keymap("n", "<leader>tb", "<cmd>Telescope buffers<CR>", opts)
+
+require("toggleterm").setup {
+    open_mapping = "<c-\\>t",
+	shell = vim.o.shell,
+	start_in_insert = true,
+    direction = "float",
+}
+
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({cmd = "lazygit", hidden = true})
+function _lazygit_toggle()
+    lazygit:toggle()
+end
+keymap("n", "<c-\\>g", "<cmd>lua _lazygit_toggle()<CR>", opts)
 
 require('nvim-autopairs').setup()
 
