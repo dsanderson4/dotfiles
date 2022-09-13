@@ -17,6 +17,15 @@ require('packer').startup(function(use)
     'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
+
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'saadparwaiz1/cmp_luasnip'
+
+  use 'L3MON4D3/LuaSnip'
+  use 'rafamadriz/friendly-snippets'
+
   use 'windwp/nvim-autopairs'
   use 'nvim-telescope/telescope.nvim'
   use 'akinsho/toggleterm.nvim'
@@ -41,7 +50,6 @@ vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.autochdir = true
 vim.opt.mouse = "a"
--- vim.opt.guifont = "LucidaConsole_Nerd_Font:h9.000000"
 
 -- if vim.loop.os_uname().sysname == "Windows_NT" then
 --     vim.opt.shell = "powershell"
@@ -87,60 +95,13 @@ require('nvim-tree').setup {
 }
 keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
 
-require('telescope').setup{
-  defaults = {
-    -- Default configuration for telescope goes here:
-    -- config_key = value,
-    mappings = {
-      i = {
-        -- map actions.which_key to <C-h> (default: <C-/>)
-        -- actions.which_key shows the mappings for your picker,
-        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-        ["<C-j>"] = "move_selection_next",
-        ["<C-k>"] = "move_selection_previous",
-        ["<C-h>"] = "which_key"
-      }
-    }
-  },
-  pickers = {
-    -- Default configuration for builtin pickers goes here:
-    -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
-    -- Now the picker_config_key will be applied every time you call this
-    -- builtin picker
-    find_files = {
-        theme = "ivy"
-    },
-    buffers = {
-        theme = "ivy"
-    }
-  },
-  extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
-  }
-}
+require "user.completion"
 
+require "user.telescope"
 keymap("n", "<leader>tf", "<cmd>Telescope find_files<CR>", opts)
 keymap("n", "<leader>tb", "<cmd>Telescope buffers<CR>", opts)
 
-require("toggleterm").setup {
-    open_mapping = "<c-\\>t",
-	shell = vim.o.shell,
-	start_in_insert = true,
-    direction = "float",
-}
-
-local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({cmd = "lazygit", hidden = true})
-function _lazygit_toggle()
-    lazygit:toggle()
-end
+require("user.terminal")
 keymap("n", "<c-\\>g", "<cmd>lua _lazygit_toggle()<CR>", opts)
 
 require('nvim-autopairs').setup()
