@@ -1,4 +1,4 @@
 -- Root init.lua
-require "util"
+require "Util"
 require "plugins"
 require "settings"

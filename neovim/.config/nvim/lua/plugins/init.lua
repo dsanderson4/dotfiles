@@ -74,6 +74,36 @@ require("packer").startup(function(use)
   }
 
   use {
+      "williamboman/mason.nvim",
+      config = function()
+          require("mason").setup()
+      end
+  }
+
+  use {
+      "neovim/nvim-lspconfig",
+      config = function()
+          require "plugins.lspconfig"
+      end
+  }
+
+  use {
+      "williamboman/mason-lspconfig.nvim",
+      after = { "mason.nvim", "nvim-lspconfig" },
+      config = function()
+          require("mason-lspconfig").setup()
+      end
+  }
+
+  use {
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      after = "mason.nvim",
+      config = function()
+          require("mason-tool-installer").setup()
+      end
+  }
+
+  use {
       "hrsh7th/nvim-cmp",
       config = function()
           require "plugins.completion"
