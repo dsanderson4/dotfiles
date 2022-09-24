@@ -1,4 +1,4 @@
 -- Root init.lua
-require "Util"
 require "plugins"
-require "settings"
+require "settings.settings"
+require "settings.mappings"

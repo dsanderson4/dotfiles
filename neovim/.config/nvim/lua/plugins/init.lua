@@ -45,12 +45,6 @@ require("packer").startup(function(use)
         require("hop").setup {
             keys = "etovxqpdygfblzhckisuran"
         }
-
-        Util.mapKey("n", "<leader>jl", "<cmd>HopLine<CR>")
-        Util.mapKey("n", "<leader>jw", "<cmd>HopWord<CR>")
-        Util.mapKey("n", "<leader>jc", "<cmd>HopChar1<CR>")
-        Util.mapKey("n", "<leader>jC", "<cmd>HopChar2<CR>")
-        Util.mapKey("n", "<leader>jp", "<cmd>HopPattern<CR>")
       end
   }
 
@@ -69,7 +63,6 @@ require("packer").startup(function(use)
                 custom = { ".git" },
               },
           }
-          Util.mapKey("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
       end
   }
 
@@ -96,14 +89,6 @@ require("packer").startup(function(use)
   }
 
   use {
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-      after = "mason.nvim",
-      config = function()
-          require("mason-tool-installer").setup()
-      end
-  }
-
-  use {
       "hrsh7th/nvim-cmp",
       config = function()
           require "plugins.completion"
@@ -116,6 +101,13 @@ require("packer").startup(function(use)
 
   use "L3MON4D3/LuaSnip"
   use "rafamadriz/friendly-snippets"
+
+  use {
+      "folke/which-key.nvim",
+      config = function()
+          require "plugins.which-key"
+      end
+  }
 
   use {
       "windwp/nvim-autopairs",

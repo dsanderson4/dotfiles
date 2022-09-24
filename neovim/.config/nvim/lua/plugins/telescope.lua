@@ -36,6 +36,3 @@ require('telescope').setup {
     -- please take a look at the readme of the extension you want to configure
   }
 }
-
-Util.mapKey("n", "<leader>tf", "<cmd>Telescope find_files<CR>")
-Util.mapKey("n", "<leader>tb", "<cmd>Telescope buffers<CR>")

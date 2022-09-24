@@ -11,4 +11,4 @@ function _lazygit_toggle()
     lazygit:toggle()
 end
 
-Util.mapKey("n", "<c-\\>g", "<cmd>lua _lazygit_toggle()<CR>")
+vim.keymap.set("n", "<c-\\>g", "<cmd>lua _lazygit_toggle()<CR>", { silent = true })

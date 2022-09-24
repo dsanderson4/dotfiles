@@ -1,5 +1,3 @@
--- Settings init.lua
-
 vim.opt.backup = false
 vim.opt.clipboard = "unnamedplus"
 vim.opt.ignorecase = true
@@ -20,7 +18,3 @@ vim.opt.mouse = "a"
 --     vim.opt.shell = "powershell"
 -- end
 
-Util.mapKey("", "<Space>", "<Nop>")
-vim.g.mapleader = ' '
-
-Util.mapKey('i', 'jk', '<ESC>')
