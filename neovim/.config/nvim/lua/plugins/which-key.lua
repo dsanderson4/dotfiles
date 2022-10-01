@@ -10,6 +10,7 @@ wk.register({
     ["<leader>"] = {
         f = { name = "+Find" },
         j = { name = "+Jump" },
-        l = { name = "+LSP" }
+        l = { name = "+LSP" },
+        t = { name = "+Terminal"}
     }
 })

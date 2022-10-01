@@ -17,7 +17,7 @@ require("packer").startup(function(use)
         require('lualine').setup {
           options = {
             icons_enabled = true,
-            theme = 'powerline',
+            theme = 'tokyonight',
             component_separators = '|',
             section_separators = '',
           }
@@ -27,10 +27,18 @@ require("packer").startup(function(use)
 
   use {
       "phha/zenburn.nvim",
+  }
+
+  use {
+      "folke/tokyonight.nvim",
       config = function()
-        require('zenburn').setup()
+          vim.cmd[[colorscheme tokyonight-moon]]
       end
   }
+
+  use {
+      "VDuchauffour/neodark.nvim"
+}
 
   use {
       "numToStr/Comment.nvim",
@@ -46,6 +54,18 @@ require("packer").startup(function(use)
             keys = "etovxqpdygfblzhckisuran"
         }
       end
+  }
+
+  use {
+      "gbrlsnchs/winpick.nvim",
+      config = function()
+          require("winpick").setup{}
+      end
+  }
+
+  use {
+      "famiu/bufdelete.nvim",
+      cmd = { "Bdelete", "Bwipeout"}
   }
 
   use {
@@ -65,6 +85,40 @@ require("packer").startup(function(use)
           }
       end
   }
+
+   use {
+       "p00f/nvim-ts-rainbow",
+       after = "nvim-treesitter"
+   }
+
+   use {
+       "windwp/nvim-ts-autotag",
+       after = "nvim-treesitter"
+   }
+
+   use {
+       "JoosepAlviste/nvim-ts-context-commentstring",
+       after = "nvim-treesitter"
+   }
+
+   use {
+       "nvim-treesitter/nvim-treesitter",
+       run = ":TSUpdate",
+       event = { "BufRead", "BufNewFile" },
+       cmd = {
+         "TSInstall",
+         "TSInstallInfo",
+         "TSInstallSync",
+         "TSUninstall",
+         "TSUpdate",
+         "TSUpdateSync",
+         "TSDisableAll",
+         "TSEnableAll",
+       },
+       config = function()
+           require "plugins.treesitter"
+       end
+   }
 
   use {
       "williamboman/mason.nvim",
@@ -86,6 +140,13 @@ require("packer").startup(function(use)
       config = function()
           require("mason-lspconfig").setup()
       end
+  }
+
+  use {
+      "stevearc/aerial.nvim",
+      module = "aerial",
+      cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
+      config = function() require "plugins.aerial" end,
   }
 
   use {
