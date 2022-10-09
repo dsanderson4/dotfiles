@@ -11,6 +11,7 @@ wk.register({
         f = { name = "+Find" },
         j = { name = "+Jump" },
         l = { name = "+LSP" },
-        t = { name = "+Terminal"}
+        t = { name = "+Terminal"},
+        g = { name = "Git+" }
     }
 })

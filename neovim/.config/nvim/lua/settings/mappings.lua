@@ -50,14 +50,9 @@ vim.keymap.set("n", "<leader>lR", function() require("telescope.builtin").lsp_re
 vim.keymap.set("n", "<leader>lD", function() require("telescope.builtin").diagnostics() end,
     { silent = true, desc = "Diagnostics" })
 
-vim.keymap.set("n", "<leader>lI",  "<cmd>Mason<cr>", { silent = true, desc ="LSP installer" })
-vim.keymap.set("n", "<leader>li",  "<cmd>LspInfo<cr>", { silent = true, desc ="LSP information" })
-
-vim.keymap.set("n", "<leader>jl", "<cmd>HopLine<CR>", { silent = true, desc = "Line" })
-vim.keymap.set("n", "<leader>jw", "<cmd>HopWord<CR>", { silent = true, desc = "Word" })
-vim.keymap.set("n", "<leader>jc", "<cmd>HopChar1<CR>", { silent = true, desc = "Character" })
-vim.keymap.set("n", "<leader>jC", "<cmd>HopChar2<CR>", { silent = true, desc = "Bigram" })
-vim.keymap.set("n", "<leader>jp", "<cmd>HopPattern<CR>", { silent = true, desc = "Pattern" })
+vim.keymap.set("n", "<leader>gv", "<cmd>vertical Git<CR>", { silent = true, desc = "Vertical menu" })
+vim.keymap.set("n", "<leader>gm", "<cmd>Git<CR>", { silent = true, desc = "Menu" })
+vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<CR>", { silent = true, desc = "Menu" })
 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "Toggle File Tree"})
 vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFocus<CR>", { silent = true, desc = "Focus File Tree"})

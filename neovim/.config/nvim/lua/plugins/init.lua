@@ -86,6 +86,21 @@ require("packer").startup(function(use)
       end
   }
 
+  use {
+      "lukas-reineke/indent-blankline.nvim",
+      config = function()
+          require("indent_blankline").setup()
+      end
+  }
+
+  use {
+      "tpope/vim-fugitive"
+  }
+
+use {
+    "airblade/vim-gitgutter"
+}
+
    use {
        "p00f/nvim-ts-rainbow",
        after = "nvim-treesitter"
