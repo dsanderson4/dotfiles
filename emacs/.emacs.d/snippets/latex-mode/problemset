@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: problemset
+# key: ps
+# --
+\documentclass[12pt,letterpaper,boxed]{hmcpset}
+
+\name{David Anderson}
+\assignment{$1}
+
+\begin{document}
+\problemlist{$2}
+$0
+\end{document}

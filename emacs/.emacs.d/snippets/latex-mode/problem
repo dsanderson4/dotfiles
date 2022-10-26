@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: problem
+# key: pr
+# --
+\begin{problem}
+$0
+\end{problem}
+
+\begin{solution}
+\end{solution}
