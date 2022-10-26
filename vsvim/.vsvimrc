@@ -16,6 +16,7 @@ nnoremap <leader>gd :vsc Edit.GoToDefinition<cr>
 
 nnoremap <leader>fu :vsc Edit.FindAllReferences<cr>
 nnoremap <leader>ff :vsc Edit.GoToRecentFile<cr>
+nnoremap <leader>fp :vsc File.CopyFullPath<cr>
 
 nnoremap <leader>mn :vsc Edit.NextMethod<cr>
 nnoremap <leader>mp :vsc Edit.PreviousMethod<cr>
