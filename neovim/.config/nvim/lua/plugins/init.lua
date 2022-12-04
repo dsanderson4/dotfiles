@@ -97,9 +97,16 @@ require("packer").startup(function(use)
       "tpope/vim-fugitive"
   }
 
-use {
+  use {
     "airblade/vim-gitgutter"
-}
+  }
+
+  use {
+      "kylechui/nvim-surround",
+      config = function()
+          require("nvim-surround").setup()
+      end
+  }
 
    use {
        "p00f/nvim-ts-rainbow",
