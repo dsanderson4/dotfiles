@@ -55,8 +55,32 @@
 
 (use-package all-the-icons)
 
-(use-package doom-modeline
-      :hook (after-init . doom-modeline-mode))
+(use-package telephone-line
+  :init
+  (defface +telephone/line-buffer-face '((t (:foreground "DarkOrange" :background "grey20"))) "")
+  :custom
+  (telephone-line-faces
+   '((evil      . telephone-line-modal-face)
+     (modal     . telephone-line-modal-face)
+     (ryo       . telephone-line-ryo-modal-face)
+     (accent    . (telephone-line-accent-active . telephone-line-accent-inactive))
+     (nil       . (mode-line                    . mode-line-inactive))
+     (linebuf   . (+telephone/line-buffer-face    . mode-line-inactive))))
+  :config
+  (setq telephone-line-lhs
+        '((evil   . (telephone-line-evil-tag-segment))
+          (accent . (telephone-line-vc-segment
+                     telephone-line-process-segment))
+          (linebuf . (telephone-line-buffer-segment))))
+  (setq telephone-line-rhs
+        '((nil    . (telephone-line-misc-info-segment))
+          (accent . (telephone-line-major-mode-segment))
+          (evil   . (telephone-line-airline-position-segment))))
+  (set-face-attribute 'telephone-line-evil-normal nil :background "yellow" :foreground "black")
+  (set-face-attribute 'telephone-line-evil-insert nil :background "cyan" :foreground "black")
+  (set-face-attribute 'telephone-line-evil-visual nil :background "OrangeRed1" :foreground "white")
+  (set-face-attribute 'telephone-line-evil-emacs nil :background "#5E5BA8" :foreground "white")
+  (telephone-line-mode))
 
 (use-package winum)
 (winum-mode)
