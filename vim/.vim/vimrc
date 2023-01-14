@@ -91,7 +91,17 @@ nnoremap <Leader>sp :OmniSharpStopServer<CR>
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 :inoremap jk <esc>
+
 :nnoremap <leader>fr :MRU<cr>
+
 :nnoremap <leader>bk :b#<bar>bd#<CR>
+:nnoremap <leader>bl :BufExplorer<CR>
+:nnoremap <leader>bq :q<CR>
+
+:nnoremap <leader>h :nohlsearch<CR>
+
+:nnoremap <leader>xs :w<CR>
+:nnoremap <leader>xS :wa<CR>
+:nnoremap <leader>xc :qa<CR>
 
 autocmd BufRead,BufNewFile *.md setlocal spell

@@ -20,6 +20,12 @@
 
  "TAB" '(indent-for-tab-command :which-key "Indent")
 
+ "x" '(:ignore t :which-key "Misc")
+ "xs" '(save-buffer :which-key "Save Buffer")
+ "xS" '(save-some-buffers :which-key "Save Some Buffers")
+ "xf" '(counsel-find-file :which-key "Find File")
+ "xc" '(save-buffers-kill-terminal :which-key "Exit")
+
  "b" '(:ignore t :which-key "Buffer")
  "bs" '(ivy-switch-buffer :which-key "Switch")
  "bS" '(ivy-switch-buffer-other-window :which-key "Switch - Other Window")
@@ -28,6 +34,7 @@
  "bi" '(ibuffer :which-key "ibuffer")
  "bI" '(ibuffer-other-window :which-key "ibuffer - Other Window")
  "bl" '(list-buffers :which-key "List Buffers")
+ "bq" '(my-kill-buffer-and-window :which-key "Kill buffer and window")
 
  "e" '(:ignore t :which-key "Error")
  "en" '(next-error :which-key "Next")

@@ -3,10 +3,15 @@ vim.g.mapleader = " "
 
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 
-vim.keymap.set("n", "<leader>w",  "<cmd>w<cr>", { silent = true, desc ="Save" })
-vim.keymap.set("n", "<leader>q",  "<cmd>q<cr>", { silent = true, desc ="Quit" })
 vim.keymap.set("n", "<leader>h",  "<cmd>nohlsearch<cr>", { silent = true, desc ="No search highlights" })
-vim.keymap.set("n", "<leader>c",  "<cmd>Bdelete<cr>", { silent = true, desc ="Close window" })
+
+vim.keymap.set("n", "<leader>bq",  "<cmd>q<cr>", { silent = true, desc ="Quit" })
+vim.keymap.set("n", "<leader>bk",  "<cmd>Bdelete<cr>", { silent = true, desc ="Close" })
+vim.keymap.set("n", "<leader>bl",  "<cmd>BufExplorer<cr>", { silent = true, desc ="Close" })
+
+vim.keymap.set("n", "<leader>xs",  "<cmd>w<cr>", { silent = true, desc ="Save" })
+vim.keymap.set("n", "<leader>xS",  "<cmd>wa<cr>", { silent = true, desc ="Save all" })
+vim.keymap.set("n", "<leader>xc",  "<cmd>qa<cr>", { silent = true, desc ="Quit" })
 
 vim.keymap.set("n", "<leader>ff", function() require("telescope.builtin").find_files() end,
     { silent = true, desc = "Search files" })

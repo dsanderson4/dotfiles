@@ -102,6 +102,10 @@ require("packer").startup(function(use)
   }
 
   use {
+      "jlanzarotta/bufexplorer"
+  }
+
+  use {
       "kylechui/nvim-surround",
       config = function()
           require("nvim-surround").setup()
