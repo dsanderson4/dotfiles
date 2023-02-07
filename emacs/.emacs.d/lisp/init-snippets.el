@@ -12,7 +12,7 @@
        (output-name (concat (file-name-sans-extension input-name) ".html")))
     (save-buffer)
     (shell-command (concat "pandoc -s " input-name " -o " output-name))
-    (w32-shell-execute "Open" (expand-file-name output-name))))
+    (os-start-file (expand-file-name output-name))))
 
 (defun force-insert-mode ()
   (when (fboundp 'evil-insert)
