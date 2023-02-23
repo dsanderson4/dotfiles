@@ -1,5 +1,6 @@
 export EDITOR=vim
 export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
+export PATH=$PATH:~/bin
 
 function nd()
 {
