@@ -94,9 +94,9 @@
     (evil-find-file-at-point-with-line)
     (evil-window-rotate-downwards)
     (message error-message)
-    (switch-to-buffer "*StyleCop*")
-    (goto-char position)
-    (other-window 1)))
+    (switch-to-buffer-other-window "*StyleCop*")
+    (other-window 1)
+    ))
 
 (defun style-cop-next-violation ()
   (interactive)

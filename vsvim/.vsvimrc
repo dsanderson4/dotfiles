@@ -27,6 +27,9 @@ vnoremap <leader>ec :vsc Edit.CommentSelection<cr>
 vnoremap <leader>eu :vsc Edit.UncommentSelection<cr>
 vnoremap <leader>es :vsc Edit.SurroundWith<cr>
 
+vnoremap gc :vsc Edit.ToggleLineComment<cr>
+vnoremap gC :vsc Edit.ToggleBlockComment<cr>
+
 nnoremap <leader>rn :vsc ReSharper.ReSharper_NavigateTo<cr>
 nnoremap <leader>rr :vsc ReSharper.ReSharper_Rename<cr>
 nnoremap <leader>rt :vsc ReSharper.ReSharper_GotoType<cr>

@@ -7,7 +7,7 @@ vim.keymap.set("n", "<leader>h",  "<cmd>nohlsearch<cr>", { silent = true, desc =
 
 vim.keymap.set("n", "<leader>bq",  "<cmd>q<cr>", { silent = true, desc ="Quit" })
 vim.keymap.set("n", "<leader>bk",  "<cmd>Bdelete<cr>", { silent = true, desc ="Close" })
-vim.keymap.set("n", "<leader>bl",  "<cmd>BufExplorer<cr>", { silent = true, desc ="Close" })
+vim.keymap.set("n", "<leader>bl",  "<cmd>BufExplorer<cr>", { silent = true, desc ="Explore" })
 
 vim.keymap.set("n", "<leader>xs",  "<cmd>w<cr>", { silent = true, desc ="Save" })
 vim.keymap.set("n", "<leader>xS",  "<cmd>wa<cr>", { silent = true, desc ="Save all" })
