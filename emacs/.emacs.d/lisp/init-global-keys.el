@@ -24,6 +24,7 @@
  "xs" '(save-buffer :which-key "Save Buffer")
  "xS" '(save-some-buffers :which-key "Save Some Buffers")
  "xf" '(counsel-find-file :which-key "Find File")
+ "xF" '(find-file-other-window :which-key "Find File Other Window")
  "xc" '(save-buffers-kill-terminal :which-key "Exit")
 
  "b" '(:ignore t :which-key "Buffer")
@@ -74,6 +75,9 @@
 
  "h" '(:ignore t :which-key "Describe")
  "hk" '(describe-key :which-key "Key")
+ "hf" '(counsel-describe-function :which-key "Function")
+ "hm" '(describe-mode :which-key "Mode")
+ "hv" '(counsel-describe-variable :which-key "Variable")
 
  "u" '(universal-argument :which-key "Universal Argument")
  )

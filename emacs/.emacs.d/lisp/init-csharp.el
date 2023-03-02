@@ -56,10 +56,10 @@
   "stk" '(style-cop-previous-violation :which-key "Previous Violation")
   )
 
-(defcustom style-cop-batch-path "c:/StyleCop"
+(defcustom dsa/style-cop-batch-path "c:/StyleCop"
   "The directory containing StyleCop batch and project files."
   :type 'string
-  :group 'StyleCop)
+  :group 'Dave)
 
 (defun style-cop-process-ouptut ()
   (switch-to-buffer-other-window "*StyleCop*")
@@ -72,13 +72,13 @@
 
 (defun style-cop-file ()
   (interactive)
-  (shell-command (format "%s/StyleCopFile.bat \"%s\"" style-cop-batch-path (buffer-file-name)) "*StyleCop*")
+  (shell-command (format "%s/StyleCopFile.bat \"%s\"" dsa/style-cop-batch-path (buffer-file-name)) "*StyleCop*")
   (style-cop-process-ouptut))
 
 (defun style-cop-folder(folder)
   (interactive "D")
   (shell-command
-   (format "%s/StyleCopFolder.bat \"%s\"" style-cop-batch-path (substring (subst-char-in-string ?/ ?\\ folder) 0 -1))
+   (format "%s/StyleCopFolder.bat \"%s\"" dsa/style-cop-batch-path (substring (subst-char-in-string ?/ ?\\ folder) 0 -1))
    "*StyleCop*")
   (style-cop-process-ouptut))
 
@@ -113,7 +113,9 @@
 (define-key evil-normal-state-map "gp" 'style-cop-go-to-violation)
 
 (defun dsa/csharp-mode-hook ()
-  (lsp-deferred)
+  (if (eq dsa/lsp-client 'lsp-mode)
+      (lsp-deferred)
+    (eglot-ensure))
   (electric-pair-local-mode)
   (show-paren-mode))
 

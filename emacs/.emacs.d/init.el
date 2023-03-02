@@ -7,6 +7,8 @@
 
 (add-to-list 'default-frame-alist '(font . "Lucida Console-9"))
 
+(setq find-file-visit-truename nil)
+
 ;; Package configs
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -133,7 +135,14 @@
 (use-package evil-cleverparens)
 (require 'evil-cleverparens-text-objects)
 
+(defcustom dsa/lsp-client 'lsp-mode
+  "LSP client"
+  :type 'symbol
+  :options '(lsp-mode eglot)
+  :group 'Dave)
+
 (require 'init-lsp)
+(require 'init-eglot)
 (require 'init-csharp)
 
 (require 'init-javascript)
