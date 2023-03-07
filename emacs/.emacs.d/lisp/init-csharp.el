@@ -1,16 +1,31 @@
-(use-package tree-sitter)
-(use-package tree-sitter-indent)
-(use-package tree-sitter-langs)
+(if (< emacs-major-version 29)
+    (progn
+      (use-package tree-sitter)
+      (use-package tree-sitter-indent)
+      (use-package tree-sitter-langs)
 
-(use-package csharp-mode
-  :ensure t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode))
-  (add-hook 'csharp-tree-sitter-mode-hook 'dsa/csharp-mode-hook)
-  (add-hook 'csharp-tree-sitter-mode-hook (lambda () (yas-activate-extra-mode 'csharp-mode))))
+      (use-package csharp-mode
+        :init
+        (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode))
+        (add-hook 'csharp-tree-sitter-mode-hook 'dsa/csharp-mode-hook)
+        (add-hook 'csharp-tree-sitter-mode-hook (lambda () (yas-activate-extra-mode 'csharp-mode)))))
+  (use-package csharp-mode
+    :ensure nil
+    :init
+    ;; (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-ts-mode))
+    (add-hook 'csharp-mode-hook 'dsa/csharp-mode-hook)
+    (add-hook 'csharp-ts-mode-hook 'dsa/csharp-mode-hook)
+    (add-hook 'csharp-ts-mode-hook (lambda () (yas-activate-extra-mode 'csharp-mode)))))
+
+(defun dsa/csharp-mode-hook ()
+  (if (eq dsa/lsp-client 'lsp-mode)
+      (lsp-deferred)
+    (eglot-ensure))
+  (electric-pair-local-mode)
+  (show-paren-mode))
 
 (dsa/define-key
-  :keymaps '(csharp-mode-map csharp-tree-sitter-mode-map)
+  :keymaps '(csharp-mode-map csharp-ts-mode-map csharp-tree-sitter-mode-map)
 
   "s" '(:ignore t :which-key "C# Snippets")
   "se" '(snip-exception :which-key "Exception")
@@ -53,8 +68,7 @@
   "stn" '(style-cop-next-violation :which-key "Next Violation")
   "stj" '(style-cop-next-violation :which-key "Next Violation")
   "stp" '(style-cop-previous-violation :which-key "Previous Violation")
-  "stk" '(style-cop-previous-violation :which-key "Previous Violation")
-  )
+  "stk" '(style-cop-previous-violation :which-key "Previous Violation"))
 
 (defcustom dsa/style-cop-batch-path "c:/StyleCop"
   "The directory containing StyleCop batch and project files."
@@ -95,8 +109,7 @@
     (evil-window-rotate-downwards)
     (message error-message)
     (switch-to-buffer-other-window "*StyleCop*")
-    (other-window 1)
-    ))
+    (other-window 1)))
 
 (defun style-cop-next-violation ()
   (interactive)
@@ -111,13 +124,6 @@
   (style-cop-go-to-violation))
 
 (define-key evil-normal-state-map "gp" 'style-cop-go-to-violation)
-
-(defun dsa/csharp-mode-hook ()
-  (if (eq dsa/lsp-client 'lsp-mode)
-      (lsp-deferred)
-    (eglot-ensure))
-  (electric-pair-local-mode)
-  (show-paren-mode))
 
 (add-to-list 'auto-mode-alist '("\\.xaml$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.igr$" . nxml-mode))

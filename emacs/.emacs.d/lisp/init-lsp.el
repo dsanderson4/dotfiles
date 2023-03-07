@@ -1,7 +1,6 @@
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-l")
-
   :config
   (lsp-enable-which-key-integration t)
   (setq lsp-ui-doc-show-with-cursor nil)
@@ -22,19 +21,6 @@
 (use-package lsp-treemacs
   :after lsp)
 
-;; (use-package python
-;;   :ensure nil
-;;   :config 
-;;   (lsp-deferred))
-
-  
-(use-package dap-mode
-  :config
-  (require 'dap-node)
-  (require 'dap-chrome)
-  (require 'dap-python)
-  (dap-node-setup))
-
 (dsa/define-key
   :keymaps 'lsp-mode-map
 
@@ -46,7 +32,15 @@
 
   "f" '(:ignore t :which-key "Find")
   "fu" '(lsp-find-references :which-key "Usages")
-  "fi" '(lsp-find-implementation :which-key "Implementations")
-  )
+  "fi" '(lsp-find-implementation :which-key "Implementations"))
+  
+(use-package dap-mode
+  :config
+  (require 'dap-node)
+  (require 'dap-chrome)
+  (require 'dap-python)
+  (dap-node-setup))
+
+
 
 (provide 'init-lsp)

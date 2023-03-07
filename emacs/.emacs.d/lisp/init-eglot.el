@@ -1,12 +1,21 @@
-(use-package eglot
-  :config
+(defun dsa/eglot-config ()
   (cond
    ((eq system-type 'windows-nt)
     (add-to-list 'eglot-server-programs
-                 `(csharp-tree-sitter-mode . ("c:/ProgramData/chocolatey/lib/omnisharp/tools/OmniSharp.exe" "-lsp"))))
+                 `(csharp-tree-sitter-mode . ("c:/ProgramData/chocolatey/lib/omnisharp/tools/OmniSharp.exe"
+                                              "-lsp"))))
    ((eq system-type 'gnu/linux)
     (add-to-list 'eglot-server-programs
                  `(csharp-tree-sitter-mode . ("/usr/bin/omnisharp" "-lsp"))))))
+
+(if (< emacs-major-version 29)
+    (use-package eglot
+      :config
+      (dsa/eglot-config))
+  (use-package eglot
+    :ensure nil
+    :config
+    (dsa/eglot-config)))
 
 (dsa/define-key
   :keymaps 'eglot-mode-map
