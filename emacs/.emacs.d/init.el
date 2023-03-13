@@ -218,6 +218,10 @@
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+(when (> emacs-major-version 28)
+  (use-package treesit-auto)
+  (global-treesit-auto-mode))
+
 (mouse-avoidance-mode 'banish)
 (set-tab-stops)
 (toggle-frame-fullscreen)
@@ -225,4 +229,5 @@
 (other-window 1)
 (server-start)
 (global-auto-revert-mode)
+
 (eshell)

@@ -20,12 +20,35 @@
 
  "TAB" '(indent-for-tab-command :which-key "Indent")
 
- "x" '(:ignore t :which-key "Misc")
- "xs" '(save-buffer :which-key "Save Buffer")
- "xS" '(save-some-buffers :which-key "Save Some Buffers")
+ "x" '(:ignore t :which-key "Misc 1")
+ "xc" '(save-buffers-kill-terminal :which-key "Exit")
+ "xe" '(eshell :which-key "Eshell")
  "xf" '(counsel-find-file :which-key "Find File")
  "xF" '(find-file-other-window :which-key "Find File Other Window")
- "xc" '(save-buffers-kill-terminal :which-key "Exit")
+ "xg" '(magit-status :which-key "Magit Status")
+ "xs" '(save-buffer :which-key "Save Buffer")
+ "xS" '(save-some-buffers :which-key "Save Some Buffers")
+
+ "xt" '(:ignore t :which-key "Tab Width")
+ "xt2" '(tab-width-2 :which-key "2")
+ "xt3" '(tab-width-3 :which-key "3")
+ "xt4" '(tab-width-4 :which-key "4")
+ "xt5" '(tab-width-5 :which-key "5")
+ "xt8" '(tab-width-8 :which-key "8")
+
+ "xv" '(:ignore t :which-key "Version Control")
+ "xv=" '(vc-diff :which-key "Diff")
+ "xvd" '(vc-dir :which-key "Dir")
+ "xve" '(vc-revision-other-window :which-key "Revision")
+ "xvl" '(vc-print-log :which-key "Log")
+ "xvn" '(vc-next-action :which-key "Next Action")
+ "xvr" '(vc-revert :which-key "Revert")
+
+ "c" '(:ignore t :which-key "Misc 2")
+ "ca" '(flatten-paragraph :which-key "Flatten Paragraph")
+ "cd" '(delete-trailing-whitespace :which-key "Delete Trailing Whitespace")
+ "cr" '(query-replace :which-key "Query Replace")
+ "cv" '(my-vertical-split :which-key "Vertical Split")
 
  "b" '(:ignore t :which-key "Buffer")
  "bs" '(ivy-switch-buffer :which-key "Switch")
@@ -85,18 +108,10 @@
 (global-set-key (kbd "<C-lwindow>") 'ignore)
 
 (global-set-key [C-tab] 'bs-cycle-next)
-(global-set-key "\C-o" 'other-window)
 (global-set-key [?\C-%] 'shrink-window)
 (global-set-key [?\C-^] 'enlarge-window)
 (global-set-key [?\C-&] 'shrink-window-horizontally)
 (global-set-key [?\C-*] 'enlarge-window-horizontally)
-
-(global-set-key [M-backspace] 'advertised-undo)
-(global-set-key "\M-]" 'scroll-up-1)
-(global-set-key "\M-[" 'scroll-down-1)
-(global-set-key "\M-g" 'goto-line)
-(global-set-key "\M-o" 'find-file)
-(global-set-key "\C-x\C-b" 'bs-show)
 
 (global-set-key "\C-c2" 'tab-width-2)
 (global-set-key "\C-c3" 'tab-width-3)
@@ -124,22 +139,5 @@
 (global-set-key "\C-cw" 'my-kill-buffer-and-window)
 (global-set-key "\C-cx" 'cut-to-register)
 (global-set-key "\C-cy" 'browse-kill-ring)
-
-(global-set-key "\C-czfh" 'snip-file-header)
-(global-set-key "\C-czfr" 'snip-file-revision)
-
-(global-set-key "\C-czfx" 'format-xml-comment)
-
-(global-set-key "\C-czch" 'snip-class-header)
-(global-set-key "\C-czcr" 'snip-class-revision)
-
-(global-set-key "\C-czeu" 'snip-external-unit)
-
-(global-set-key "\C-czmr" 'snip-method-revision)
-(global-set-key "\C-czmh" 'snip-method-header)
-
-(global-set-key "\C-czph" 'snip-property-header)
-
-(global-set-key "\C-czs" 'snip-summary)
 
 (provide 'init-global-keys)
