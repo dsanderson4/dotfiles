@@ -26,6 +26,7 @@
  "xf" '(counsel-find-file :which-key "Find File")
  "xF" '(find-file-other-window :which-key "Find File Other Window")
  "xg" '(magit-status :which-key "Magit Status")
+ "xT" '(global-treesit-auto-mode :which-key "Global Treesit Auto Mode")
  "xs" '(save-buffer :which-key "Save Buffer")
  "xS" '(save-some-buffers :which-key "Save Some Buffers")
 
