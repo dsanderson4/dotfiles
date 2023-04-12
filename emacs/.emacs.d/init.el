@@ -220,8 +220,7 @@
 
 (when (> emacs-major-version 28)
   (use-package treesit-auto)
-  (when (not (eq system-type 'windows-nt))
-    (global-treesit-auto-mode)))
+  (global-treesit-auto-mode))
 
 (mouse-avoidance-mode 'banish)
 (set-tab-stops)
@@ -231,4 +230,5 @@
 (server-start)
 (global-auto-revert-mode)
 
+(cd "~")
 (eshell)

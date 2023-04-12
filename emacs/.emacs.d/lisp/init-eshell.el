@@ -42,4 +42,6 @@
 (defalias 'eshell/eo 'find-file-other-window)
 (defalias 'eshell/he 'hexl-find-file)
 
+(evil-set-initial-state 'eshell-mode 'normal)
+
 (provide 'init-eshell)
