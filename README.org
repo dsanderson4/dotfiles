@@ -8,7 +8,7 @@ where possible:
 |-------------------------------+---------+-------+-----+-----+--------|
 | Emacs                         | X       | X     | X   | X   |        |
 | Vim                           | X       | X     | X   | X   | X      |
-| NeoVim                        | X       | X     | X   | X   |        |
+| Neovim                        | X       | X     | X   | X   |        |
 | i3 Window Manager             |         | X     |     |     |        |
 | Kitty Terminal                |         | X     | X   | X   |        |
 | Powershell                    | X       |       |     |     |        |
