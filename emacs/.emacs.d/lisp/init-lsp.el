@@ -41,6 +41,6 @@
   (require 'dap-python)
   (dap-node-setup))
 
-
+(setq warning-minimum-level :error)
 
 (provide 'init-lsp)
