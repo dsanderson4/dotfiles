@@ -14,6 +14,9 @@ nnoremap <leader>gt :vsc Edit.GoToType<cr>
 nnoremap <leader>gm :vsc Edit.GoToMember<cr>
 nnoremap <leader>gd :vsc Edit.GoToDefinition<cr>
 
+nnoremap <leader>gc :vsc View.GitWindow<cr>
+nnoremap <leader>gr :vsc View.GitRepositoryWindow<cr>
+
 nnoremap <leader>fu :vsc Edit.FindAllReferences<cr>
 nnoremap <leader>ff :vsc Edit.GoToRecentFile<cr>
 nnoremap <leader>fp :vsc File.CopyFullPath<cr>
@@ -30,10 +33,15 @@ vnoremap <leader>es :vsc Edit.SurroundWith<cr>
 vnoremap gc :vsc Edit.ToggleLineComment<cr>
 vnoremap gC :vsc Edit.ToggleBlockComment<cr>
 
+vnoremap gs :vsc SQL.TSqlEditorExecuteQuery<cr>
+
 nnoremap <leader>rn :vsc ReSharper.ReSharper_NavigateTo<cr>
 nnoremap <leader>rr :vsc ReSharper.ReSharper_Rename<cr>
 nnoremap <leader>rt :vsc ReSharper.ReSharper_GotoType<cr>
 nnoremap <leader>rm :vsc ReSharper.ReSharper_GotoFileMember<cr>
+nnoremap <leader>rf :vsc ReSharper.ReSharper_RefactorThis<cr>
+
+vnoremap rf :vsc ReSharper.ReSharper_RefactorThis<cr>
 
 nnoremap <leader>te :vsc Tools.ExternalCommand1<cr>
 nnoremap <leader>tv :vsc Tools.ExternalCommand2<cr>
@@ -68,7 +76,11 @@ nnoremap <leader>bk :vsc Window.CloseDocumentWindow<cr>
 nnoremap <leader>bl :vsc Window.Windows<cr>
 nnoremap <leader>bq :vsc Window.CloseDocumentWindow<cr>
 
+nnoremap <leader>br :vsc Build.RebuildSelection<cr>
+nnoremap <leader>bs :vsc Build.BuildSelection<cr>
+
 nnoremap <leader>dg :vsc Debug.Start<cr>
+nnoremap <leader>dG :vsc Debug.StartWithoutDebugging<cr>
 nnoremap <leader>dc :vsc Debug.RunToCursor<cr>
 nnoremap <leader>dx :vsc Debug.SetNextStatement<cr>
 nnoremap <leader>di :vsc Debug.StepInto<cr>
@@ -86,5 +98,8 @@ nnoremap <leader>xs :vsc File.SaveSelectedItems<cr>
 nnoremap <leader>xS :vsc File.SaveAll<cr>
 nnoremap <leader>xf :vsc File.OpenFile<cr>
 nnoremap <leader>xc :vsc File.Exit<cr>
+nnoremap <leader>xg :vsc View.GitWindow<cr>
+
+nnoremap <leader>s :vsc Edit.InsertSnippet<cr>
 
 nnoremap <leader>n :set number<cr>
