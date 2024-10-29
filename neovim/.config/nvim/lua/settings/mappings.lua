@@ -1,6 +1,3 @@
-vim.keymap.set("", "<Space>", "<Nop>", { silent = true })
-vim.g.mapleader = " "
-
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 
 vim.keymap.set("n", "<leader>h",  "<cmd>nohlsearch<cr>", { silent = true, desc ="No search highlights" })
