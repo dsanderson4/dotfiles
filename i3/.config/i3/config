@@ -68,8 +68,8 @@ bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mu
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec kitty
-bindsym Mod1+Shift+t exec kitty
+bindsym Mod4+Return exec wezterm
+bindsym Mod1+Shift+t exec wezterm
 
 # kill focused window
 bindsym Mod1+Shift+q kill
