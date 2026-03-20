@@ -1,4 +1,5 @@
 #+OPTIONS: toc:nil html-postamble:nil num:nil
 * Powershell
 
-To install, copy profile.ps1 to $PROFILE in PowerShell.
+To install, first delete the existing $PROFILE, plus ~/psinit if it
+exists. Then, run link.ps1.
