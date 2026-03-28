@@ -23,8 +23,20 @@ function up {
     if ($dirs.Count -eq 0) { return }
 
     $selected = 0
-    $top = [Console]::CursorTop
     $width = [Console]::WindowWidth
+    $bufferHeight = [Console]::BufferHeight
+
+    # Scroll to make room if needed
+    $needed = $dirs.Count
+    $current = [Console]::CursorTop
+    $available = $bufferHeight - $current
+    if ($available -lt $needed) {
+        $scrollBy = $needed - $available
+        # Emit blank lines to force scroll, then compensate $top
+        [Console]::Write("`n" * $scrollBy)
+        $current = $bufferHeight - $needed
+    }
+    $top = $current
 
     function Render($sel) {
         for ($i = 0; $i -lt $dirs.Count; $i++) {

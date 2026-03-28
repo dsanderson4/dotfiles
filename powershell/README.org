@@ -2,4 +2,5 @@
 * Powershell
 
 To install, first delete the existing $PROFILE, plus ~/psinit if it
-exists. Then, run link.ps1.
+exists. Then, run install.ps1. Ignore any error message complaining that
+$PROFILE doesn't exist.
