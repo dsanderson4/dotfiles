@@ -1,1 +1,0 @@
-copy $env:APPDATA\Code\User\settings.json temp.json

@@ -1,1 +1,0 @@
-Edit-File $env:APPDATA\Code\User\Settings.json

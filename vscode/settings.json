@@ -1,19 +1,148 @@
 {
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Zenburn",
-    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-    "editor.lineNumbers": "relative",
-    "diffEditor.ignoreTrimWhitespace": true,
-    "editor.fontFamily": "'Lucida Console', Consolas, 'Courier New', monospace",
+    "files.associations": {
+        "*.wixproj": "xml"
+    },
     "editor.fontSize": 11,
-    "editor.minimap.enabled": false
-    "breadcrumbs.enabled": true,
+    "editor.fontFamily": "Hack Nerd Font Mono,Consolas, 'Courier New', monospace",
+    "workbench.editor.revealIfOpen": true,
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.settings.applyToAllProfiles": [],
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    "editor.renderWhitespace": "all",
+    "editor.lineNumbers": "relative",
+    "editor.minimap.enabled": false,
     "vim.leader": "<space>",
-    "vim.insertModeKeyBindingsNonRecursive": [
+    "vim.easymotion": true,
+    "vim.useSystemClipboard": true,
+    "editor.stickyScroll.enabled": false,
+
+    "vim.handleKeys": {
+        "<C-h>": false,
+        "<C-j>": false,
+        "<C-k>": false,
+        "<C-p>": false,
+        "<C-q>": false,
+        "<C-s>": false,
+    },
+
+    "vim.normalModeKeyBindingsNonRecursive": 
+    [
+        {
+            "before": ["<leader>", "b", "k"],
+            "commands": ["workbench.action.closeActiveEditor"]
+        },
+        {
+            "before": ["<leader>", "j", "j"],
+            "after": ["<leader>", "<leader>", "j"]
+        },
+        {
+            "before": ["<leader>", "j", "k"],
+            "after": ["<leader>", "<leader>", "k"]
+        },
+        {
+            "before": ["<leader>", "j", "l"],
+            "after": ["<leader>", "<leader>", "<leader>", "b", "d", "j", "k"]
+        },
+        {
+            "before": ["<leader>", "j", "w"],
+            "after": ["<leader>", "<leader>", "<leader>", "b", "d", "w"]
+        },
+        {
+            "before": ["<leader>", "j", "c"],
+            "after": ["<leader>", "<leader>", "s"]
+        },
+        {
+            "before": ["<leader>", "f", "f"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+        {
+            "before": ["<leader>", "x", "s"],
+            "commands": ["workbench.action.files.save"]
+        },
+        {
+            "before": ["<leader>", "x", "shift+s"],
+            "commands": ["workbench.action.files.saveFiles"]
+        },
+        {
+            "before": ["<leader>", "w", "p"],
+            "commands": ["workbench.action.moveEditorToLeftGroup"]
+        },
+        {
+            "before": ["<leader>", "w", "n"],
+            "commands": ["workbench.action.moveEditorToRightGroup"]
+        },
+        {
+            "before": ["<leader>", "e"],
+            "commands": ["workbench.action.toggleSidebarVisibility"]
+        },
+        {
+            "before": ["<leader>", "s", "t"],
+            "commands": ["workbench.action.toggleSidebarVisibility"]
+        },
+        {
+            "before": ["<leader>", "s", "e"],
+            "commands": ["workbench.explorer.fileView.focus"]
+        },
+        {
+            "before": ["<leader>", "s", "o"],
+            "commands": ["workbench.files.action.focusOpenEditorsView"]
+        },
+        {
+            "before": ["<leader>", "s", "f"],
+            "commands": ["workbench.view.search"]
+        },
+        {
+            "before": ["<leader>", "s", "s"],
+            "commands": ["workbench.scm.focus"]
+        },
+        {
+            "before": ["<leader>", "s", "d"],
+            "commands": ["workbench.view.debug"]
+        },
+        {
+            "before": ["<leader>", "s", "x"],
+            "commands": ["workbench.view.extensions"]
+        },
+        {
+            "before": ["<leader>", "g", "t"],
+            "commands": ["workbench.action.showAllSymbols"]
+        },
+        {
+            "before": ["<leader>", "g", "r"],
+            "commands": ["editor.action.goToReferences"]
+        },
+        {
+            "before": ["g", "D"],
+            "commands": ["editor.action.revealDefinitionAside"]
+        },
+        {
+            "before": ["g", "p", "d"],
+            "commands": ["editor.action.peekDefinition"]
+        },
+        {
+            "before": ["g", "p", "r"],
+            "commands": ["editor.action.referenceSearch.trigger"]
+        },
+        {
+            "before": ["g", "q"],
+            "commands": ["editor.action.quickFix"]
+        },
+        {
+            "before": ["g", "t"],
+            "commands": ["editor.action.goToTypeDefinition"]
+        },
+        {
+            "before": ["g", "p", "t"],
+            "commands": ["editor.action.peekTypeDefinition"]
+        }
+    ],
+
+    "vim.insertModeKeyBindings": 
+    [
         {
             "before": ["j", "k"],
             "after": ["<Esc>"]
         }
-    ],
-    "vim.useSystemClipboard": true
+    ]
 }
