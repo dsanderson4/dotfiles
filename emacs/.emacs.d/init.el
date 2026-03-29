@@ -10,6 +10,7 @@
 (setq find-file-visit-truename nil)
 
 ;; Package configs
+(setq package-check-signature nil)
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
@@ -45,17 +46,12 @@
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  ;; or for treemacs users
   (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
   (doom-themes-treemacs-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
 (set-face-foreground 'line-number "#5D5D5D")
-
-(use-package all-the-icons)
 
 (use-package telephone-line
   :init
@@ -140,6 +136,8 @@
   :type 'symbol
   :options '(lsp-mode eglot)
   :group 'Dave)
+
+(use-package nerd-icons)
 
 (require 'init-lsp)
 (require 'init-eglot)

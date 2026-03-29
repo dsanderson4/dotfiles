@@ -8,15 +8,13 @@
             (lambda ()
               (setq bs-buffer-show-mark 'always)))
   (evil-collection-define-key 'normal 'dired-mode-map
-    "h" 'dired-single-up-directory
-    "l" 'dired-single-buffer
+    "h" 'dired-up-directory
      (kbd "M-e") 'dired-shell-execute)
-  (setq dired-dwim-target t))
+  (setq dired-dwim-target t)
+  (setq dired-kill-when-opening-new-dired-buffer t))
 
-(use-package dired-single)
-
-(use-package all-the-icons-dired
-  :hook (dired-mode . all-the-icons-dired-mode))
+(use-package nerd-icons-dired
+  :hook (dired-mode . nerd-icons-dired-mode))
 
 (use-package ranger
   :init
