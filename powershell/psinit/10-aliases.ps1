@@ -16,14 +16,11 @@ Set-Alias find "C:\Program Files\Git\usr\bin\find.exe"
 
 Set-Alias 7z "C:\Program Files\7-Zip\7z.exe"
 
-#Set-Alias vim "C:\Program Files\Vim\vim82\vim.exe"
-#Set-Alias gvim "C:\Program Files\Vim\vim82\gvim.exe"
-
 function New-Directory
 {
-	 $arg = $args[0]
-	 mkdir $arg
-	 Set-Location $arg
+    $arg = $args[0]
+    mkdir $arg
+    Set-Location $arg
 }
 
 Set-Alias nd New-Directory
@@ -31,11 +28,6 @@ Set-Alias nd New-Directory
 Set-Alias t Get-Content
 
 Set-Alias sudo gsudo
-
-function psa
-{
-    sudo powershell -noe '. C:\Users\dave.anderson\bin\AdminProfile.ps1'
-}
 
 function Remove-Directory
 {
@@ -49,8 +41,21 @@ function symlink
     gsudo New-item -ItemType SymbolicLink -Path $args[0] -Target $args[1]
 }
 
+Set-Alias b bat
+
+function fde
+{
+    fd --color always -u -e $args[0] | bat -n
+}
+
+function rge {
+    rg --color=always "$($args[0])" -g "*.$($args[1])" | bat -n
+}
+
 Remove-Item alias:rm -Force
 Remove-Item alias:cp -Force
 Remove-Item alias:ls -Force
 Remove-Item alias:diff -Force
-Remove-Item alias:sc -Force
+if ($PSVersionTable.PSVersion.Major -le  5) {
+    Remove-Item alias:sc -Force
+}

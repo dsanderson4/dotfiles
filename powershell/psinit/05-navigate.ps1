@@ -1,3 +1,71 @@
+$global:DirHistoryFile = "$env:USERPROFILE\.dir_history"
+$global:DirHistoryMax = 1000
+
+$dirHistoryFile = "$HOME\.dir_history.txt"
+
+# Initialize the file if it doesn't exist
+if (-not (Test-Path $dirHistoryFile)) {
+    New-Item -ItemType File -Path $dirHistoryFile | Out-Null
+}
+
+function Set-LocationWithHistory {
+    param([string]$Path)
+    Set-Location $Path
+    $current = (Get-Location).Path
+    if (Test-Path $global:DirHistoryFile) {
+        $lines = Get-Content $global:DirHistoryFile | Where-Object { $_ -ne $current }
+    } else {
+        $lines = @()
+    }
+    @($current) + $lines |
+        Select-Object -First $global:DirHistoryMax |
+        Set-Content $global:DirHistoryFile
+}
+
+Remove-Item alias:cd -Force
+
+function cd {
+    param(
+        [ArgumentCompleter({
+            param($cmd, $param, $word)
+            [System.Management.Automation.CompletionCompleters]::CompleteFilename($word) |
+                Where-Object { $_.ResultType -eq 'ProviderContainer' }
+        })]
+        [string]$Path
+    )
+    Set-LocationWithHistory $Path
+}
+
+function cdh {
+    if (-not (Test-Path $global:DirHistoryFile)) { Write-Warning "No directory history"; return }
+    $selected = Get-Content $global:DirHistoryFile | fzf --layout=reverse
+    if ($selected) { Set-LocationWithHistory $selected }
+}
+
+# Add current directory to history
+function Add-DirHistory {
+    $current = $pwd.Path
+    $existing = Get-Content $dirHistoryFile -ErrorAction SilentlyContinue
+    if ($existing -notcontains $current) {
+        $current | Out-File -Append -FilePath $dirHistoryFile
+        Write-Host "Marked: $current" -ForegroundColor Green
+    } else {
+        Write-Host "Already marked: $current" -ForegroundColor Yellow
+    }
+}
+Set-Alias -Name dm -Value Add-DirHistory
+
+# Jump to a marked directory
+function Jump-Dir {
+    $dirs = Get-Content $dirHistoryFile | Where-Object { Test-Path $_ } | Select-Object -Unique
+    $selected = $dirs | fzf --height 40% --reverse --prompt "Jump to: "
+    if ($selected) { 
+        Set-LocationWithHistory $selected
+        Write-Host "Jumped to: $selected" -ForegroundColor Cyan
+    }
+}
+Set-Alias -Name dj -Value Jump-Dir
+
 function up {
     param([int]$Levels = 0)
 
@@ -7,7 +75,7 @@ function up {
             $target = Split-Path $target -Parent
             if (-not $target) { break }
         }
-        if ($target) { Set-Location $target }
+        if ($target) { Set-LocationWithHistory $target }
         return
     }
 
@@ -74,7 +142,7 @@ function up {
             if ($selected -gt 0) { $selected-- }
         } elseif ($key.Key -eq [ConsoleKey]::Enter) {
             ClearMenu
-            Set-Location $dirs[$selected]
+            Set-LocationWithHistory $dirs[$selected]
             return
         } elseif ($key.Key -eq [ConsoleKey]::Escape -or
                   ($isCtrl -and $key.Key -eq [ConsoleKey]::C)) {
@@ -90,7 +158,7 @@ function cdf {
     param([string]$Root = '.')
     $dir = fd --type d --no-ignore --exclude .git --exclude node_modules . $Root |
         fzf --height 40% --reverse
-    if ($dir) { Set-Location $dir }
+    if ($dir) { Set-LocationWithHistory $dir }
 }
 
 function Invoke-DirNavigator {
@@ -135,7 +203,7 @@ function Invoke-DirNavigator {
                 } else {
                     Join-Path $currentDir $selection
                 }
-                Set-Location $target
+                Set-LocatioWithHistory $target
                 return
             }
         }
