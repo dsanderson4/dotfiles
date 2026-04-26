@@ -41,6 +41,8 @@ function symlink
     gsudo New-item -ItemType SymbolicLink -Path $args[0] -Target $args[1]
 }
 
+$env:BAT_THEME="gruvbox-dark"
+
 Set-Alias b bat
 
 function fde
