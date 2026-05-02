@@ -1,6 +1,6 @@
 Set-Alias c Copy-Item
 
-Set-Alias d Get-ChildItem
+# Set-Alias d Get-ChildItem
 
 function Edit-File {emacsclient -n $args}
 Set-Alias e Edit-File

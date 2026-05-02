@@ -1,6 +1,6 @@
 Import-Module PSFzf
 
-$env:_PSFZF_FZF_DEFAULT_OPTS="--height 40% --reverse"
+$env:_PSFZF_FZF_DEFAULT_OPTS="--height 40% --reverse --border"
 
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
