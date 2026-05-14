@@ -1,0 +1,64 @@
+[
+    {
+        "name": "Windows PowerShell",
+        "hidden": true
+    },
+    {
+        "name": "PowerShell",
+        "hidden": false
+    },
+    {
+        "name": "Command Prompt",
+        "hidden": true
+    },
+    {
+        "name": "Azure Cloud Shell",
+        "hidden": true,
+    },
+    {
+        "name": "Developer PowerShell for VS 18",
+        "hidden": false,
+        "default": true,
+        "startingDirectory": "%USERPROFILE%"
+    },
+    {
+        "name": "Developer Command Prompt for VS 18",
+        "hidden": true
+    },
+    {
+        "name": "Developer Command Prompt for VS 2022",
+        "hidden": true
+    },
+    {
+        "name": "Developer Command Prompt for VS 2022",
+        "hidden": true
+    },
+    {
+        "hidden": false,
+        "name": "Developer PowerShell for VS 2022",
+        "startingDirectory": "%USERPROFILE%"
+    },
+    {
+        "hidden": false,
+        "name": "Developer PowerShell for VS 2019",
+        "startingDirectory": "%USERPROFILE%"
+    },
+    {
+        "name": "Neovim",
+        "getCommand": "nvim",
+        "managed": true
+    },
+    {
+        "name": "Lazygit",
+        "getCommand": "lazygit",
+        "managed": true
+    },
+    {
+        "name": "MSYS2",
+        "managed": true
+    },
+    {
+        "name": "Arch (SSH to VM)",
+        "managed": true
+    },
+]

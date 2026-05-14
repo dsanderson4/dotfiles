@@ -32,6 +32,7 @@ if (-not (Test-Path $localStatePath)) {
 
 $filesToCopy = @(
     'settings.tracked.json'
+    'changes.json'
     'MergeSettings.ps1'
 )
 

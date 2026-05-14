@@ -1,230 +1,285 @@
 {
-    "$help": "https://aka.ms/terminal-documentation",
-    "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": [],
-    "copyFormatting": "none",
-    "copyOnSelect": false,
-    "defaultProfile": "{c16add6b-60f2-5dcf-88ef-f8a4804b1f7f}",
-    "keybindings": 
-    [
-        {
-            "id": "Terminal.CopyToClipboard",
-            "keys": "ctrl+shift+c"
-        },
-        {
-            "id": "Terminal.PasteFromClipboard",
-            "keys": "ctrl+shift+v"
-        },
-        {
-            "id": "Terminal.DuplicatePaneAuto",
-            "keys": "ctrl+shift+d"
-        },
-        {
-            "id": "Terminal.MoveFocusUp",
-            "keys": "ctrl+shift+k"
-        },
-        {
-            "id": "Terminal.MoveFocusDown",
-            "keys": "ctrl+shift+j"
-        },
-        {
-            "id": "Terminal.MoveFocusLeft",
-            "keys": "ctrl+shift+h"
-        },
-        {
-            "id": "Terminal.MoveFocusRight",
-            "keys": "ctrl+shift+l"
-        },
-        {
-            "id": "User.find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "id": "Terminal.SwitchToTab0",
-            "keys": "ctrl+shift+1"
-        },
-        {
-            "id": "Terminal.SwitchToTab1",
-            "keys": "ctrl+shift+2"
-        },
-        {
-            "id": "Terminal.SwitchToTab2",
-            "keys": "ctrl+shift+3"
-        },
-        {
-            "id": "Terminal.SwitchToTab3",
-            "keys": "ctrl+shift+4"
-        },
-        {
-            "id": "Terminal.SwitchToTab4",
-            "keys": "ctrl+shift+5"
-        },
-        {
-            "id": "Terminal.SwitchToTab5",
-            "keys": "ctrl+shift+6"
-        },
-        {
-            "id": "Terminal.SwitchToTab6",
-            "keys": "ctrl+shift+7"
-        },
-        {
-            "id": "Terminal.SwitchToTab7",
-            "keys": "ctrl+shift+8"
-        },
-        {
-            "id": "Terminal.SwitchToLastTab",
-            "keys": "ctrl+shift+9"
-        },
-        {
-            "id": "Terminal.OpenNewTabProfile0",
-            "keys": "alt+shift+1"
-        },
-        {
-            "id": "Terminal.OpenNewTabProfile1",
-            "keys": "alt+shift+2"
-        },
-        {
-            "id": "Terminal.OpenNewTabProfile2",
-            "keys": "alt+shift+3"
-        },
-        {
-            "id": "Terminal.OpenNewTabProfile3",
-            "keys": "alt+shift+4"
-        },
-        {
-            "id": "Terminal.OpenNewTabProfile4",
-            "keys": "alt+shift+5"
-        },
-        {
-            "id": "Terminal.OpenNewTabProfile5",
-            "keys": "alt+shift+6"
-        },
-        {
-            "id": "Terminal.OpenNewTabProfile6",
-            "keys": "alt+shift+7"
-        },
-        {
-            "id": "Terminal.OpenNewTabProfile7",
-            "keys": "alt+shift+8"
-        },
-        {
-            "id": "Terminal.OpenNewTabProfile8",
-            "keys": "alt+shift+9"
-        },
-        {
-            "id": "Terminal.OpenNewTabProfile9",
-            "keys": "alt+shift+0"
-        },
+  "$help": "https://aka.ms/terminal-documentation",
+  "copyOnSelect": false,
+  "profiles": {
+    "list": [
+      {
+        "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "hidden": true,
+        "name": "Windows PowerShell"
+      },
+      {
+        "commandline": "%SystemRoot%\\System32\\cmd.exe",
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "hidden": true,
+        "name": "Command Prompt"
+      },
+      {
+        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+        "hidden": false,
+        "name": "PowerShell",
+        "source": "Windows.Terminal.PowershellCore"
+      },
+      {
+        "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+        "hidden": true,
+        "name": "Ubuntu",
+        "source": "Windows.Terminal.Wsl"
+      },
+      {
+        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+        "hidden": true,
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure"
+      },
+      {
+        "guid": "{e2491b0c-acbe-5c60-95c6-efabdabc2a0d}",
+        "hidden": true,
+        "name": "Developer Command Prompt for VS 18",
+        "source": "Windows.Terminal.VisualStudio"
+      },
+      {
+        "guid": "{63f6dbc2-c5e2-5bf5-8150-7e49e380d7e0}",
+        "hidden": false,
+        "name": "Developer PowerShell for VS 18",
+        "source": "Windows.Terminal.VisualStudio",
+        "startingDirectory": "%USERPROFILE%"
+      },
+      {
+        "guid": "{7dff48b6-6858-5899-bde3-7d3b2f48214e}",
+        "hidden": true,
+        "name": "Developer Command Prompt for VS 2022",
+        "source": "Windows.Terminal.VisualStudio"
+      },
+      {
+        "guid": "{224a923e-9fb5-5c35-97df-0033a8156089}",
+        "hidden": false,
+        "name": "Developer PowerShell for VS 2022",
+        "source": "Windows.Terminal.VisualStudio",
+        "startingDirectory": "%USERPROFILE%"
+      },
+      {
+        "guid": "{36634421-0386-5377-a432-4c8335c4fd28}",
+        "hidden": false,
+        "name": "archlinux",
+        "source": "Microsoft.WSL"
+      },
+      {
+        "guid": "{16208362-94fc-5b1f-a491-5b2624d5ab56}",
+        "hidden": true,
+        "name": "Visual Studio Debug Console",
+        "source": "VSDebugConsole"
+      },
+      {
+        "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
+        "hidden": false,
+        "name": "Ubuntu",
+        "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
+      },
+      {
+        "commandline": "C:\\tools\\neovim\\nvim-win64\\bin\\nvim.exe",
+        "guid": "{0d64aa51-1493-424e-9654-1bb3f66a2c28}",
+        "hidden": false,
+        "icon": "%USERPROFILE%/dotfiles/windowsterminal/neovim.ico",
+        "name": "Neovim",
+        "startingDirectory": "%Home%"
+      },
+      {
+        "commandline": "C:\\ProgramData\\chocolatey\\bin\\lazygit.exe",
+        "guid": "{1193418a-9281-4462-81dc-a70cac028ff5}",
+        "hidden": false,
+        "name": "Lazygit"
+      },
+      {
+        "commandline": "C:\\msys64\\msys2_shell.cmd -defterm -no-start -ucrt64 -shell zsh",
+        "guid": "{27c1efb2-07d1-5d94-8e0f-f165ad31db4d}",
+        "icon": "C:\\msys64\\msys2.ico",
+        "name": "MSYS2",
+        "startingDirectory": "C:\\msys64\\home\\%USERNAME%"
+      },
+      {
+        "commandline": "ssh dave@10.0.0.126",
+        "guid": "{be7320de-83c6-4c8e-a91d-4a31ffa6f6bd}",
+        "hidden": true,
+        "icon": "%USERPROFILE%/dotfiles/windowsterminal/arch.png",
+        "name": "Arch (SSH to VM)"
+      }
     ],
-    "newTabMenu": 
-    [
-        {
-            "type": "remainingProfiles"
-        }
-    ],
-    "profiles": 
+    "defaults": {
+      "colorScheme": "Gruvbox Dark",
+      "font": {
+        "face": "Hack Nerd Font Mono",
+        "size": 9
+      }
+    }
+  },
+  "keybindings": [
     {
-        "defaults": 
-        {
-            "colorScheme": "Gruvbox Dark",
-            "font": 
-            {
-                "face": "Lucida Console for Powerline",
-                "size": 9
-            }
-        },
-        "list": 
-        [
-            {
-                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": false,
-                "name": "Windows PowerShell"
-            },
-            {
-                "commandline": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
-                "guid": "{0d64aa51-1493-424e-9654-1bb3f66a2c28}",
-                "hidden": false,
-                "icon": "%USERPROFILE%/dotfiles/windowsterminal/neovim.ico",
-                "name": "Neovim",
-                "startingDirectory": "%Home%"
-            },
-            {
-                "commandline": "c:\\apps\\vifm\\vifm.exe",
-                "guid": "{420994d2-5891-4d74-b78e-ef8dc0114542}",
-                "hidden": false,
-                "icon": "%USERPROFILE%/dotfiles/windowsterminal/vifm.png",
-                "name": "Vifm"
-            },
-            {
-                "commandline": "C:\\ProgramData\\chocolatey\\bin\\lazygit.exe",
-                "guid": "{1193418a-9281-4462-81dc-a70cac028ff5}",
-                "hidden": false,
-                "name": "Lazygit"
-            },
-            {
-                "commandline": "C:\\msys64\\msys2_shell.cmd -defterm -no-start -ucrt64 -shell zsh",
-                "guid": "{27c1efb2-07d1-5d94-8e0f-f165ad31db4d}",
-                "icon": "C:\\msys64\\msys2.ico",
-                "name": "MSYS2",
-                "startingDirectory": "C:\\msys64\\home\\dsand"
-            },
-            {
-                "commandline": "ssh dave@10.0.0.126",
-                "guid": "{be7320de-83c6-4c8e-a91d-4a31ffa6f6bd}",
-                "icon": "%USERPROFILE%/dotfiles/windowsterminal/arch.png",
-                "name": "Arch (SSH to VM)"
-            },
-        ]
+      "id": "Terminal.CopyToClipboard",
+      "keys": "ctrl+shift+c"
     },
-    "schemes": 
-    [
-        {
-            "background": "#1E1E1E",
-            "black": "#1E1E1E",
-            "blue": "#377375",
-            "brightBlack": "#7F7061",
-            "brightBlue": "#719586",
-            "brightCyan": "#7DB669",
-            "brightGreen": "#AAB01E",
-            "brightPurple": "#C77089",
-            "brightRed": "#F73028",
-            "brightWhite": "#E6D4A3",
-            "brightYellow": "#F7B125",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#578E57",
-            "foreground": "#E6D4A3",
-            "green": "#868715",
-            "name": "Gruvbox Dark",
-            "purple": "#A04B73",
-            "red": "#BE0F17",
-            "selectionBackground": "#FFFFFF",
-            "white": "#978771",
-            "yellow": "#CC881A"
-        },
-        {
-            "background": "#3F3F3F",
-            "black": "#4D4D4D",
-            "blue": "#506070",
-            "brightBlack": "#709080",
-            "brightBlue": "#94BFF3",
-            "brightCyan": "#93E0E3",
-            "brightGreen": "#C3BF9F",
-            "brightPurple": "#EC93D3",
-            "brightRed": "#DCA3A3",
-            "brightWhite": "#FFFFFF",
-            "brightYellow": "#E0CF9F",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#8CD0D3",
-            "foreground": "#DCDCCC",
-            "green": "#60B48A",
-            "name": "Zenburn",
-            "purple": "#DC8CC3",
-            "red": "#705050",
-            "selectionBackground": "#FFFFFF",
-            "white": "#DCDCCC",
-            "yellow": "#F0DFAF"
-        }
-    ],
-    "themes": []
+    {
+      "id": "Terminal.MoveFocusUp",
+      "keys": "ctrl+shift+k"
+    },
+    {
+      "id": "Terminal.DuplicatePaneAuto",
+      "keys": "ctrl+shift+d"
+    },
+    {
+      "id": "Terminal.PasteFromClipboard",
+      "keys": "ctrl+shift+v"
+    },
+    {
+      "id": "Terminal.MoveFocusDown",
+      "keys": "ctrl+shift+j"
+    },
+    {
+      "id": "Terminal.MoveFocusLeft",
+      "keys": "ctrl+shift+h"
+    },
+    {
+      "id": "Terminal.MoveFocusRight",
+      "keys": "ctrl+shift+l"
+    },
+    {
+      "id": "Terminal.SwitchToLastTab",
+      "keys": "ctrl+shift+9"
+    },
+    {
+      "id": "User.find",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "id": "Terminal.SwitchToTab0",
+      "keys": "ctrl+shift+1"
+    },
+    {
+      "id": "Terminal.SwitchToTab1",
+      "keys": "ctrl+shift+2"
+    },
+    {
+      "id": "Terminal.SwitchToTab4",
+      "keys": "ctrl+shift+5"
+    },
+    {
+      "id": "Terminal.OpenNewTabProfile5",
+      "keys": "alt+shift+6"
+    },
+    {
+      "id": "Terminal.SwitchToTab2",
+      "keys": "ctrl+shift+3"
+    },
+    {
+      "id": "Terminal.SwitchToTab3",
+      "keys": "ctrl+shift+4"
+    },
+    {
+      "id": "Terminal.SwitchToTab5",
+      "keys": "ctrl+shift+6"
+    },
+    {
+      "id": "Terminal.SwitchToTab6",
+      "keys": "ctrl+shift+7"
+    },
+    {
+      "id": "Terminal.SwitchToTab7",
+      "keys": "ctrl+shift+8"
+    },
+    {
+      "id": "Terminal.OpenNewTabProfile0",
+      "keys": "alt+shift+1"
+    },
+    {
+      "id": "Terminal.OpenNewTabProfile1",
+      "keys": "alt+shift+2"
+    },
+    {
+      "id": "Terminal.OpenNewTabProfile2",
+      "keys": "alt+shift+3"
+    },
+    {
+      "id": "Terminal.OpenNewTabProfile3",
+      "keys": "alt+shift+4"
+    },
+    {
+      "id": "Terminal.OpenNewTabProfile4",
+      "keys": "alt+shift+5"
+    },
+    {
+      "id": "Terminal.OpenNewTabProfile6",
+      "keys": "alt+shift+7"
+    },
+    {
+      "id": "Terminal.OpenNewTabProfile7",
+      "keys": "alt+shift+8"
+    },
+    {
+      "id": "Terminal.OpenNewTabProfile8",
+      "keys": "alt+shift+9"
+    },
+    {
+      "id": "Terminal.OpenNewTabProfile9",
+      "keys": "alt+shift+0"
+    }
+  ],
+  "schemes": [
+    {
+      "background": "#1E1E1E",
+      "black": "#1E1E1E",
+      "blue": "#377375",
+      "brightBlack": "#7F7061",
+      "brightBlue": "#719586",
+      "brightCyan": "#7DB669",
+      "brightGreen": "#AAB01E",
+      "brightPurple": "#C77089",
+      "brightRed": "#F73028",
+      "brightWhite": "#E6D4A3",
+      "brightYellow": "#F7B125",
+      "cursorColor": "#FFFFFF",
+      "cyan": "#578E57",
+      "foreground": "#E6D4A3",
+      "green": "#868715",
+      "name": "Gruvbox Dark",
+      "purple": "#A04B73",
+      "red": "#BE0F17",
+      "selectionBackground": "#FFFFFF",
+      "white": "#978771",
+      "yellow": "#CC881A"
+    },
+    {
+      "background": "#3F3F3F",
+      "black": "#4D4D4D",
+      "blue": "#506070",
+      "brightBlack": "#709080",
+      "brightBlue": "#94BFF3",
+      "brightCyan": "#93E0E3",
+      "brightGreen": "#C3BF9F",
+      "brightPurple": "#EC93D3",
+      "brightRed": "#DCA3A3",
+      "brightWhite": "#FFFFFF",
+      "brightYellow": "#E0CF9F",
+      "cursorColor": "#FFFFFF",
+      "cyan": "#8CD0D3",
+      "foreground": "#DCDCCC",
+      "green": "#60B48A",
+      "name": "Zenburn",
+      "purple": "#DC8CC3",
+      "red": "#705050",
+      "selectionBackground": "#FFFFFF",
+      "white": "#DCDCCC",
+      "yellow": "#F0DFAF"
+    }
+  ],
+  "defaultProfile": "{63f6dbc2-c5e2-5bf5-8150-7e49e380d7e0}",
+  "copyFormatting": "none",
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "themes": [],
+  "actions": [],
+  "newTabMenu": [
+    {
+      "type": "remainingProfiles"
+    }
+  ]
 }

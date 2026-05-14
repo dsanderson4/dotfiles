@@ -13,15 +13,22 @@
       - profiles.defaults:
             replaced wholesale from tracked file
       - profiles.list:
-            profiles named in $ManagedProfiles are upserted by name from the
-            tracked file; all other profiles (auto-detected VS dev prompts,
-            WSL distros, etc.) are left untouched
+            profiles named in changes.json (marked "managed") are upserted
+            by name from the tracked file; all other profiles (auto-detected
+            VS dev prompts, WSL distros, etc.) are left untouched
       - schemes:
             merged by name — add or update, never remove
       - actions / keybindings:
             replaced wholesale from tracked file
       - $schema:
             always taken from tracked file
+
+    Post-merge fixups are driven by changes.json:
+      - getCommand: resolves executable path via Get-Command; on failure,
+            sets hidden=true for that profile
+      - Any other non-directive key: added or replaced in the profile
+      - managed: marks profile for upsert from tracked settings
+      - default: marks profile as the defaultProfile
 
 .PARAMETER TrackedSettingsPath
     Path to the tracked settings file.
@@ -30,6 +37,10 @@
 .PARAMETER LiveSettingsPath
     Path to the live settings.json.
     Default: settings.json in the same directory as this script.
+
+.PARAMETER ChangesPath
+    Path to the changes.json file.
+    Default: changes.json in the same directory as this script.
 
 .PARAMETER WhatIf
     Show what would change without writing anything.
@@ -44,22 +55,18 @@
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [string] $TrackedSettingsPath = (Join-Path $PSScriptRoot 'settings.tracked.json'),
-    [string] $LiveSettingsPath    = (Join-Path $PSScriptRoot 'settings.json')
+    [string] $LiveSettingsPath    = (Join-Path $PSScriptRoot 'settings.json'),
+    [string] $ChangesPath         = (Join-Path $PSScriptRoot 'changes.json')
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 # ---------------------------------------------------------------------------
-# Managed profiles — upserted by name from the tracked file.
-# Auto-detected profiles (VS dev prompts, WSL, etc.) are never touched.
-# Add names here as needed.
+# Keys that are directives in changes.json — not passed through to profiles
 # ---------------------------------------------------------------------------
 
-$ManagedProfiles = @(
-    'Neovim'
-    'Vifm'
-)
+$directiveKeys = @('name', 'managed', 'default', 'getCommand')
 
 # ---------------------------------------------------------------------------
 # Keys replaced wholesale from tracked file
@@ -104,7 +111,23 @@ function Copy-Hashtable([hashtable] $ht) {
 }
 
 # ---------------------------------------------------------------------------
-# Load both files
+# Helper: get a value from a profile regardless of whether it is a hashtable
+# or a PSCustomObject (ConvertFrom-Json without -AsHashtable returns the
+# latter for nested objects)
+# ---------------------------------------------------------------------------
+
+function Get-ProfileValue($profile, [string] $key) {
+    if ($profile -is [hashtable]) { return $profile[$key] }
+    return $profile.$key
+}
+
+function Set-ProfileValue($profile, [string] $key, $value) {
+    if ($profile -is [hashtable]) { $profile[$key] = $value }
+    else { $profile.$key = $value }
+}
+
+# ---------------------------------------------------------------------------
+# Load files
 # ---------------------------------------------------------------------------
 
 if (-not (Test-Path $TrackedSettingsPath)) {
@@ -115,13 +138,57 @@ if (-not (Test-Path $LiveSettingsPath)) {
     Write-Error "Live settings.json not found: $LiveSettingsPath"
     exit 1
 }
+if (-not (Test-Path $ChangesPath)) {
+    Write-Error "Changes file not found: $ChangesPath"
+    exit 1
+}
 
 Write-Host "Tracked : $TrackedSettingsPath"
 Write-Host "Live    : $LiveSettingsPath"
+Write-Host "Changes : $ChangesPath"
 Write-Host ''
 
 $tracked = Get-Content $TrackedSettingsPath -Raw -Encoding UTF8 | ConvertFrom-Json -AsHashtable
 $live    = Get-Content $LiveSettingsPath    -Raw -Encoding UTF8 | ConvertFrom-Json -AsHashtable
+$changes = Get-Content $ChangesPath         -Raw -Encoding UTF8 | ConvertFrom-Json  # array of objects
+
+# ---------------------------------------------------------------------------
+# First pass through changes.json — collect managed profiles and default name
+# ---------------------------------------------------------------------------
+
+$ManagedProfiles   = [System.Collections.Generic.List[string]]::new()
+$DefaultProfileName = $null
+
+foreach ($entry in $changes) {
+    $entryName = $entry.name
+    if (-not $entryName) {
+        Write-Warning "changes.json entry missing 'name' — skipping"
+        continue
+    }
+
+    # 'managed' key presence (any value) marks this as a managed profile
+    if ($null -ne $entry.PSObject.Properties['managed']) {
+        $ManagedProfiles.Add($entryName)
+        Write-Verbose "Managed profile from changes.json: $entryName"
+    }
+
+    # 'default' key presence (any value) marks this as the default profile
+    if ($null -ne $entry.PSObject.Properties['default']) {
+        if ($DefaultProfileName) {
+            Write-Warning "Multiple default profiles specified in changes.json — '$entryName' overrides '$DefaultProfileName'"
+        }
+        $DefaultProfileName = $entryName
+        Write-Verbose "Default profile from changes.json: $entryName"
+    }
+}
+
+if (-not $DefaultProfileName) {
+    Write-Warning "No default profile specified in changes.json — defaultProfile will not be updated"
+}
+
+# ---------------------------------------------------------------------------
+# Start building result from live settings
+# ---------------------------------------------------------------------------
 
 $result = Copy-Hashtable $live
 
@@ -174,8 +241,7 @@ if ($tracked.ContainsKey('profiles') -and $tracked['profiles'] -is [hashtable]) 
     # Build name -> index map of live profiles
     $liveByName = @{}
     for ($i = 0; $i -lt $liveList.Count; $i++) {
-        $p    = $liveList[$i]
-        $name = if ($p -is [hashtable]) { $p['name'] } else { $p.name }
+        $name = Get-ProfileValue $liveList[$i] 'name'
         if ($name) { $liveByName[$name.ToLower()] = $i }
     }
 
@@ -183,7 +249,7 @@ if ($tracked.ContainsKey('profiles') -and $tracked['profiles'] -is [hashtable]) 
     $trackedByName = @{}
     if ($trackedProfiles.ContainsKey('list') -and $trackedProfiles['list']) {
         foreach ($p in $trackedProfiles['list']) {
-            $name = if ($p -is [hashtable]) { $p['name'] } else { $p.name }
+            $name = Get-ProfileValue $p 'name'
             if ($name) { $trackedByName[$name.ToLower()] = $p }
         }
     }
@@ -223,13 +289,12 @@ if ($tracked.ContainsKey('schemes') -and $tracked['schemes']) {
 
     $liveSchemesByName = @{}
     for ($i = 0; $i -lt $liveSchemes.Count; $i++) {
-        $s    = $liveSchemes[$i]
-        $name = if ($s -is [hashtable]) { $s['name'] } else { $s.name }
+        $name = Get-ProfileValue $liveSchemes[$i] 'name'
         if ($name) { $liveSchemesByName[$name.ToLower()] = $i }
     }
 
     foreach ($scheme in $tracked['schemes']) {
-        $name = if ($scheme -is [hashtable]) { $scheme['name'] } else { $scheme.name }
+        $name = Get-ProfileValue $scheme 'name'
         if (-not $name) { continue }
 
         $key = $name.ToLower()
@@ -246,27 +311,79 @@ if ($tracked.ContainsKey('schemes') -and $tracked['schemes']) {
 }
 
 # ---------------------------------------------------------------------------
-# Resolve defaultProfile by name
+# Resolve defaultProfile by name (from changes.json)
 # ---------------------------------------------------------------------------
 
-$DefaultProfileName = 'Developer PowerShell for VS 18'
-
 $defaultGuid = $null
-if ($result.ContainsKey('profiles') -and $result['profiles'] -is [hashtable] -and $result['profiles']['list']) {
+if ($DefaultProfileName -and
+    $result.ContainsKey('profiles') -and
+    $result['profiles'] -is [hashtable] -and
+    $result['profiles']['list']) {
+
     foreach ($p in $result['profiles']['list']) {
-        $name = if ($p -is [hashtable]) { $p['name'] } else { $p.name }
+        $name = Get-ProfileValue $p 'name'
         if ($name -and $name.ToLower() -eq $DefaultProfileName.ToLower()) {
-            $defaultGuid = if ($p -is [hashtable]) { $p['guid'] } else { $p.guid }
+            $defaultGuid = Get-ProfileValue $p 'guid'
             break
         }
     }
+
+    if ($defaultGuid) {
+        Write-Verbose "Resolved defaultProfile '$DefaultProfileName' -> $defaultGuid"
+        $result['defaultProfile'] = $defaultGuid
+    } else {
+        Write-Warning "Could not resolve defaultProfile: no profile named '$DefaultProfileName' found in merged list"
+    }
 }
 
-if ($defaultGuid) {
-    Write-Verbose "Resolved defaultProfile '$DefaultProfileName' -> $defaultGuid"
-    $result['defaultProfile'] = $defaultGuid
-} else {
-    Write-Warning "Could not resolve defaultProfile: no profile named '$DefaultProfileName' found in merged list"
+# ---------------------------------------------------------------------------
+# Second pass through changes.json — apply post-merge fixups
+# ---------------------------------------------------------------------------
+
+# Rebuild a name->index map of the final merged profile list for fixups
+$mergedList = $result['profiles']['list']
+$mergedByName = @{}
+for ($i = 0; $i -lt $mergedList.Count; $i++) {
+    $name = Get-ProfileValue $mergedList[$i] 'name'
+    if ($name) { $mergedByName[$name.ToLower()] = $i }
+}
+
+foreach ($entry in $changes) {
+    $entryName = $entry.name
+    if (-not $entryName) { continue }
+
+    $key = $entryName.ToLower()
+    if (-not $mergedByName.ContainsKey($key)) {
+        Write-Verbose "Fixup: profile '$entryName' not found in merged list — skipping"
+        continue
+    }
+
+    $idx     = $mergedByName[$key]
+    $profile = $mergedList[$idx]
+
+    # getCommand directive
+    $getCommandProp = $entry.PSObject.Properties['getCommand']
+    if ($null -ne $getCommandProp) {
+        $cmd = $getCommandProp.Value
+        $resolved = Get-Command $cmd -ErrorAction SilentlyContinue
+        if ($resolved) {
+            $exePath = $resolved.Source
+            Write-Verbose "Fixup '$entryName': resolved '$cmd' -> $exePath"
+            Set-ProfileValue $profile 'commandline' $exePath
+        } else {
+            Write-Verbose "Fixup '$entryName': '$cmd' not found — setting hidden=true"
+            Set-ProfileValue $profile 'hidden' $true
+            # getCommand failure overrides pass-throughs; skip remainder of this entry
+            continue
+        }
+    }
+
+    # Pass-through keys
+    foreach ($prop in $entry.PSObject.Properties) {
+        if ($prop.Name -in $directiveKeys) { continue }
+        Write-Verbose "Fixup '$entryName': $($prop.Name) = $($prop.Value)"
+        Set-ProfileValue $profile $prop.Name $prop.Value
+    }
 }
 
 # ---------------------------------------------------------------------------
@@ -276,13 +393,13 @@ if ($defaultGuid) {
 $outputJson = $result | ConvertTo-Json -Depth 20
 
 # Diff summary
-$added = [System.Collections.Generic.List[string]]::new()
+$added   = [System.Collections.Generic.List[string]]::new()
 $updated = [System.Collections.Generic.List[string]]::new()
 
 $liveProfileNames = @{}
 if ($live.ContainsKey('profiles') -and $live['profiles'] -is [hashtable] -and $live['profiles']['list']) {
     foreach ($p in $live['profiles']['list']) {
-        $name = if ($p -is [hashtable]) { $p['name'] } else { $p.name }
+        $name = Get-ProfileValue $p 'name'
         if ($name) { $liveProfileNames[$name.ToLower()] = $true }
     }
 }
