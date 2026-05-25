@@ -12,6 +12,8 @@ if not vim.g.vscode then
     require 'plugins/tree',
     require 'plugins/telescope',
     require 'plugins/lspconfig',
+    require 'plugins/roslyn',
+    -- require 'plugins/easy-dotnet',
     require 'plugins/winpick',
     require 'plugins/bufexplorer',
     require 'plugins/completion',
