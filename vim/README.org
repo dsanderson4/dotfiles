@@ -1,0 +1,10 @@
+#+OPTIONS: toc:nil html-postamble:nil num:nil
+* Vim
+
+I use minpac for plugin management.
+
+On Windows, run install.ps1, which creates the symbolic link and clones minpac.
+
+On other platforms, run minpac-install.sh after running stow for vim.
+
+Then run :PackUpdate inside Vim to fetch the plugins listed in vimrc.

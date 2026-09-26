@@ -17,12 +17,12 @@ where possible:
 | Windows Terminal              | X       |       |     |     |        |
 | Z Shell                       |         | X     | X   | X   | X      |
 
-The fonts and scripts directories contain support files.
+The fonts directory contains support files.
 
 For platforms other than Windows, GNU Stow (package name "stow") can be used to
 create the necessary symbolic links for emacs, vim, neovim, kitty, and i3. In
-Windows, there are "link.ps1" scripts to create symbolic links for emacs, vim,
-neovim, and vsvim. These scripts assume that this repository is cloned to
+Windows, run the "install.ps1" script in each tool's directory (emacs, vim,
+neovim, vifm, vsvim, wezterm, powershell, vscode). These scripts assume that this repository is cloned to
 ~/dotfiles; also they depend on a Windows "sudo" program that can be found here:
 https://github.com/gerardog/gsudo.
 
