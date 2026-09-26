@@ -31,7 +31,7 @@
           "guid": "{574e773e-f599-4d6a-9397-046603a11dc2}",
           "hidden": false,
           "name": "Claude Code",
-          "commandline": "pwsh",
+          "commandline": "pwsh -NoExit -Command vs2026env.ps1",
           "icon": "%USERPROFILE%/dotfiles/windowsterminal/claude.png",
           "suppressApplicationTitle": true,
           "startingDirectory": "%USERPROFILE%"
