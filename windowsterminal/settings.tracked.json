@@ -28,6 +28,15 @@
         "source": "Windows.Terminal.Wsl"
       },
       {
+          "guid": "{574e773e-f599-4d6a-9397-046603a11dc2}",
+          "hidden": false,
+          "name": "Claude Code",
+          "commandline": "pwsh",
+          "icon": "%USERPROFILE%/dotfiles/windowsterminal/claude.png",
+          "suppressApplicationTitle": true,
+          "startingDirectory": "%USERPROFILE%"
+      },
+      {
         "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
         "hidden": true,
         "name": "Azure Cloud Shell",
@@ -90,6 +99,12 @@
         "guid": "{1193418a-9281-4462-81dc-a70cac028ff5}",
         "hidden": false,
         "name": "Lazygit"
+      },
+      {
+        "commandline": "vifm",
+        "guid": "{734fe157-e543-4784-8915-6f0391d31a03}",
+        "hidden": false,
+        "name": "Vifm"
       },
       {
         "commandline": "C:\\msys64\\msys2_shell.cmd -defterm -no-start -ucrt64 -shell zsh",

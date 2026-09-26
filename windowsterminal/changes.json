@@ -44,6 +44,16 @@
         "startingDirectory": "%USERPROFILE%"
     },
     {
+        "name": "Vifm",
+        "getCommand": "vifm",
+        "managed": true
+    },
+    {
+        "name": "Claude Code",
+        "getCommand": "pwsh",
+        "managed": true
+    },
+    {
         "name": "Neovim",
         "getCommand": "nvim",
         "managed": true
