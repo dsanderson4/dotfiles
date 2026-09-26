@@ -6,6 +6,16 @@ let mapleader = " "
 
 inoremap jk <esc>
 
+vnoremap gc :vsc Edit.ToggleLineComment<cr>
+vnoremap gC :vsc Edit.ToggleBlockComment<cr>
+
+vnoremap sc :vsc Edit.CommentSelection<cr>
+vnoremap su :vsc Edit.UncommentSelection<cr>
+vnoremap sf :vsc Edit.FormatSelection<cr>
+vnoremap sr :vsc ReSharper.ReSharper_RefactorThis<cr>
+vnoremap sq :vsc SQL.TSqlEditorExecuteQuery<cr>
+vnoremap ss :vsc Edit.SurroundWith<cr>
+
 nnoremap <c-i> :vsc View.NavigateForward<cr>
 nnoremap <c-o> :vsc View.NavigateBackward<cr>
 
@@ -26,14 +36,6 @@ nnoremap <leader>mp :vsc Edit.PreviousMethod<cr>
 
 nnoremap <leader>en :vsc Edit.GotoNextLocation<cr>
 nnoremap <leader>ep :vsc Edit.GotoPrevLocation<cr>
-vnoremap <leader>ec :vsc Edit.CommentSelection<cr>
-vnoremap <leader>eu :vsc Edit.UncommentSelection<cr>
-vnoremap <leader>es :vsc Edit.SurroundWith<cr>
-
-vnoremap gc :vsc Edit.ToggleLineComment<cr>
-vnoremap gC :vsc Edit.ToggleBlockComment<cr>
-
-vnoremap gs :vsc SQL.TSqlEditorExecuteQuery<cr>
 
 nnoremap <leader>rn :vsc ReSharper.ReSharper_NavigateTo<cr>
 nnoremap <leader>rr :vsc ReSharper.ReSharper_Rename<cr>
@@ -41,8 +43,7 @@ nnoremap <leader>rt :vsc ReSharper.ReSharper_GotoType<cr>
 nnoremap <leader>rm :vsc ReSharper.ReSharper_GotoFileMember<cr>
 nnoremap <leader>rf :vsc ReSharper.ReSharper_RefactorThis<cr>
 nnoremap <leader>ri :vsc ReSharper.ReSharper_ShowInspectionWindow<cr>
-
-vnoremap rf :vsc ReSharper.ReSharper_RefactorThis<cr>
+nnoremap <leader>ru :vsc ReSharper.ReSharper_ShowUnitTestSessions<cr>
 
 nnoremap <leader>te :vsc Tools.ExternalCommand1<cr>
 nnoremap <leader>tv :vsc Tools.ExternalCommand2<cr>
@@ -92,6 +93,8 @@ nnoremap <leader>ds :vsc Debug.StopDebugging<cr>
 nnoremap <leader>dn :vsc Diff.NextDifference<cr>
 nnoremap <leader>dp :vsc Diff.PreviousDifference<cr>
 nnoremap <leader>dw :vsc Diff.SwitchBetweenLeftAndRight<cr>
+
+nnoremap <leader>df :vsc Edit.FormatDocument<cr>
 
 nnoremap <leader>vi :vsc Edit.QuickInfo<cr>
 nnoremap <leader>vd :vsc Edit.PeekDefinition<cr>
