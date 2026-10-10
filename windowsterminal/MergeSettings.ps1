@@ -15,7 +15,12 @@
       - profiles.list:
             profiles named in changes.json (marked "managed") are upserted
             by name from the tracked file; all other profiles (auto-detected
-            VS dev prompts, WSL distros, etc.) are left untouched
+            VS dev prompts, WSL distros, etc.) are left untouched.
+            The list is then reordered to match the "profile" entries in
+            newTabMenu (by name or guid, searching folders too); profiles
+            not named there keep their relative order after them. This
+            keeps the OpenNewTabProfileN keybindings — which index into
+            visible profiles in list order — in step with the menu
       - schemes:
             merged by name — add or update, never remove
       - actions / keybindings:
@@ -274,6 +279,52 @@ if ($tracked.ContainsKey('profiles') -and $tracked['profiles'] -is [hashtable]) 
     }
 
     $result['profiles']['list'] = $liveList
+}
+
+# ---------------------------------------------------------------------------
+# profiles.list — reorder to match newTabMenu
+# ---------------------------------------------------------------------------
+
+# Collect "profile" entry references (name or guid) in menu order, recursing
+# into folders
+function Get-MenuProfileRefs($entries) {
+    foreach ($entry in $entries) {
+        $type = Get-ProfileValue $entry 'type'
+        if ($type -eq 'profile') {
+            $ref = Get-ProfileValue $entry 'profile'
+            if ($ref) { $ref }
+        } elseif ($type -eq 'folder') {
+            $children = Get-ProfileValue $entry 'entries'
+            if ($children) { Get-MenuProfileRefs $children }
+        }
+    }
+}
+
+if ($result.ContainsKey('newTabMenu') -and $result['newTabMenu'] -and
+    $result.ContainsKey('profiles') -and $result['profiles'] -is [hashtable] -and
+    $result['profiles']['list']) {
+
+    $unsorted = [System.Collections.Generic.List[object]]::new()
+    foreach ($p in $result['profiles']['list']) { $unsorted.Add($p) }
+    $sorted = [System.Collections.Generic.List[object]]::new()
+
+    foreach ($ref in @(Get-MenuProfileRefs $result['newTabMenu'])) {
+        $refKey = $ref.ToLower()
+        for ($i = 0; $i -lt $unsorted.Count; $i++) {
+            $name = Get-ProfileValue $unsorted[$i] 'name'
+            $guid = Get-ProfileValue $unsorted[$i] 'guid'
+            if (($name -and $name.ToLower() -eq $refKey) -or
+                ($guid -and $guid.ToLower() -eq $refKey)) {
+                Write-Verbose "Menu order: $ref"
+                $sorted.Add($unsorted[$i])
+                $unsorted.RemoveAt($i)
+                break
+            }
+        }
+    }
+
+    foreach ($p in $unsorted) { $sorted.Add($p) }
+    $result['profiles']['list'] = $sorted
 }
 
 # ---------------------------------------------------------------------------
