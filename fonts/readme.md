@@ -1,5 +1,4 @@
-#+OPTIONS: toc:nil html-postamble:nil num:nil
-* Fonts
+# Fonts
 
 - Linux and Mac: Install both Lucida Console fonts.
 

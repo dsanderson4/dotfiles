@@ -12,9 +12,9 @@ Neovim, etc.) rather than by looking for a test suite.
 Each top-level directory configures one tool and mirrors the target directory
 structure the tool expects (e.g. `emacs/.emacs.d/`, `neovim/.config/nvim/`,
 `vim/.vim/`), so files can be symlinked or stowed directly into `$HOME`.
-Coverage per platform is documented in the table in `README.org`. Per-directory
-`README.org` files (Emacs-org format, not Markdown) hold tool-specific setup notes
-— check for one before making non-trivial changes in a given directory.
+Coverage per platform is documented in the table in `README.md`. Per-directory
+`README.md` files hold tool-specific setup notes — check for one before making
+non-trivial changes in a given directory.
 
 ## Deploying / linking configs
 
@@ -22,9 +22,9 @@ Coverage per platform is documented in the table in `README.org`. Per-directory
   creates a symlink from the real config location into this repo (e.g.
   `emacs/install.ps1` → symlinks `~/.emacs.d` to `emacs/.emacs.d`). Most use a
   `sudo` shim backed by gsudo and assume the repo is cloned to `~/dotfiles`.
-  See the tool's `README.org` for install-order caveats (e.g. PowerShell's
+  See the tool's `README.md` for install-order caveats (e.g. PowerShell's
   requires deleting `$PROFILE` first).
-- **Linux/Mac/WSL/Cygwin**: use GNU Stow from the repo root for emacs, vim,
+- **Linux/Mac/WSL/MSYS2**: use GNU Stow from the repo root for emacs, vim,
   neovim, kitty, and i3 (each directory is already laid out as a stow package).
   Stow packages that also contain repo-only files (`install.ps1`, etc.) have a
   `.stow-local-ignore` so those aren't linked into `$HOME`. That file replaces
@@ -125,4 +125,4 @@ turns those into the real file.
   and an `i3exit.sh` power-menu script.
 - `zsh/`: Oh My Zsh-based; `.zsh` files here are meant to be selectively copied
   (not symlinked wholesale) into `~/.oh-my-zsh/custom` depending on environment
-  (`all.zsh` everywhere, `wsl*.zsh` for WSL variants) — see `zsh/README.org`.
+  (`all.zsh` everywhere, `wsl*.zsh` for WSL variants) — see `zsh/README.md`.

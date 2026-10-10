@@ -1,5 +1,4 @@
-#+OPTIONS: toc:nil html-postamble:nil num:nil
-* Windows Terminal Settings
+# Windows Terminal Settings
 
 - cdsettings.ps1: Change to the Windows Terminal settings directory.
 

@@ -1,11 +1,10 @@
-#+OPTIONS: toc:nil html-postamble:nil num:nil
-* dotfiles
+# dotfiles
 
 This repository contains configuration files, and tries to be cross-platform
 where possible:
 
-| Software                      | Windows | Linux | Mac | WSL | Cygwin |
-|-------------------------------+---------+-------+-----+-----+--------|
+| Software                      | Windows | Linux | Mac | WSL | MSYS2  |
+|-------------------------------|---------|-------|-----|-----|--------|
 | Emacs                         | X       | X     | X   | X   |        |
 | Vim                           | X       | X     | X   | X   | X      |
 | Neovim                        | X       | X     | X   | X   |        |
@@ -24,7 +23,6 @@ create the necessary symbolic links for emacs, vim, neovim, kitty, and i3. In
 Windows, run the "install.ps1" script in each tool's directory (emacs, vim,
 neovim, vifm, vsvim, wezterm, powershell, vscode). These scripts assume that this repository is cloned to
 ~/dotfiles; also they depend on a Windows "sudo" program that can be found here:
-https://github.com/gerardog/gsudo.
+<https://github.com/gerardog/gsudo>.
 
 See README files in subfolders for further details.
-

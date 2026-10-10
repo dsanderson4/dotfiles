@@ -1,4 +1,0 @@
-#+OPTIONS: toc:nil html-postamble:nil num:nil
-* Visual Studio Code
-
-To install, run install.ps1

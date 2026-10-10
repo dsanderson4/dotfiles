@@ -1,5 +1,4 @@
-#+OPTIONS: toc:nil html-postamble:nil num:nil
-* Z Shell Settings
+# Z Shell Settings
 
 I use Oh My Zsh as a framework for zsh; the ohmy.sh script installs it.
 

@@ -1,5 +1,4 @@
-#+OPTIONS: toc:nil html-postamble:nil num:nil
-* Vim
+# Vim
 
 I use minpac for plugin management.
 

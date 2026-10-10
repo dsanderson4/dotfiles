@@ -1,14 +1,13 @@
-#+OPTIONS: toc:nil html-postamble:nil num:nil
-* dotfiles todo list
+# dotfiles todo list
 
-** General
+## General
 
-** Emacs
+## Emacs
 
 - Add docstrings to all interactive functions.
 
 - Move configuration code out of dave-config.
 
-** Vim
+## Vim
 
 - Use a plugin for color schemes.
