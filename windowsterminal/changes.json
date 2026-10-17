@@ -1,10 +1,12 @@
 [
     {
         "name": "Windows PowerShell",
+        "default": 5,
         "hidden": true
     },
     {
         "name": "PowerShell",
+        "default": 4,
         "hidden": false
     },
     {
@@ -18,7 +20,7 @@
     {
         "name": "Developer PowerShell for VS 18",
         "hidden": false,
-        "default": true,
+        "default": 1,
         "startingDirectory": "%USERPROFILE%"
     },
     {
@@ -32,11 +34,13 @@
     {
         "hidden": false,
         "name": "Developer PowerShell for VS 2022",
+        "default": 2,
         "startingDirectory": "%USERPROFILE%"
     },
     {
         "hidden": false,
         "name": "Developer PowerShell for VS 2019",
+        "default": 3,
         "startingDirectory": "%USERPROFILE%"
     },
     {

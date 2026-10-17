@@ -33,7 +33,15 @@
             sets hidden=true for that profile
       - Any other non-directive key: added or replaced in the profile
       - managed: marks profile for upsert from tracked settings
-      - default: marks profile as the defaultProfile
+      - default: an integer priority (lower = preferred) marking this profile
+            as a defaultProfile candidate. After fixups run, candidates are
+            tried in ascending priority order and the first one that exists
+            in the merged profile list becomes the defaultProfile. This lets
+            a profile that depends on optional software (e.g. a Visual Studio
+            dev prompt) be preferred without breaking the default when that
+            software isn't installed. If the chosen candidate ended up
+            hidden (explicitly, or via a failed getCommand), it is un-hidden
+            — a profile can't be both the default and hidden from the UI.
 
 .PARAMETER TrackedSettingsPath
     Path to the tracked settings file.
@@ -158,11 +166,12 @@ $live    = Get-Content $LiveSettingsPath    -Raw -Encoding UTF8 | ConvertFrom-Js
 $changes = Get-Content $ChangesPath         -Raw -Encoding UTF8 | ConvertFrom-Json  # array of objects
 
 # ---------------------------------------------------------------------------
-# First pass through changes.json — collect managed profiles and default name
+# First pass through changes.json — collect managed profiles and default
+# candidates (name + priority)
 # ---------------------------------------------------------------------------
 
 $ManagedProfiles   = [System.Collections.Generic.List[string]]::new()
-$DefaultProfileName = $null
+$DefaultCandidates = [System.Collections.Generic.List[object]]::new()
 
 foreach ($entry in $changes) {
     $entryName = $entry.name
@@ -177,18 +186,17 @@ foreach ($entry in $changes) {
         Write-Verbose "Managed profile from changes.json: $entryName"
     }
 
-    # 'default' key presence (any value) marks this as the default profile
-    if ($null -ne $entry.PSObject.Properties['default']) {
-        if ($DefaultProfileName) {
-            Write-Warning "Multiple default profiles specified in changes.json — '$entryName' overrides '$DefaultProfileName'"
-        }
-        $DefaultProfileName = $entryName
-        Write-Verbose "Default profile from changes.json: $entryName"
+    # 'default' key is an integer priority (lower = preferred) marking this
+    # profile as a defaultProfile candidate
+    $defaultProp = $entry.PSObject.Properties['default']
+    if ($null -ne $defaultProp) {
+        $DefaultCandidates.Add([pscustomobject]@{ Name = $entryName; Priority = [int] $defaultProp.Value })
+        Write-Verbose "Default candidate from changes.json: $entryName (priority $($defaultProp.Value))"
     }
 }
 
-if (-not $DefaultProfileName) {
-    Write-Warning "No default profile specified in changes.json — defaultProfile will not be updated"
+if ($DefaultCandidates.Count -eq 0) {
+    Write-Warning "No default profile candidates specified in changes.json — defaultProfile will not be updated"
 }
 
 # ---------------------------------------------------------------------------
@@ -362,32 +370,6 @@ if ($tracked.ContainsKey('schemes') -and $tracked['schemes']) {
 }
 
 # ---------------------------------------------------------------------------
-# Resolve defaultProfile by name (from changes.json)
-# ---------------------------------------------------------------------------
-
-$defaultGuid = $null
-if ($DefaultProfileName -and
-    $result.ContainsKey('profiles') -and
-    $result['profiles'] -is [hashtable] -and
-    $result['profiles']['list']) {
-
-    foreach ($p in $result['profiles']['list']) {
-        $name = Get-ProfileValue $p 'name'
-        if ($name -and $name.ToLower() -eq $DefaultProfileName.ToLower()) {
-            $defaultGuid = Get-ProfileValue $p 'guid'
-            break
-        }
-    }
-
-    if ($defaultGuid) {
-        Write-Verbose "Resolved defaultProfile '$DefaultProfileName' -> $defaultGuid"
-        $result['defaultProfile'] = $defaultGuid
-    } else {
-        Write-Warning "Could not resolve defaultProfile: no profile named '$DefaultProfileName' found in merged list"
-    }
-}
-
-# ---------------------------------------------------------------------------
 # Second pass through changes.json — apply post-merge fixups
 # ---------------------------------------------------------------------------
 
@@ -435,6 +417,40 @@ foreach ($entry in $changes) {
         Write-Verbose "Fixup '$entryName': $($prop.Name) = $($prop.Value)"
         Set-ProfileValue $profile $prop.Name $prop.Value
     }
+}
+
+# ---------------------------------------------------------------------------
+# Resolve defaultProfile — try candidates in ascending priority order and use
+# the first one that exists in the merged list. A profile can't be both the
+# default and hidden, so if the chosen candidate is hidden (explicitly, or
+# via a failed getCommand above), it is un-hidden.
+# ---------------------------------------------------------------------------
+
+$defaultGuid = $null
+$resolvedDefaultName = $null
+foreach ($candidate in ($DefaultCandidates | Sort-Object Priority)) {
+    $key = $candidate.Name.ToLower()
+    if (-not $mergedByName.ContainsKey($key)) {
+        Write-Verbose "Default candidate '$($candidate.Name)' (priority $($candidate.Priority)) not in merged list — skipping"
+        continue
+    }
+
+    $profile = $mergedList[$mergedByName[$key]]
+    $defaultGuid = Get-ProfileValue $profile 'guid'
+    $resolvedDefaultName = $candidate.Name
+
+    if (Get-ProfileValue $profile 'hidden') {
+        Write-Verbose "Default candidate '$($candidate.Name)' (priority $($candidate.Priority)) was hidden — un-hiding"
+        Set-ProfileValue $profile 'hidden' $false
+    }
+    break
+}
+
+if ($defaultGuid) {
+    Write-Verbose "Resolved defaultProfile '$resolvedDefaultName' -> $defaultGuid"
+    $result['defaultProfile'] = $defaultGuid
+} elseif ($DefaultCandidates.Count -gt 0) {
+    Write-Warning "Could not resolve defaultProfile: no candidate from changes.json was found in the merged list"
 }
 
 # ---------------------------------------------------------------------------
