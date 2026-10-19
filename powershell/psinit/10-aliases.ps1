@@ -6,7 +6,6 @@ function Edit-File {emacsclient -n $args}
 Set-Alias e Edit-File
 
 function Edit-File-Gvim {gvim --remote-silent $args}
-Set-Alias v Edit-File-Gvim
 
 Set-Alias emacs runemacs
 
