@@ -98,12 +98,14 @@
         "commandline": "C:\\ProgramData\\chocolatey\\bin\\lazygit.exe",
         "guid": "{1193418a-9281-4462-81dc-a70cac028ff5}",
         "hidden": false,
+        "icon": "%USERPROFILE%/dotfiles/windowsterminal/lazygit.png",
         "name": "Lazygit"
       },
       {
         "commandline": "vifm",
         "guid": "{734fe157-e543-4784-8915-6f0391d31a03}",
         "hidden": false,
+        "icon": "%USERPROFILE%/dotfiles/windowsterminal/vifm.png",
         "name": "Vifm"
       },
       {
