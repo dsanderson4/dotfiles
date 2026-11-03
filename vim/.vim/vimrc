@@ -104,4 +104,27 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 :nnoremap <leader>xS :wa<CR>
 :nnoremap <leader>xc :qa<CR>
 
+" <C-]><letter> alternates for default left-hand Ctrl chords, since recent
+" laptops dropped the right Ctrl key and these are awkward as same-hand chords.
+nnoremap <C-]>a <C-a>
+nnoremap <C-]>b <C-b>
+nnoremap <C-]>d <C-d>
+nnoremap <C-]>e <C-e>
+nnoremap <C-]>f <C-f>
+nnoremap <C-]>g <C-g>
+nnoremap <C-]>r <C-r>
+nnoremap <C-]>t <C-t>
+nnoremap <C-]>v <C-v>
+nnoremap <C-]>x <C-x>
+nnoremap <C-]>z <C-z>
+
+inoremap <C-]>a <C-a>
+inoremap <C-]>d <C-d>
+inoremap <C-]>e <C-e>
+inoremap <C-]>r <C-r>
+inoremap <C-]>t <C-t>
+inoremap <C-]>v <C-v>
+inoremap <C-]>w <C-w>
+inoremap <C-]>x <C-x>
+
 autocmd BufRead,BufNewFile *.md setlocal spell

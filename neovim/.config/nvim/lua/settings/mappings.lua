@@ -99,3 +99,38 @@ vim.keymap.set("t", "<C-h>",  "<C-\\><C-n><C-W>h", { silent = true, desc = "Term
 vim.keymap.set("t", "<C-j>",  "<C-\\><C-n><C-W>j", { silent = true, desc = "Terminal down window navigation" })
 vim.keymap.set("t", "<C-k>",  "<C-\\><C-n><C-W>k", { silent = true, desc = "Terminal up window navigation" })
 vim.keymap.set("t", "<C-l>",  "<C-\\><C-n><C-W>l", { silent = true, desc = "Terminal right window navigation" })
+
+-- <C-]><letter> alternates for default left-hand Ctrl chords, since recent
+-- laptops dropped the right Ctrl key and these are awkward as same-hand chords.
+-- Bare <C-]> (tag jump) still works; only <C-]> followed by one of these
+-- letters is intercepted.
+local ctrl_bracket_normal = {
+    a = "Increment number",
+    b = "Scroll back a page",
+    d = "Scroll down half a page",
+    e = "Scroll down a line",
+    f = "Scroll forward a page",
+    g = "Show file/cursor info",
+    r = "Redo",
+    t = "Pop tag stack",
+    v = "Visual block mode",
+    x = "Decrement number",
+    z = "Suspend to shell",
+}
+for key, desc in pairs(ctrl_bracket_normal) do
+    vim.keymap.set("n", "<C-]>" .. key, "<C-" .. key .. ">", { silent = true, desc = desc })
+end
+
+local ctrl_bracket_insert = {
+    a = "Re-insert last inserted text",
+    d = "Un-indent line",
+    e = "Copy char from line below",
+    r = "Insert register contents",
+    t = "Indent line",
+    v = "Insert literal char by code",
+    w = "Delete word before cursor",
+    x = "Completion submode",
+}
+for key, desc in pairs(ctrl_bracket_insert) do
+    vim.keymap.set("i", "<C-]>" .. key, "<C-" .. key .. ">", { silent = true, desc = desc })
+end
