@@ -239,6 +239,14 @@
     {
       "id": "Terminal.OpenNewTabProfile9",
       "keys": "alt+shift+0"
+    },
+    {
+      "id": "Terminal.MoveTabBackward",
+      "keys": "ctrl+shift+left"
+    },
+    {
+      "id": "Terminal.MoveTabForward",
+      "keys": "ctrl+shift+right"
     }
   ],
   "schemes": [
