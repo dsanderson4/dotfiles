@@ -55,6 +55,10 @@ vim.keymap.set("n", "<leader>lD", function() require("telescope.builtin").diagno
 vim.keymap.set("n", "<leader>gv", "<cmd>vertical Git<CR>", { silent = true, desc = "Vertical menu" })
 vim.keymap.set("n", "<leader>gm", "<cmd>Git<CR>", { silent = true, desc = "Menu" })
 vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<CR>", { silent = true, desc = "Menu" })
+vim.keymap.set("n", "<leader>gn", "<Plug>(GitGutterNextHunk)", { remap = true, desc = "Next hunk" })
+vim.keymap.set("n", "<leader>gp", "<Plug>(GitGutterPrevHunk)", { remap = true, desc = "Previous hunk" })
+vim.keymap.set("n", "<leader>gn", "<Plug>(GitGutterNextHunk)", { desc = "Next hunk" })
+vim.keymap.set("n", "<leader>gp", "<Plug>(GitGutterPrevHunk)", { desc = "Previous hunk" })
 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "Toggle File Tree"})
 vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFocus<CR>", { silent = true, desc = "Focus File Tree"})
