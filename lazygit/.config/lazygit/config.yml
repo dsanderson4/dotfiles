@@ -1,3 +1,20 @@
 gui:
   nerdFontsVersion: "3"
-  commitGraphStyle: detailed
+  commitGraphStyle: auto
+
+os:
+  # Open file in the existing Neovim instance, matching the "v" PowerShell
+  # function (powershell/psinit/03-nvim.ps1), the vifm "o" command
+  # (vifm/.vifm/vifmrc), and the serverstart() pipe set up in
+  # neovim/.config/nvim/init.lua, then switch this Windows Terminal window to
+  # the tab running Neovim. Assumes Neovim is always tab 3 (0-indexed, i.e.
+  # the 4th tab) in the window lazygit is running in. Logic lives in
+  # edit-in-neovim.ps1 (not inline here) because it needs a branch for when
+  # the Neovim server isn't running — see that script's comment for why.
+  edit: 'powershell -NoProfile -File "%USERPROFILE%\dotfiles\lazygit\edit-in-neovim.ps1" {{filename}}'
+  # Without this, Lazygit guesses from $EDITOR (nvim) that edit is a
+  # terminal editor and suspends itself, showing "press enter to return to
+  # lazygit" after the command runs. Our edit command above is fire-and-forget
+  # (hands the file to an already-running Neovim and switches tabs), so it
+  # should behave like a GUI editor and not suspend.
+  editInTerminal: false

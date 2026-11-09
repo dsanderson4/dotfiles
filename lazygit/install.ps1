@@ -1,1 +1,2 @@
-sudo New-item -ItemType SymbolicLink -Path ~/AppData/Roaming/lazygit -Target ~/dotfiles/lazygit/.config/lazygit
+New-Item -ItemType Directory -Path ~/AppData/Local/lazygit -Force | Out-Null
+New-Item -ItemType SymbolicLink -Path ~/AppData/Local/lazygit/config.yml -Target ~/dotfiles/lazygit/.config/lazygit/config.yml

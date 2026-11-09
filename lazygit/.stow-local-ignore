@@ -16,3 +16,4 @@ _darcs
 ^/LICENSE.*
 ^/COPYING
 ^/install\.ps1
+^/edit-in-neovim\.ps1
