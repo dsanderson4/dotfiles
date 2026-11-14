@@ -328,15 +328,46 @@ fileviewer {*.torrent},<application/x-bittorrent>
          \ transmission-show %c
 
 " FuseZipMount
-filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
-        \<application/zip,application/java-archive>
-       \ {Mount with fuse-zip}
-       \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
-       \ {View contents}
-       \ unzip -l %f | less,
-       \ {Extract here}
-       \ unzip %c,
-fileviewer *.zip,*.jar,*.war,*.ear,*.oxt unzip -l %f
+if has('unix')
+    filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
+            \<application/zip,application/java-archive>
+           \ {Mount with fuse-zip}
+           \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
+           \ {View contents}
+           \ unzip -l %f | less,
+           \ {Extract here}
+           \ unzip %c,
+    fileviewer *.zip,*.jar,*.war,*.ear,*.oxt unzip -l %f
+endif
+
+" ZipMount (powershell/psinit/16-zipmount.ps1): mounts the zip under
+" ~\ZipMount via rclone's archive backend and cd's into it.
+"
+" vifm's native FUSE_MOUNT automation (used by the Unix FuseZipMount entry
+" above) can't be used here: on Windows vifm can't retrieve the mounter
+" command's real exit status (hardcoded to -1 in its source), so it always
+" reports "Failed to mount file" and skips navigation even when the mount
+" actually succeeded. So this uses a plain external command instead and
+" tells vifm to cd via the --remote mechanism documented near the end of
+" this file.
+if has('win')
+    " Exposes this vifm instance's IPC name so zip-mount.ps1 can tell us to
+    " cd into the new mount once it's done.
+    let $VIFM_SERVER_NAME = v:servername
+
+    " Warm up the mount daemon at startup instead of paying its ~1s startup
+    " cost the first time you hit Enter on a .zip. Start-ZipMountDaemon is
+    " itself a no-op if it's already running. Backgrounded (" &") so it
+    " doesn't delay vifm's own startup.
+    !powershell -NoProfile -ExecutionPolicy Bypass -Command
+            \ ". 'C:\Users\dave.anderson\dotfiles\powershell\psinit\16-zipmount.ps1'; Start-ZipMountDaemon" &
+
+    " filetype command args are only %macro-expanded, not $VAR-expanded, so
+    " the script path has to be literal rather than built from $HOME.
+    filetype *.zip
+           \ {Mount under ~\ZipMount}
+           \ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\dave.anderson\dotfiles\vifm\.vifm\scripts\zip-mount.ps1 %c:p,
+endif
 
 " ArchiveMount
 filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,
