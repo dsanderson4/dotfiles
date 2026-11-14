@@ -359,14 +359,17 @@ if has('win')
     " cost the first time you hit Enter on a .zip. Start-ZipMountDaemon is
     " itself a no-op if it's already running. Backgrounded (" &") so it
     " doesn't delay vifm's own startup.
-    !powershell -NoProfile -ExecutionPolicy Bypass -Command
-            \ ". 'C:\Users\dave.anderson\dotfiles\powershell\psinit\16-zipmount.ps1'; Start-ZipMountDaemon" &
+    "
+    " These run by bare filename rather than full path: vifm puts
+    " $VIFM/scripts (this directory) on PATH for programs it runs, and
+    " filetype/:! command args are only %macro-expanded, not $VAR-expanded,
+    " so a path built from $HOME wouldn't work here anyway. The .cmd
+    " wrappers locate their sibling .ps1 via %~dp0 so nothing is hardcoded.
+    !zipmount-start-daemon.cmd &
 
-    " filetype command args are only %macro-expanded, not $VAR-expanded, so
-    " the script path has to be literal rather than built from $HOME.
     filetype *.zip
            \ {Mount under ~\ZipMount}
-           \ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\dave.anderson\dotfiles\vifm\.vifm\scripts\zip-mount.ps1 %c:p,
+           \ zip-mount.cmd %c:p,
 endif
 
 " ArchiveMount
