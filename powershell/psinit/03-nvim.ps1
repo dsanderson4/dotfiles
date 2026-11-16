@@ -1,5 +1,5 @@
 function Neovim-Remote {
-  $path = if (Test-Path $args[0]) { (Resolve-Path $args[0]).Path } else { $args[0] }
+  $path = [System.IO.Path]::GetFullPath($args[0], (Get-Location).Path)
   echo $path
   nvim --server '\\.\pipe\nvim-server' --remote $path
 }
