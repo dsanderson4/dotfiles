@@ -1,15 +1,14 @@
-$global:DirHistoryFile = "$env:USERPROFILE\.dir_history"
+$global:DirHistoryFile = "$env:USERPROFILE\.dir_history.txt"
 $global:DirHistoryMax = 1000
 
-$dirHistoryFile = "$HOME\.dir_history.txt"
-
 # Initialize the file if it doesn't exist
-if (-not (Test-Path $dirHistoryFile)) {
-    New-Item -ItemType File -Path $dirHistoryFile | Out-Null
+if (-not (Test-Path $global:DirHistoryFile)) {
+    New-Item -ItemType File -Path $global:DirHistoryFile | Out-Null
 }
 
 function Set-LocationWithHistory {
     param([string]$Path)
+    $global:PrevDir = (Get-Location).Path
     Set-Location $Path
     $current = (Get-Location).Path
     if (Test-Path $global:DirHistoryFile) {
@@ -37,34 +36,16 @@ function cd {
 }
 
 function cdh {
+    param([string]$Query = '')
     if (-not (Test-Path $global:DirHistoryFile)) { Write-Warning "No directory history"; return }
-    $selected = Get-Content $global:DirHistoryFile | fzf --layout=reverse
+    $selected = Get-Content $global:DirHistoryFile | fzf --layout=reverse --query $Query
     if ($selected) { Set-LocationWithHistory $selected }
 }
 
-# Add current directory to history
-function Add-DirHistory {
-    $current = $pwd.Path
-    $existing = Get-Content $dirHistoryFile -ErrorAction SilentlyContinue
-    if ($existing -notcontains $current) {
-        $current | Out-File -Append -FilePath $dirHistoryFile
-        Write-Host "Marked: $current" -ForegroundColor Green
-    } else {
-        Write-Host "Already marked: $current" -ForegroundColor Yellow
-    }
+function cdp {
+    if (-not $global:PrevDir) { Write-Warning "No previous directory"; return }
+    Set-LocationWithHistory $global:PrevDir
 }
-Set-Alias -Name dm -Value Add-DirHistory
-
-# Jump to a marked directory
-function Jump-Dir {
-    $dirs = Get-Content $dirHistoryFile | Where-Object { Test-Path $_ } | Select-Object -Unique
-    $selected = $dirs | fzf --height 40% --reverse --prompt "Jump to: "
-    if ($selected) { 
-        Set-LocationWithHistory $selected
-        Write-Host "Jumped to: $selected" -ForegroundColor Cyan
-    }
-}
-Set-Alias -Name dj -Value Jump-Dir
 
 function up {
     param([int]$Levels = 0)
@@ -155,9 +136,9 @@ function up {
 }
 
 function cdf {
-    param([string]$Root = '.')
+    param([string]$Root = '.', [string]$Query = '')
     $dir = fd --type d --no-ignore --exclude .git --exclude node_modules . $Root |
-        fzf --height 40% --reverse
+        fzf --height 40% --reverse --query $Query
     if ($dir) { Set-LocationWithHistory $dir }
 }
 
@@ -178,7 +159,7 @@ function Invoke-DirNavigator {
         $result = $entries | fzf `
             --no-sort `
             --layout=reverse `
-            --expect=ctrl-h,ctrl-l,ctrl-i `
+            --expect=alt-h,ctrl-l,ctrl-i `
             --header=$currentDir `
             --height=40%
 
@@ -188,7 +169,7 @@ function Invoke-DirNavigator {
         $selection = $result[1]
 
         switch ($key) {
-            'ctrl-h' {
+            'alt-h' {
                 $parent = Split-Path $currentDir -Parent
                 if ($parent) { $currentDir = $parent }
             }
@@ -203,7 +184,7 @@ function Invoke-DirNavigator {
                 } else {
                     Join-Path $currentDir $selection
                 }
-                Set-LocatioWithHistory $target
+                Set-LocationWithHistory $target
                 return
             }
         }
