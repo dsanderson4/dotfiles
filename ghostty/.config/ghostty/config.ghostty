@@ -1,0 +1,111 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /home/dave/.config/ghostty/config.ghostty
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options.
+# Note that you should not paste the output of `ghostty +show-config
+# --default` into your config: some default options actually conflict with each other
+# when explicitly set in a configuration file. Instead, only set the
+# options you actually need.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+# font-family = Iosevka
+# window-padding-x = 2
+#
+# # Spacing around the equals sign does not matter.
+# # All of these are identical:
+# key=value
+# key= value
+# key =value
+# key = value
+#
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+#
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
+
+# Font
+# ====
+font-family = Hack Nerd Font Mono
+font-size = 9
+
+# Theme
+# =====
+# Built-in themes; run `ghostty +list-themes` for an interactive preview.
+# Alternatives: Gruvbox Dark Hard, Gruvbox Material Dark, Atom One Dark,
+# One Dark Two, TokyoNight, TokyoNight Night, TokyoNight Storm, TokyoNight Moon.
+theme = Gruvbox Dark
+
+# Tabs
+# ====
+# Compact: merge the tab bar into the GTK titlebar (one row instead of two).
+gtk-titlebar-style = tabs
+# Color the titlebar/tab bar from the terminal's own background/foreground.
+window-theme = ghostty
+# No shadow/border between the tab bar and the terminal area.
+gtk-toolbar-style = flat
+# Tabs only take the width they need instead of filling the bar.
+gtk-wide-tabs = false
+
+# Keybindings
+# ===========
+# Mirrors the custom keybindings in windowsterminal/settings.tracked.json.
+# Number keys use physical `digit_N` so ctrl+shift+N isn't seen as ctrl+shift+!.
+# Not ported: WT's alt+shift+N "new tab with profile N". Ghostty (1.4) can't
+# open a tab running a specific program; a new_tab + chained text: binding was
+# tried, but the text often lands in the original tab instead of the new one.
+# Copy (ctrl+shift+c), paste (ctrl+shift+v), and find (ctrl+shift+f) are
+# already Ghostty defaults.
+
+# Split pane focus (vim-style). ctrl+shift+j replaces Ghostty's default
+# write_screen_file:paste binding.
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:down
+keybind = ctrl+shift+k=goto_split:up
+keybind = ctrl+shift+l=goto_split:right
+
+# Duplicate pane: split in whichever direction has more room.
+keybind = ctrl+shift+d=new_split:auto
+
+# Switch to tab N; ctrl+shift+9 goes to the last tab.
+keybind = ctrl+shift+digit_1=goto_tab:1
+keybind = ctrl+shift+digit_2=goto_tab:2
+keybind = ctrl+shift+digit_3=goto_tab:3
+keybind = ctrl+shift+digit_4=goto_tab:4
+keybind = ctrl+shift+digit_5=goto_tab:5
+keybind = ctrl+shift+digit_6=goto_tab:6
+keybind = ctrl+shift+digit_7=goto_tab:7
+keybind = ctrl+shift+digit_8=goto_tab:8
+keybind = ctrl+shift+digit_9=last_tab
+
+# Move the current tab left/right (Ghostty's default here is previous/next
+# tab, which ctrl+tab / ctrl+page_up/down still cover).
+keybind = ctrl+shift+arrow_left=move_tab:-1
+keybind = ctrl+shift+arrow_right=move_tab:1

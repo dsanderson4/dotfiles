@@ -1,0 +1,95 @@
+/* Colors from the i3 bar {} block and i3status general {} block. */
+@define-color bg        #404552;
+@define-color fg        #fafafa;
+@define-color focused   #3685e2;
+@define-color active    #5294e2;
+@define-color urgent    #ff5757;
+@define-color good      #79ff81;
+@define-color degraded  #fafe7c;
+@define-color bad       #ff7770;
+@define-color separator #666666;
+
+* {
+    font-family: "Clear Sans", sans-serif;
+    font-size: 13px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: @bg;
+    color: @fg;
+}
+
+/* Workspace buttons, like i3bar */
+#workspaces button {
+    padding: 0 6px;
+    color: @fg;
+    background-color: @bg;
+}
+
+#workspaces button.active {
+    background-color: @focused;
+}
+
+#workspaces button.visible:not(.active) {
+    background-color: @active;
+}
+
+#workspaces button.urgent {
+    background-color: @urgent;
+}
+
+#workspaces button:hover {
+    background: @active;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+/* Binding mode indicator */
+#submap {
+    padding: 0 6px;
+    background-color: @urgent;
+    color: @fg;
+}
+
+/* Status blocks with i3bar-style separators */
+#tray,
+#network,
+#pulseaudio,
+#battery,
+#clock {
+    padding: 0 8px;
+    border-left: 1px solid @separator;
+    margin: 3px 0;
+}
+
+/* i3status colors = true */
+#network.wifi,
+#network.ethernet {
+    color: @good;
+}
+
+#network.disconnected,
+#network.disabled,
+#network.linked {
+    color: @bad;
+}
+
+#pulseaudio.muted {
+    color: @degraded;
+}
+
+#battery.charging,
+#battery.full {
+    color: @good;
+}
+
+#battery.warning:not(.charging) {
+    color: @degraded;
+}
+
+#battery.critical:not(.charging) {
+    color: @bad;
+}

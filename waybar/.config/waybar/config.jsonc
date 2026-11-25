@@ -1,0 +1,88 @@
+// Waybar config mirroring the i3 bar: i3bar (workspaces, binding mode, tray)
+// plus the i3status blocks from i3/.config/i3status/config, in the same order.
+{
+  "layer": "top",
+  "position": "top",
+  "height": 22,
+  "spacing": 0,
+
+  "modules-left": ["hyprland/workspaces", "hyprland/submap"],
+  "modules-center": [],
+  "modules-right": [
+    "tray",
+    "network#wireless",
+    "network#ethernet",
+    "pulseaudio",
+    "battery",
+    "clock"
+  ],
+
+  // i3bar workspace buttons
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-number": true
+  },
+
+  // i3bar binding mode indicator (shows "resize" while in that submap)
+  "hyprland/submap": {
+    "format": "{}",
+    "tooltip": false
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 6
+  },
+
+  // i3status: wireless _first_
+  "network#wireless": {
+    "interface": "wl*",
+    "format-wifi": "W: ({signalStrength}% at {essid}) {ipaddr}",
+    "format-disconnected": "W: down",
+    "format-disabled": "W: down",
+    "format-ethernet": "",
+    "format-linked": "W: ({signalStrength}% at {essid}) no IP",
+    "tooltip-format": "{ifname} {ipaddr}/{cidr} via {gwaddr}",
+    "interval": 5
+  },
+
+  // i3status: ethernet _first_ (waybar can't show link speed, so that's dropped)
+  "network#ethernet": {
+    "interface": "en*",
+    "format-ethernet": "E: {ipaddr}",
+    "format-disconnected": "E: down",
+    "format-disabled": "E: down",
+    "format-wifi": "",
+    "format-linked": "E: no IP",
+    "tooltip-format": "{ifname} {ipaddr}/{cidr} via {gwaddr}",
+    "interval": 5
+  },
+
+  // i3status: volume master
+  "pulseaudio": {
+    "format": "♪ {volume}%",
+    "format-muted": "♪ muted ({volume}%)",
+    "scroll-step": 5,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol"
+  },
+
+  // i3status: battery 0 (hidden automatically on machines without a battery)
+  "battery": {
+    "interval": 5,
+    "states": { "warning": 20, "critical": 10 },
+    "format": "{capacity}% {time}",
+    "format-charging": "⚇ {capacity}% {time}",
+    "format-discharging": "⚡ {capacity}% {time}",
+    "format-full": "☻ FULL",
+    "format-time": "{H}:{m}"
+  },
+
+  // i3status: tztime local
+  "clock": {
+    "interval": 5,
+    "format": "{:%H:%M %Y-%m-%d}",
+    "tooltip-format": "<tt>{calendar}</tt>"
+  }
+}

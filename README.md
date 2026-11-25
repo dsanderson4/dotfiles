@@ -9,6 +9,9 @@ where possible:
 | Vim                           | X       | X     | X   | X   | X      |
 | Neovim                        | X       | X     | X   | X   |        |
 | i3 Window Manager             |         | X     |     |     |        |
+| Hyprland                      |         | X     |     |     |        |
+| Waybar                        |         | X     |     |     |        |
+| Rofi                          |         | X     |     |     |        |
 | Kitty Terminal                |         | X     | X   | X   |        |
 | Lazygit                       | X       | X     | X   | X   | X      |
 | Powershell                    | X       |       |     |     |        |
@@ -20,8 +23,8 @@ where possible:
 The fonts directory contains support files.
 
 For platforms other than Windows, GNU Stow (package name "stow") can be used to
-create the necessary symbolic links for emacs, vim, neovim, kitty, lazygit, and
-i3 (see `lazygit/README.md` for a Mac-specific caveat). In Windows, run the
+create the necessary symbolic links for emacs, vim, neovim, kitty, lazygit, i3,
+hyprland, waybar, and rofi (see `lazygit/README.md` for a Mac-specific caveat). In Windows, run the
 "install.ps1" script in each tool's directory (emacs, vim, neovim, vifm, vsvim,
 wezterm, powershell, vscode, lazygit). These scripts assume that this repository
 is cloned to ~/dotfiles; also they depend on a Windows "sudo" program that can
