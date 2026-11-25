@@ -1,19 +1,37 @@
 # Z Shell Settings
 
-I use Oh My Zsh as a framework for zsh; the ohmy.sh script installs it.
+I use Oh My Zsh as a framework for zsh; the ohmy.sh script installs it (with
+`--keep-zshrc`, so it won't overwrite the stowed `.zshrc`).
 
-I use the default .zshrc, except that I cange the theme to "agnoster". This
-theme wants a PowerLine font; I use "Lucdica Console for PowerLine" in my
-terminals.
+`.zshrc` is a trimmed-down Oh My Zsh setup with the theme set to "agnoster".
+The full stock template, with all its commented-out example options, is kept in
+`zshrc-template.txt` for reference (not stowed).
 
-Oh My Zsh automatically runs all .zsh files in ~/.oh-zsh/custom. The .zsh files
-in this repository should be selectively copied into the custom directory,
-depending on the environment:
+## Layout
 
-- all.zsh: All environments.
+This directory is a GNU Stow package:
 
-- wsl.zsh: All WSL enviromments.
+- `.zshrc` → `~/.zshrc`
+- `.config/zsh/*.zsh` → `~/.config/zsh/`
 
-- wsl1.zsh: WSL 1 only.
+After Oh My Zsh loads, `.zshrc` sources every `~/.config/zsh/*.zsh` in
+alphabetical order. Environment-specific files check for that environment
+themselves and return early elsewhere, so the whole package can be stowed
+everywhere:
 
-- wsl2.zsh: WSL 2 only.
+- 00-init.zsh: Environment variables (`EDITOR`, `PATH`, etc.).
+- 10-aliases.zsh: Aliases and small shell functions.
+- 20-wsl.zsh: WSL only; sets `DISPLAY` differently for WSL 1 and WSL 2.
+- 30-fzf.zsh: fzf key bindings and completion; skipped if fzf isn't installed.
+
+The numeric prefixes set the load order; leave gaps so new files can slot in.
+
+Nothing goes in `~/.oh-my-zsh/custom` any more.
+
+## Install
+
+```sh
+./ohmy.sh                         # if Oh My Zsh isn't installed yet
+rm ~/.zshrc                       # stow won't replace a real file
+cd ~/dotfiles && stow zsh
+```

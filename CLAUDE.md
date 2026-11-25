@@ -25,7 +25,7 @@ non-trivial changes in a given directory.
   See the tool's `README.md` for install-order caveats (e.g. PowerShell's
   requires deleting `$PROFILE` first).
 - **Linux/Mac/WSL/MSYS2**: use GNU Stow from the repo root for emacs, vim,
-  neovim, kitty, i3, and rofi (each directory is already laid out as a stow package).
+  neovim, kitty, i3, rofi, and zsh (each directory is already laid out as a stow package).
   Stow packages that also contain repo-only files (`install.ps1`, etc.) have a
   `.stow-local-ignore` so those aren't linked into `$HOME`. That file replaces
   stow's built-in ignore list, so it repeats the defaults.
@@ -124,6 +124,8 @@ turns those into the real file.
   (`i3/config`, `kitty.conf`, `wezterm.lua`) plus, for i3,
   an `i3exit.sh` power-menu script. Rofi configs live in their own `rofi/`
   package, shared by i3 and Hyprland.
-- `zsh/`: Oh My Zsh-based; `.zsh` files here are meant to be selectively copied
-  (not symlinked wholesale) into `~/.oh-my-zsh/custom` depending on environment
-  (`all.zsh` everywhere, `wsl*.zsh` for WSL variants) — see `zsh/README.md`.
+- `zsh/`: Oh My Zsh-based stow package. `.zshrc` sources every
+  `~/.config/zsh/*.zsh` in order (numeric prefixes set load order) after Oh My
+  Zsh loads; environment-specific files (e.g. `20-wsl.zsh`) guard themselves
+  and return early elsewhere, so the whole package is stowed everywhere — see
+  `zsh/README.md`.
