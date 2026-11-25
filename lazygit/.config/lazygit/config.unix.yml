@@ -1,0 +1,13 @@
+# Linux/macOS overrides, layered over config.yml via LG_CONFIG_FILE (set in
+# zsh/.config/zsh/40-nvim.zsh). Lazygit itself ignores this file otherwise.
+os:
+  # Open file in the existing Neovim instance, like the Windows edit command
+  # in config.yml, via the same script the zsh "v" function and vifm's "o"
+  # mapping use. Unlike Windows there's no tab switching (Ghostty can't
+  # focus a tab from the command line).
+  edit: '~/dotfiles/neovim/nvim-remote.sh {{filename}}'
+  # Unlike config.yml, let Lazygit suspend itself: when no Neovim server is
+  # running, nvim-remote.sh runs Neovim right here in Lazygit's terminal and
+  # needs it. With a server running, the remote call returns immediately, so
+  # the suspend is just a brief flicker.
+  editInTerminal: true

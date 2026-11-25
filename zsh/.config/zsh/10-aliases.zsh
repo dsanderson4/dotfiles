@@ -9,4 +9,3 @@ alias d="ls -la"
 alias e="emacsclient -n"
 alias hd="od -A x -t x1z -v"
 alias t=cat
-alias v="gvim --remote-silent"

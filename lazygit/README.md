@@ -13,3 +13,13 @@ on Linux, where Lazygit reads `~/.config/lazygit/config.yml`.
   `~/.config`, so plain `stow` won't land in the right place. Set
   `XDG_CONFIG_HOME=~/.config` (Lazygit honors it on all platforms) before
   running Lazygit, then stow as usual.
+
+## Editing in Neovim
+
+`config.yml`'s `os.edit` is the Windows command (`edit-in-neovim.ps1`).
+Lazygit can't branch on OS within one file, so Linux/macOS overrides live in
+`config.unix.yml`, layered on top via `LG_CONFIG_FILE` (exported by
+`zsh/.config/zsh/40-nvim.zsh`; later files in that comma-separated list win).
+It points `os.edit` at `neovim/nvim-remote.sh`. Lazygit launched without
+that variable set (e.g. not from zsh) falls back to `config.yml` alone, whose
+PowerShell edit command won't work there.

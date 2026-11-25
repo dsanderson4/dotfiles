@@ -23,6 +23,10 @@ everywhere:
 - 10-aliases.zsh: Aliases and small shell functions.
 - 20-wsl.zsh: WSL only; sets `DISPLAY` differently for WSL 1 and WSL 2.
 - 30-fzf.zsh: fzf key bindings and completion; skipped if fzf isn't installed.
+- 40-nvim.zsh: `v`/`vr` open files in the already-running Neovim (via
+  `neovim/nvim-remote.sh`), like the PowerShell functions; starts Neovim
+  locally if none is running. Also points Lazygit at its Unix config
+  overlay. Skipped if nvim isn't installed.
 
 The numeric prefixes set the load order; leave gaps so new files can slot in.
 

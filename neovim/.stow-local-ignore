@@ -16,3 +16,4 @@ _darcs
 ^/LICENSE.*
 ^/COPYING
 ^/install\.ps1
+^/nvim-remote\.sh

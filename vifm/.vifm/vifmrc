@@ -514,6 +514,12 @@ if has('win') && executable('nvim')
     " window to the tab running Neovim. Assumes Neovim is always tab 3
     " (0-indexed, i.e. the 4th tab) in the window vifm is running in.
     nnoremap o :!nvim --server \\.\pipe\nvim-server --remote %f:p && wt -w 0 focus-tab --target 3<cr>
+elseif executable('nvim')
+    " Linux/macOS: open file in existing instance of Neovim via the same
+    " script as the zsh "v" function (neovim/nvim-remote.sh), which falls
+    " back to running Neovim here if none is running. No tab switching
+    " (Ghostty can't focus a tab from the command line).
+    nnoremap o :!~/dotfiles/neovim/nvim-remote.sh %f:p<cr>
 endif
 
 " Open file in the background using its default program
