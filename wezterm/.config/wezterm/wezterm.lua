@@ -174,6 +174,29 @@ config.keys = {
         mods = "LEADER",
         action = act.ActivatePaneDirection 'Right'
     },
+    -- Move the current tab left/right, matching Windows Terminal and
+    -- Ghostty. Replaces WezTerm's default CTRL|SHIFT+arrow pane focus,
+    -- which CTRL|SHIFT+h/l already cover.
+    {
+        key = "LeftArrow",
+        mods = "CTRL|SHIFT",
+        action = act.MoveTabRelative(-1)
+    },
+    {
+        key = "LeftArrow",
+        mods = "LEADER",
+        action = act.MoveTabRelative(-1)
+    },
+    {
+        key = "RightArrow",
+        mods = "CTRL|SHIFT",
+        action = act.MoveTabRelative(1)
+    },
+    {
+        key = "RightArrow",
+        mods = "LEADER",
+        action = act.MoveTabRelative(1)
+    },
     {
         key = "t",
         mods = "CTRL|SHIFT",
