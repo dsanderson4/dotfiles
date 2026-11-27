@@ -44,6 +44,11 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     })
     table.insert(config.launch_menu,
     {
+        label = "Lazygit",
+        args = { "lazygit" }
+    })
+    table.insert(config.launch_menu,
+    {
         label = "Neovim",
         args = { "nvim" }
     })
@@ -83,6 +88,11 @@ elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
     })
     table.insert(config.launch_menu,
     {
+        label = "Lazygit",
+        args = { "lazygit" }
+    })
+    table.insert(config.launch_menu,
+    {
         label = "Neovim",
         args = { "nvim" }
     })
@@ -110,6 +120,11 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" or wezterm.target_triple =
     table.insert(config.launch_menu,
     {
         label = "bash", args = {"bash", "-l"}
+    })
+    table.insert(config.launch_menu,
+    {
+        label = "Lazygit",
+        args = { "lazygit" }
     })
     table.insert(config.launch_menu,
     {
